@@ -31,6 +31,21 @@ Read this before touching anything. If something here is wrong, fix this file - 
 10. This file is the interface between teams. If you need a decision, add it to "Open questions" -
     do not silently guess.
 
+## Who owns what - scope split (agreed with Devin, 3 Oct 2026)
+
+There are two teams on this project and they must not duplicate each other's work.
+
+- **Base44 builder - this repo, and only this repo.** Pages, components, styling, front-end behaviour and any
+  real application logic that ships the physical website. If it is an edit to a file in this repository,
+  it belongs to Base44.
+- **Marblism AI team - everything else that grows the business.** All the work that does not involve directly
+  changing the physical website: content, blog, social, sales outreach, legal, inbox and email, meeting notes,
+  design and marketing assets. They currently do this better, so that is where it lives.
+- **Devin Williams - owner.** Final approval on every change, from either side.
+
+The rule, in one line: **editing files in this repo = Base44. Growing the business without touching website
+code = Marblism.** Nobody does both, nobody does the other's job.
+
 ## Current state of this repo
 
 - Repo created 3 Oct 2026 and connected to Base44 (two-way GitHub sync, Elite plan).
@@ -41,17 +56,14 @@ Read this before touching anything. If something here is wrong, fix this file - 
   No real AI calls.
 - Auth (`/register`, `/login`): UI-only stubs that redirect to `/ai-studio`. No backend, no database.
 
-## Who owns what
-
-- Devin Williams - owner. Final approval on every change.
-- Base44 builder - application code for the Base44 app.
-- Marblism AI team - status to be documented here (see Open questions).
-
 ## Open questions / known gaps
 
+- [ ] Overlap to resolve: Marblism has a website builder colleague (Walter) and Base44 builds the website.
+      Who is the single owner of website code changes? Two editors on one repo is how things get overwritten.
+- [ ] Handoff path: when Marblism produces copy, images, pricing or offers that need to appear on the site,
+      how do they get into this repo? A PR, an issue, or a file they commit for Base44 to wire up?
 - [ ] Was PR #1 a rebuild, or is the live Base44 app's real source supposed to land in this repo? If it was a
       rebuild, we now have two divergent codebases for one website - that is the main risk right now.
 - [ ] Which image-generation service is approved, and where do the keys live?
 - [ ] Is there a real backend/database, and does the live site depend on it?
-- [ ] What is the Marblism AI team building that the Base44 side needs to know about, and vice versa?
 - [ ] Which of the two codebases is the single source of truth for visionboardprint.com going forward?
