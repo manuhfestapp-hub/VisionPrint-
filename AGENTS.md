@@ -35,16 +35,24 @@ Read this before touching anything. If something here is wrong, fix this file - 
 
 There are two teams on this project and they must not duplicate each other's work.
 
-- **Base44 builder - this repo, and only this repo.** Pages, components, styling, front-end behaviour and any
-  real application logic that ships the physical website. If it is an edit to a file in this repository,
-  it belongs to Base44.
+- **Walter (Marblism website builder) - leads website code changes.** He decides what changes on the physical
+  website and specifies the edits to make.
+- **Base44 builder - executes the website edits Walter specifies**, and owns the application-side
+  implementation in this repository. It does not freelance, redesign or rebuild on its own initiative.
 - **Marblism AI team - everything else that grows the business.** All the work that does not involve directly
   changing the physical website: content, blog, social, sales outreach, legal, inbox and email, meeting notes,
   design and marketing assets. They currently do this better, so that is where it lives.
 - **Devin Williams - owner.** Final approval on every change, from either side.
 
-The rule, in one line: **editing files in this repo = Base44. Growing the business without touching website
+The rule, in one line: **website code = Walter directs, Base44 executes. Growth work that touches no website
 code = Marblism.** Nobody does both, nobody does the other's job.
+
+## How work reaches this repo (agreed with Devin, 3 Oct 2026)
+
+- The handoff format is a **pull request containing the finished files** - copy, images, pricing, page content.
+- Marblism opens the PR with the finished files; Base44 wires them into the app.
+- No loose files outside a PR and no issue-only handoffs - if it needs to ship, it travels as a PR.
+- Every PR still follows the hard rules: one change per PR, never a direct commit to `main`, Devin approves.
 
 ## Current state of this repo
 
@@ -58,10 +66,6 @@ code = Marblism.** Nobody does both, nobody does the other's job.
 
 ## Open questions / known gaps
 
-- [ ] Overlap to resolve: Marblism has a website builder colleague (Walter) and Base44 builds the website.
-      Who is the single owner of website code changes? Two editors on one repo is how things get overwritten.
-- [ ] Handoff path: when Marblism produces copy, images, pricing or offers that need to appear on the site,
-      how do they get into this repo? A PR, an issue, or a file they commit for Base44 to wire up?
 - [ ] Was PR #1 a rebuild, or is the live Base44 app's real source supposed to land in this repo? If it was a
       rebuild, we now have two divergent codebases for one website - that is the main risk right now.
 - [ ] Which image-generation service is approved, and where do the keys live?
