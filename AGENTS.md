@@ -30,6 +30,8 @@ Read this before touching anything. If something here is wrong, fix this file - 
 9. Keep the dark gradient + purple accent visual identity unless explicitly told otherwise.
 10. This file is the interface between teams. If you need a decision, add it to "Open questions" -
     do not silently guess.
+11. `main` IS LIVE INFRASTRUCTURE. Anything merged into `main` syncs into the Base44 app automatically.
+    Nothing merges into `main` without Devin's explicit written approval. Never merge on your own.
 
 ## Who owns what - scope split (agreed with Devin, 3 Oct 2026)
 
@@ -54,20 +56,36 @@ code = Marblism.** Nobody does both, nobody does the other's job.
 - No loose files outside a PR and no issue-only handoffs - if it needs to ship, it travels as a PR.
 - Every PR still follows the hard rules: one change per PR, never a direct commit to `main`, Devin approves.
 
+## How the GitHub to Base44 sync works (confirmed by Base44, 3 Oct 2026)
+
+- Two-way GitHub sync is automatic and free. No polling, no scheduled workflow, no extra cost.
+- Anything merged into `main` syncs back into the Base44 app on its own, with no manual action.
+- Synced changes appear inside Base44, but they do NOT go live for visitors until **Publish** (top-right)
+  is clicked.
+- **Publish is a manual platform action.** It cannot be automated, scheduled or delegated. Instead of
+  polling, publish when the latest work should go live.
+- Work on side branches does NOT sync. Only what lands in `main` reaches the app.
+
 ## Current state of this repo
 
 - Repo created 3 Oct 2026 and connected to Base44 (two-way GitHub sync, Elite plan).
+- Only the `README.md` starter commit is on `main`. Nothing else has been merged into `main`.
 - PR #1 (`base44/setup-be35a4f2`) contains a from-scratch Next.js 14 (App Router) + TypeScript + Tailwind
   rebuild of the marketing pages, generated from visionboardprint.com. It is NOT an import of the live
   Base44 app's real source. Held by Devin for review - not merged.
+- **Do not merge PR #1 into `main`.** Because `main` syncs straight into the Base44 app, merging it would push
+  a from-scratch rebuild into the live app before the source-of-truth question is answered.
 - AI image generation (fate board, honest board, lockscreen, studio): simulated timed placeholders.
   No real AI calls.
 - Auth (`/register`, `/login`): UI-only stubs that redirect to `/ai-studio`. No backend, no database.
 
 ## Open questions / known gaps
 
-- [ ] Was PR #1 a rebuild, or is the live Base44 app's real source supposed to land in this repo? If it was a
-      rebuild, we now have two divergent codebases for one website - that is the main risk right now.
+- [ ] **Source of truth, unanswered and now urgent:** is the live Base44 app, or this repo, the single source
+      of truth for visionboardprint.com? `main` now feeds the Base44 app automatically, so this decides whether
+      merging here edits the real site or overwrites it.
+- [ ] Marblism's website builder (Walter) has a separate build in flight that is not in this repo. It has to be
+      adopted or scrapped before anything else ships, or there will be three divergent versions of one website.
+- [ ] Was PR #1 a rebuild, or is the live Base44 app's real source supposed to land in this repo?
 - [ ] Which image-generation service is approved, and where do the keys live?
 - [ ] Is there a real backend/database, and does the live site depend on it?
-- [ ] Which of the two codebases is the single source of truth for visionboardprint.com going forward?
