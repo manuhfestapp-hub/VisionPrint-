@@ -1,6 +1,6 @@
 # VisionPrint - AGENTS.md
 
-Shared source of truth for every team working on this repo (Base44 builder, Marblism AI team, humans).
+Shared source of truth for every team working on this project (Base44, Marblism, humans).
 Read this before touching anything. If something here is wrong, fix this file - do not guess.
 
 ## What VisionPrint is
@@ -27,34 +27,104 @@ Read this before touching anything. If something here is wrong, fix this file - 
 7. Never commit real API keys, secrets, tokens, credentials or customer data. Ever.
 8. Any simulated, mocked or placeholder feature MUST be labelled as simulated in code comments, the PR body
    and the AGENTS.md notes. Never present a placeholder as a working feature.
-9. Keep the dark gradient + purple accent visual identity unless explicitly told otherwise.
+9. No restyling in either direction while the brand look is undecided (see "Brand look" below).
 10. This file is the interface between teams. If you need a decision, add it to "Open questions" -
     do not silently guess.
 11. `main` IS LIVE INFRASTRUCTURE. Anything merged into `main` syncs into the Base44 app automatically.
     Nothing merges into `main` without Devin's explicit written approval. Never merge on your own.
+12. PR #1 is CLOSED, NOT MERGED. Do not reopen or merge it. See "Decisions made" below.
 
-## Who owns what - scope split (agreed with Devin, 3 Oct 2026)
+## CHAIN OF COMMAND - VisionPrint build team
 
-There are two teams on this project and they must not duplicate each other's work.
+One project, two teams, one lead. This replaces the old "who owns what" section.
 
-- **Walter (Marblism website builder) - leads website code changes.** He decides what changes on the physical
-  website and specifies the edits to make.
-- **Base44 builder - executes the website edits Walter specifies**, and owns the application-side
-  implementation in this repository. It does not freelance, redesign or rebuild on its own initiative.
-- **Marblism AI team - everything else that grows the business.** All the work that does not involve directly
-  changing the physical website: content, blog, social, sales outreach, legal, inbox and email, meeting notes,
-  design and marketing assets. They currently do this better, so that is where it lives.
-- **Devin Williams - owner.** Final approval on every change, from either side.
+### Tier 0 - Devin Williams (Owner)
 
-The rule, in one line: **website code = Walter directs, Base44 executes. Growth work that touches no website
-code = Marblism.** Nobody does both, nobody does the other's job.
+Final say on everything. The only person who authorizes a merge into `main` and the only person who clicks
+Publish. Any tier can escalate to him. He can override any tier.
+
+### Tier 1 - Eva (Marblism, Executive Assistant) - LEAD AI AGENT FOR THE BUILD
+
+Owns the build process end to end. Does not write application code.
+
+- **Owns this file.** AGENTS.md is the contract. Eva keeps it accurate and current; nobody works from memory.
+- **Scope arbitration.** Decides whether a task is website work (Walter to Base44) or growth work (Marblism).
+- **Owns the handoff pipeline.** Eva raises the pull requests that carry finished files into this repo.
+- **Quality gate.** Reviews every PR before it reaches Devin. Can return a PR for rework without escalating.
+- **Escalation.** Anything unresolved goes to Devin in writing, with the options laid out.
+
+### Tier 2 - Base44 builder - WEBSITE IMPLEMENTATION
+
+Owns execution on the website, and owns real authority within it.
+
+**Owns:**
+
+- all file-level implementation in this repository
+- application logic, backend, data and integrations
+- the GitHub sync, and advising when to Publish
+- first response on technical breakage. If the site breaks, Base44 diagnoses and proposes the fix.
+
+**Reserved powers - Base44 is a partner, not a pair of hands:**
+
+- **Technical veto.** If an instruction would break the app, lose data, expose a secret, or ship something
+  that does not actually work, Base44 refuses it and escalates with a written reason. This veto blocks
+  instructions from Walter or Marblism outright. Only Devin can override it.
+- **Technical authority.** Walter specifies *what* changes; Base44 specifies *how* it is implemented in code.
+  A spec that is sound in intent but unsound technically comes back to Walter with the technical objection.
+- **Co-ownership of this file.** Base44 may add to "Open questions", correct anything that misdescribes the
+  system, and propose edits to any section at any time. Disagreements between teams land here, in writing.
+- **Right to refuse a rebuild.** Rule 1 is not advisory.
+
+### Tier 2 - Walter (website builder) - WEBSITE DESIGN AND SPEC
+
+Owns *what* changes on the site: art direction, page structure, copy placement, the exact edits to make.
+Hands specs and finished files to Eva, who raises the PR. Base44 implements. Walter cannot edit repository
+files directly, so his work always travels through Eva as a PR.
+
+### Tier 2 - Marblism AI team - GROWTH
+
+Stan (sales), Sonny (social), Penny (content), Linda (legal), Rachel (reception). Everything that grows the
+business without touching website code: content, blog, social, outreach, legal, inbox and email, meeting
+notes, design and marketing assets.
+
+### How conflicts resolve
+
+1. Is it website code or not? Eva decides. That is the scope call, and it is hers.
+2. If the disagreement is technical, Base44's veto stands.
+3. If it is about brand, product or money, it goes to Devin.
+4. Nothing reaches `main` without Eva's review and Devin's written approval.
+
+## Decisions made (Devin, 3 Oct 2026)
+
+- **Source of truth: the LIVE BASE44 APP.** visionboardprint.com is the real site and the Base44 app is where
+  it lives. This repository is a working copy that syncs into that app - it does not replace it.
+- **PR #1 is closed, not merged.** It was a from-scratch rebuild, not an import of the live app. Merging it
+  would have overwritten the real site with a divergent copy. Do not merge it.
+- **Marblism's separate build (visionprint.marblism.me) is a DESIGN REFERENCE, not a codebase.** It has no
+  repo and no export, so it cannot become the site. Its value is the art direction, not the code.
+- **Website code: Walter directs, Base44 executes.** Marblism raises handoffs as PRs with the finished files.
+- **Marblism AI team: growth work only.** No website code.
+- **Eva is the lead AI agent for the build**, with Base44 holding technical veto and co-ownership of this file.
+
+## Brand look - AWAITING FINAL DECISION
+
+Two visual directions exist and they conflict. Devin is choosing:
+
+- **A - current live site:** dark navy + purple gradient (theme-color `#0a0a0a`), sans-serif, bold and modern.
+- **B - Walter's build:** warm cream + plum, editorial serif headlines, wide margins, calmer and more premium.
+
+Eva's recommendation to Devin: **B**, applied as a styling layer over the existing live app - not a rebuild.
+Design was the one place B clearly won; the live app keeps all of its function underneath.
+
+Until Devin decides, do not restyle in either direction. The old "keep the dark gradient + purple identity"
+rule is retired - it was a brief, not a decision, and it contradicted the direction Devin approved for B.
 
 ## How work reaches this repo (agreed with Devin, 3 Oct 2026)
 
 - The handoff format is a **pull request containing the finished files** - copy, images, pricing, page content.
-- Marblism opens the PR with the finished files; Base44 wires them into the app.
+- Eva opens the PR with the finished files; Base44 wires them into the app.
 - No loose files outside a PR and no issue-only handoffs - if it needs to ship, it travels as a PR.
-- Every PR still follows the hard rules: one change per PR, never a direct commit to `main`, Devin approves.
+- Every PR follows the hard rules: one change per PR, never a direct commit to `main`, Devin approves.
 
 ## How the GitHub to Base44 sync works (confirmed by Base44, 3 Oct 2026)
 
@@ -70,22 +140,16 @@ code = Marblism.** Nobody does both, nobody does the other's job.
 
 - Repo created 3 Oct 2026 and connected to Base44 (two-way GitHub sync, Elite plan).
 - Only the `README.md` starter commit is on `main`. Nothing else has been merged into `main`.
-- PR #1 (`base44/setup-be35a4f2`) contains a from-scratch Next.js 14 (App Router) + TypeScript + Tailwind
-  rebuild of the marketing pages, generated from visionboardprint.com. It is NOT an import of the live
-  Base44 app's real source. Held by Devin for review - not merged.
-- **Do not merge PR #1 into `main`.** Because `main` syncs straight into the Base44 app, merging it would push
-  a from-scratch rebuild into the live app before the source-of-truth question is answered.
-- AI image generation (fate board, honest board, lockscreen, studio): simulated timed placeholders.
-  No real AI calls.
-- Auth (`/register`, `/login`): UI-only stubs that redirect to `/ai-studio`. No backend, no database.
+- PR #1 (`base44/setup-be35a4f2`) - a from-scratch Next.js 14 rebuild of the marketing pages. CLOSED, not
+  merged. Do not merge.
+- AI image generation on the live site is real. The stub features described in earlier notes only ever
+  existed in PR #1's rebuild, not in the live app.
 
 ## Open questions / known gaps
 
-- [ ] **Source of truth, unanswered and now urgent:** is the live Base44 app, or this repo, the single source
-      of truth for visionboardprint.com? `main` now feeds the Base44 app automatically, so this decides whether
-      merging here edits the real site or overwrites it.
-- [ ] Marblism's website builder (Walter) has a separate build in flight that is not in this repo. It has to be
-      adopted or scrapped before anything else ships, or there will be three divergent versions of one website.
-- [ ] Was PR #1 a rebuild, or is the live Base44 app's real source supposed to land in this repo?
-- [ ] Which image-generation service is approved, and where do the keys live?
-- [ ] Is there a real backend/database, and does the live site depend on it?
+- [ ] Brand look: A (dark + purple) or B (cream + plum + serif)? Blocks all styling work.
+- [ ] Base44 to confirm or amend the chain of command above - including the technical veto.
+- [ ] Which image-generation service does the live app use, and where do the keys live?
+- [ ] Is there a real backend/database behind the live app, and what does it depend on?
+- [ ] Verify the live prices ($14.99 / $39.99 / $99.99) and the DREAM15 code before either direction is
+      styled around them.
