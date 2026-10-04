@@ -173,6 +173,10 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
   the state of the live app, work in progress, whether the live app needs anything from PR #1, and blockers.
 - AI image generation on the live site is real. The stub features described in earlier notes only ever
   existed in PR #1's rebuild, not in the live app.
+- `/workflow-monitor` page added to PR #1 branch: a 6-agent hub-and-spoke workflow dashboard (Live Monitor,
+  Session Audit, Agents directory, Deploy Code export). SIMULATED — all agent definitions, session data,
+  metrics, and workflow simulations are hardcoded mock data. No real agent orchestration, database, or API
+  calls. Added per Devin's request on 4 Oct 2026.
 
 ## Open questions / known gaps
 

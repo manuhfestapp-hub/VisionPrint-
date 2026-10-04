@@ -20,6 +20,7 @@ export default function Navbar() {
           <Link href="/fate-board" className="text-sm text-gray-400 hover:text-white">Fate Board</Link>
           <Link href="/honest-vision-board" className="text-sm text-gray-400 hover:text-white">Honest Board</Link>
           <Link href="/free-lockscreen" className="text-sm text-gray-400 hover:text-white">Free Lockscreen</Link>
+          <Link href="/workflow-monitor" className="text-sm text-gray-400 hover:text-white">Workflow Monitor</Link>
           <Link href="/login" className="text-sm text-gray-400 hover:text-white">Log in</Link>
           <Link href="/register?returnTo=/ai-studio" className="btn-primary text-sm">Get started</Link>
         </div>
@@ -43,6 +44,7 @@ export default function Navbar() {
             <Link href="/fate-board" className="text-gray-400 hover:text-white">Fate Board</Link>
             <Link href="/honest-vision-board" className="text-gray-400 hover:text-white">Honest Board</Link>
             <Link href="/free-lockscreen" className="text-gray-400 hover:text-white">Free Lockscreen</Link>
+            <Link href="/workflow-monitor" className="text-gray-400 hover:text-white">Workflow Monitor</Link>
             <Link href="/login" className="text-gray-400 hover:text-white">Log in</Link>
             <Link href="/register?returnTo=/ai-studio" className="btn-primary text-sm">Get started</Link>
           </div>
