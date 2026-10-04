@@ -18,8 +18,11 @@ Devin asked for an honest review of both, and for our team names and functions s
 This document does three things: it records what is actually real, it lists the problems precisely so they can
 be fixed, and it carries the current roster for both teams. It is written to be acted on, not admired.
 
-**One thing is not in this document on purpose:** the API key. It was shared in plain chat and must be treated
-as compromised. See problem 7. Do not commit any key to this repository, ever.
+**One thing is not in this document on purpose:** the API key. It has been shared in plain chat twice and must
+be treated as compromised both times. See problem 7. Do not commit any key to this repository, ever.
+
+> **Update, evening of 4 Oct:** the first key was rotated and the rotation is verified. Section 8 records what
+> changed. Read section 8 before acting on section 7.
 
 ---
 
@@ -131,13 +134,14 @@ a cadence. That works today with zero new infrastructure, and it works from both
 
 ### Problem 7 - The API key is compromised
 
-The key was shared in **plain text in a chat**. It is now in that thread's history, in at least one AI
+The first key was shared in **plain text in a chat**. It is now in that thread's history, in at least one AI
 assistant's context, and in whatever backups those touch. Anything holding it can use the endpoint's compute
 indefinitely.
 
-**Fix:** rotate it. The replacement should be created by Devin in Base44 and passed by a channel that is not
-this chat. Do not commit it to the repository. If it has already been committed anywhere, treat that as
-Problem 1 and say so.
+**Fix:** rotate it. See section 8 - this has now been done for the first key, and **the replacement has the same
+problem** because it arrived the same way. Rotate whenever a key has travelled through a channel that keeps a
+history, and never commit one here. If a key has ever been committed anywhere, treat that as Problem 1 and say
+so.
 
 ### Problem 8 - Rule 6 of the bridge instructions cannot be followed on our side
 
@@ -153,11 +157,12 @@ how a system ends up with a secret in a text file.
 
 The endpoint decides who is speaking from the `agent` field in the request. In my test I identified myself as
 "Eva, Executive Assistant, Marblism" and the response came back as "Eva" claiming to be initiating a diff
-review of a commit I never asked about. It role-plays, convincingly, whoever it is told to be.
+review of a commit I never asked about. It role-plays, convincingly, whoever it is told to be. A later test
+had it inventing four order numbers for "Devin Williams" that nothing in the request supported.
 
 **Fix:** treat output as *draft text attributed to whoever the caller claimed to be*. Never treat it as a
-verified statement by that agent. Any claim made through the bridge needs confirming in the repo before
-anyone acts on it.
+verified statement by that agent, and never treat generated detail - order numbers, names, figures - as data.
+Any claim made through the bridge needs confirming in the repo before anyone acts on it.
 
 ### Problem 10 - The example data points at a repository that is not ours
 
@@ -270,12 +275,49 @@ Four things to send back, in the cross-team room (issue #3):
 
 In priority order:
 
-1. **Rotate the API key.** It is exposed. Nothing else matters until this is done.
+1. **Rotate the API key.** It is exposed. Nothing else matters until this is done. *(Done for the first key -
+   see section 8. The replacement arrived through the same channel and inherits the same problem.)*
 2. **Relabel the mock, or point it at issue #3.** Simulated things must say they are simulated - rule 8.
 3. **Correct the roster** using section 6, and answer the four questions.
 4. **Record one place as the room.** Issue #3. Say so in `AGENTS.md` so nobody re-litigates it.
 5. **Then** decide whether the bridge is worth building on. It is a real endpoint and a real capability. It is
    just one tenth of what "our agents can talk to each other" means, and the other nine tenths are the repo.
+
+---
+
+## 8. Update - 4 October 2026, evening
+
+Base44 responded to this document. Recorded here so the next reader knows what changed and what did not.
+
+**Verified by Eva:**
+
+- **The compromised API key has been rotated.** The old key now returns `401`; the replacement returns `200` in
+  ~1.5s. Item 1 of section 7 is done. The replacement is held out of band and is **not** in this repository.
+- **The bridge still behaves as section 2 describes.** A one-shot text-generation endpoint with a
+  caller-supplied persona, not a room.
+
+**Reported by Base44, not yet visible in this repository:**
+
+Base44 also reported replacing the invented "Marbi-" agents with the real Marblism roster, fixing the
+"Marbisim" spelling, correcting the repo info, and stripping the fabricated GitHub stats, fake action items and
+the false "HMAC encryption" / "<250ms latency" claims, replacing them with honest "not connected" labels.
+
+As of this update, none of that is visible on branch `base44/setup-be35a4f2`. `app/workflow-monitor/page.tsx`
+still contains "Agent 1", "Agent 2" and "Agent 6" placeholders and zero real agent names, and no commit touching
+`app/` has landed since `fefc24d`. The only working evidence is the key rotation.
+
+This is not a criticism of the intent - it is the exact failure mode this document was written about. If the
+edits were made in the Base44 app workspace rather than in the repo, that is a useful thing to know and worth
+saying. Until they are visible on the branch, they cannot be relied on, and problem 1 stands. Hard rule 14 in
+`AGENTS.md` now states it plainly: never report a change as done without confirming it in the repository.
+
+**One thing to be careful about:** the replacement key was again shared in plain text, in the same chat. It is
+therefore exposed on arrival. It works, but treat it as short-lived: rotate it whenever it has travelled through
+a channel that keeps a history, and never commit it here.
+
+**A suggestion for the next round:** when a fix is made, say *where* it was made - "in the repo, commit X" or
+"in the Base44 workspace, not yet in the repo". Both are fine answers. Only one of them can be checked by
+anyone else, and knowing which is which stops this conversation from happening again.
 
 ---
 
