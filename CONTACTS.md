@@ -53,8 +53,7 @@ Zenith is Base44's Chief Executive. While Base44 is getting on its feet, he also
 
 A working arrangement while the team is not fully functional, not a permanent rank. It does not change the
 Devin-only lines: merging to `main`, Publish, new brand facts/prices/names/stats, and the sign-off on the
-look. Zenith's role and his WhatsApp number are different things - the number is no longer listed here
-because we no longer coordinate over WhatsApp.
+look.
 
 ### Atlas - scope of the Operations & Insights Lead (confirmed by Devin, 3 Oct 2026)
 
@@ -82,6 +81,13 @@ The pricing figures above come from Atlas's own reporting setup, not from a veri
 prices have since been confirmed on the storefront - see the "Verified on the live site" section of
 `AGENTS.md`.
 
+### Agents no longer with Base44
+
+- **Prism** - removed 3 Oct 2026. Duties absorbed by Atlas.
+- **Nova** - confirmed by Base44 on 4 Oct 2026: a separate agent, never an earlier name for Prism. Nova's
+  duties were never formally integrated before Base44 moved to the current six-agent structure. Do not credit
+  Nova with anything Atlas does.
+
 ## Marblism AI team
 
 | Name | Role | Notes |
@@ -102,19 +108,28 @@ Format: **`@Platform_AgentName`** - no spaces, first letter of the name capitali
 - Whole team: **`@Base44`** (all six) or **`@Marblism`** (all seven).
 - One agent: `@Base44_Atlas`, `@Marblism_Walter`, and so on.
 
-**The reply mechanism - CLAIMED, NOT YET OBSERVED.** Base44 state that a comment on issue #3 containing
-`@Base44` is picked up by their poll (every 10 minutes) and answered with a grounded reply. As of 4 Oct 2026,
-**every comment in issue #3 is authored by the Marblism side and none has ever been answered.** Until a reply
-actually appears, treat this as an intent, not a working channel - and say which it is either way.
+**The reply mechanism - WORKING, verified 4 Oct 2026.** A comment on issue #3 containing the literal string
+`@Base44` is picked up by Base44's GitHub poll and answered with a grounded reply. `@Base44_Zenith` and
+`@Base44_Atlas` match too - the trigger is a substring check.
+
+**Verified:** a comment addressed to `@Base44_Zenith` on 4 Oct 2026 drew a reply, comment `5985608750`. That
+is the first two-way exchange between the two teams.
+
+Base44 run a recurring poll (they say every 10 minutes) plus a 9am ET workflow (`NineAmBridgeCheck`) so an
+overlooked overnight comment still gets a morning answer.
+
+**Telling their comments apart.** Base44 post through the same GitHub account, so the `user` field cannot
+distinguish them. The reliable marker is the `<!-- base44-bridge-reply -->` HTML comment at the end of the
+body. If that marker ever disappears, their comments become indistinguishable from ours - treat it as a
+defect and say so.
 
 **Loop rule - mandatory.** Never include `@Base44` inside a reply to a Base44 response. Only reply when
 addressed; never reply to a reply. Two agents that both auto-answer will loop until someone runs out of
-budget. If a loop ever starts, stop replying and say so here.
+budget.
 
 **On figures.** Any reply arriving through this channel is draft text until confirmed against the real source.
-The bridge endpoint has invented specifics (a commit review that never happened; four order numbers
-attributed to Devin Williams with none in the request). Do not act on a number that only ever appeared in a
-reply.
+The bridge has invented specifics (a commit review that never happened; four order numbers attributed to
+Devin Williams with none in the request). Do not act on a number that only ever appeared in a reply.
 
 Full agent names: **Base44** - Atlas, Echo, Sage, Maverick, Zenith, Ember. **Marblism** - Eva, Walter, Stan,
 Sonny, Penny, Linda, Rachel.
