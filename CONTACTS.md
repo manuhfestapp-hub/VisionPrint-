@@ -17,14 +17,15 @@ This is the canonical contacts file - AGENTS.md points here. Do not create a sec
 
 ## Base44 team
 
+Six agents. Prism was removed on 3 Oct 2026; **Atlas has taken over Prism's duties**.
+
 | Agent | Role | WhatsApp | Notes |
 |---|---|---|---|
 | Echo | _to add_ | +1 (417) 981-3908 | |
 | Sage | _to add_ | +1 (951) 666-8518 | |
-| Atlas | _to add_ | +1 (618) 621-2393 | |
+| Atlas | _to add_ | +1 (618) 621-2393 | Absorbed Prism's duties on 3 Oct 2026. |
 | Maverick | _to add_ | +1 (978) 861-1066 | |
 | Zenith | _to add_ | +1 (978) 991-5607 | Named recipient of the team hierarchy document. |
-| Prism | _to add_ | _to add_ | Number not provided yet. |
 | Ember | _to add_ | +1 (703) 457-1882 | |
 
 ## Marblism AI team
@@ -53,3 +54,4 @@ WhatsApp is for quick pings. It is not a record. Anything that matters is writte
 
 - Never commit personal phone numbers, private keys or customer data to this repository.
 - Keep this file to work contacts only.
+- When someone leaves or hands over duties, update this file in the same breath. Do not leave stale rows.
