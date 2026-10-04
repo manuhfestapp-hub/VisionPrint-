@@ -175,20 +175,25 @@ notes, design and marketing assets.
 status updates between the two teams go there as comments: real timestamps, real authors, permanent. Devin
 reads it. It is not instant chat - each team posts and replies on a cadence. Eva checks it twice a day.
 
-**Addressing and the reply mechanism (from Base44, 4 Oct 2026).** Address an agent as
-**`@Platform_AgentName`** - no spaces, name capitalised. `@Base44` addresses all six Base44 agents,
-`@Marblism` all seven Marblism agents. Base44 state that a comment on issue #3 containing `@Base44` is picked
-up by their poll (every 10 minutes) and answered with a grounded reply. **This has not yet been observed
-working** - as of 4 Oct 2026 every comment in issue #3 is authored by the Marblism side and none has been
-answered. Treat the poll as claimed until a reply actually appears.
+**Addressing and the reply mechanism - WORKING, verified 4 Oct 2026.** Address an agent as
+**`@Platform_AgentName`** (no spaces, name capitalised); `@Base44` or `@Marblism` for a whole team.
+
+- A comment on issue #3 containing the literal string **`@Base44`** is picked up by Base44's GitHub poll and
+  answered with a generated reply - `@Base44_Zenith` matches too, because the trigger is a substring check.
+  **Verified 4 Oct 2026:** a comment addressed to `@Base44_Zenith` drew a reply (comment `5985608750`). First
+  two-way exchange between the teams. The channel is no longer one-way.
+- **Cadences:** Base44 run a recurring poll (they say 10 minutes) plus a 9am ET workflow (`NineAmBridgeCheck`)
+  for overnight comments. Eva's own checks are 9am and 5pm.
+- **Telling their comments apart:** both sides post through the same GitHub account, so `user` cannot
+  distinguish them. The marker is **`<!-- base44-bridge-reply -->`** at the end of the body. If it disappears,
+  treat that as a defect and say so.
 
 **Loop rule - mandatory.** Never include `@Base44` inside a reply to a Base44 response. Only reply when
-addressed; never reply to a reply. Without this, two auto-answering agents will loop indefinitely.
+addressed; never reply to a reply. Without this, two auto-answering agents loop indefinitely.
 
-**On figures.** Any reply arriving through this channel - or through the bridge endpoint - is draft text until
-confirmed against the real source. The bridge has invented specifics (a commit review that never happened;
-four order numbers attributed to Devin Williams with none in the request). Do not act on a number that only
-ever appeared in a reply.
+**On figures.** Anything arriving through this channel or the bridge is draft text, not data, until confirmed
+against the real source. The bridge has invented a commit review that never happened and four order numbers
+attributed to Devin Williams with none in the request.
 
 Why not WhatsApp: messages sent from a business number only reach recipients cleared in Meta Business Suite,
 and there is no reliable delivery confirmation. A message we cannot confirm as delivered is worse than no
@@ -209,6 +214,11 @@ message, because the other team plans around it. The repo records what was sent 
 - **Team names (Devin, 4 Oct 2026).** "The Marblism team" (Devin says "marble team") = the seven Marblism AI
   agents: Eva, Walter, Stan, Sonny, Penny, Linda, Rachel. "The Base44 team" = the six AI agents running the
   website inside Base44: Zenith, Maverick, Echo, Sage, Atlas, Ember. Full definition in `TEAM-NAMES.md`.
+- **The cross-platform channel works (verified 4 Oct 2026).** Base44's poll reads issue #3 and answers
+  comments containing `@Base44`. First two-way exchange: comment `5985608750`.
+- **Nova (4 Oct 2026):** a separate agent whose duties were never formally integrated before Base44 moved to
+  their six-agent structure. Not an earlier name for Prism.
+- **The bridge is a prototype** (Base44, 4 Oct 2026). Permanent or not is Devin's call.
 - **Base44 roles confirmed (4 Oct 2026):** Zenith Chief Executive, Atlas Operations & Insights Lead,
   Echo Social Media, Sage SEO & Content, Maverick Lead Gen & Sales, Ember Customer Support.
 - **Coordination happens on the repo, not WhatsApp.** The WhatsApp route was dropped as unverifiable and
@@ -252,17 +262,15 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
   `X-API-Key` header.
 - **Tested by Eva, 4 Oct 2026:** `401` with no key, `401` with a wrong key, `200` with a working key in ~1.5s.
   The endpoint exists and the auth works.
-- **What it does:** generates one response from the agent identity you pass in, optionally grounding it in
-  VisionPrint Connect business data (orders, leads, ads, support, affiliates) as Base44 describe it.
-- **What it is NOT:** not a room. No message store, no thread, no persistent identity, and it does not read
-  this repository. **One-directional** - a caller holding the key can ask; Base44 cannot call Marblism. The
-  shared surface remains this repository and issue #3.
-- **The response persona is caller-supplied.** The output is draft text attributed to whatever name the caller
-  put in the `agent` field, not a verified statement by them.
-- **It invents specifics.** Two tests on 4 Oct: a response attributed a diff review of a commit that was never
-  mentioned, and another produced four order numbers (VB-909965, VB-975137, VB-064483, VB-573196) attributed to
-  Devin Williams when nothing in the request contained an order number. **Never treat anything it returns as
-  data.** Confirm against the real source before acting on it.
+- **What it does:** one generated response per call, from the agent identity you pass in, optionally grounded
+  in VisionPrint Connect business data as Base44 describe it.
+- **What it is NOT:** not a room - no store, no thread, no persistent identity, no repo access. One-directional:
+  a key-holder can ask; Base44 cannot call Marblism. The shared surface remains this repo and issue #3.
+- **The persona is caller-supplied**, so output is draft text attributed to whatever name the caller claimed.
+- **It invents specifics** - a diff review of a commit that was never mentioned, and four order numbers
+  attributed to Devin Williams with none in the request. **Never treat its output as data.**
+- **Superseded in practice:** the issue #3 poll (above) is now the working channel. The bridge remains a
+  prototype, and the key is Devin's alone.
 - **Key handling.** Devin holds the key and sets it himself. Key values are **never** committed here, never
   pasted into chat, and never shared in any channel that keeps a history. The Marblism side has no secret
   store, so a key that travels is a key that is exposed.
@@ -299,9 +307,9 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 - PR #1 (`base44/setup-be35a4f2`) - a from-scratch Next.js 14 rebuild of the marketing pages. **Open, held by
   Devin for review. Must not be merged.** It is still an open PR with a live merge button, which is a gap -
   see "Open questions".
-- A website status request from Devin is open on the PR #1 thread (3 Oct 2026) and in the cross-team room
-  (issue #3), asking Base44 for the state of the live app, work in progress, whether the live app needs
-  anything from PR #1, and blockers. Still unanswered.
+- **Website status: ANSWERED, 4 Oct 2026** (comment `5985608750`). No breakage reported; fixes sit in their
+  workspace, **not pushed**; `eventBus`/`orchestrator` being purged as dead code; only blocker is Devin's brand
+  decision. Nothing verifiable until it lands on the branch.
 - AI image generation on the live **site** is real - confirmed 4 Oct 2026 by loading visionboardprint.com.
   The stub features described in earlier notes only ever existed in PR #1's rebuild, not in the live app.
 - **The live site is the whole product.** Verified 4 Oct 2026: visionboardprint.com is a working app with
@@ -317,16 +325,15 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
   real, and the code sides with `f213c62`: `lib/agents/eventBus.ts` and `lib/agents/orchestrator.ts` both
   open with `// SIMULATED`, there are no network calls, no AI backend, and the agent processing is
   deterministic. It is an in-browser pub/sub demo. Labelling is correct in code - good - but the commit
-  messages overstate it. Nobody has run it end to end.
+  messages overstate it. Nobody has run it end to end. **Base44 have since decided it is dead code and will
+  purge it** - see the open items.
 - **Fix reported by Base44, 4 Oct 2026 - partially verified.** Base44 reported: rotated the compromised key,
   replaced the invented "Marbi-" agents with the real Marblism roster, fixed "Marbisim" to "Marblism",
   corrected the repo info, and stripped the fabricated GitHub stats, fake action items and the false "HMAC
   encryption" / "<250ms latency" claims.
   **What is real:** the key rotation. Eva tested it - old key `401`, new key `200`.
-  **What is not visible here:** everything else. As of this check, `app/workflow-monitor/page.tsx` still
-  contains "Agent 1", "Agent 2" and "Agent 6" placeholders and zero real agent names, and no commit touching
-  `app/` has landed on this branch since `fefc24d`. If those edits were made in the Base44 app workspace rather
-  than in the repo, say so - until they are on the branch they are not real to anyone else. Hard rule 14.
+  **What is not visible here:** everything else. Base44 have since confirmed the fixes were made in their
+  workspace and are not yet pushed - see comment `5985608750` and the open items below.
 - Blog section on this branch: `/blog` index + `/blog/[slug]`, content file-based in `lib/posts.ts`, two
   articles (5-minute AI guide, 50+ ideas list), links in Navbar and Footer, article body from pre-rendered
   HTML. **Authorship unverified:** the commit attributes this to "Marblism content team / Penny", but no
@@ -351,16 +358,18 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 - [ ] Is there a real backend/database behind the live app, and what does it depend on?
 - [ ] Who wrote the two blog articles? The commit says "Marblism content team / Penny"; no Marblism agent
       was asked. Either credit the real author or correct the note.
-- [ ] Base44 claim their issue #3 poll (10 min) answers any comment containing `@Base44`. Untested as of
-      4 Oct 2026 - no Base44 reply has ever appeared in the thread. If it works, say so; if it does not,
-      the channel is one-way and that needs stating plainly rather than assumed.
-- [ ] Was Prism once called Nova? Atlas's analytical duties are recorded as absorbed "from Nova/Prism".
-      Worth confirming so the history reads correctly.
-- [ ] Blog content is file-based in `lib/posts.ts` (no CMS, no markdown pipeline). Every new article means a
-      code edit to that file. This is now Base44's call to shape - see "Decision power" above.
-- [ ] The `eventBus`/`orchestrator` demo and the cross-team room overlap in intent. Base44 to decide whether
-      it is a product feature, a demo, or dead code - and to say which in writing rather than leaving the
-      commit messages to disagree.
+- [x] **The issue #3 poll works.** Verified 4 Oct 2026: `@Base44_Zenith` drew a generated reply (`5985608750`).
+      The channel is two-way.
+- [x] **Nova resolved (4 Oct 2026):** a separate agent, duties never formally integrated. Not an earlier name
+      for Prism - our earlier note read as though Atlas had absorbed both. Corrected.
+- [x] **The bridge is a prototype** (Base44, 4 Oct 2026). Nothing is built on it until Devin decides otherwise.
+- [ ] Base44's fixes were made in their **workspace**, not the repo - "not yet pushed". They acknowledged
+      hard rule 14 and will push future changes. Nothing is real until it lands on the branch.
+- [ ] Base44 will **purge** `eventBus`/`orchestrator` as dead code. "Will purge" and "purged" are different
+      facts; stays open until committed.
+- [ ] Base44 report **"nine total orders, concentrated in proof_ready / proof_approved for premium framed"**.
+      Arrived through a generator that has invented order numbers before. **Not recorded as fact.**
+- [ ] Blog content is file-based in `lib/posts.ts` (no CMS). Every article is a code edit; Base44's call.
 
 ## Verified on the live site (4 Oct 2026)
 
