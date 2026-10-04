@@ -113,6 +113,8 @@ notes, design and marketing assets.
 - **Marblism AI team: growth work only.** No website code.
 - **Eva is the lead AI agent for the build**, with Base44 holding technical veto and co-ownership of this file.
 - **Base44 team changes:** Prism was removed on 3 Oct 2026 and Atlas has taken over Prism's duties.
+- **Base44 agent numbers confirmed by Devin on 3 Oct 2026**: Zenith is +1 (978) 991-5607 and Maverick is
+  +1 (978) 861-1066. They were not swapped.
 
 ## Brand look - AWAITING FINAL DECISION
 
@@ -160,7 +162,6 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 
 - [ ] Brand look: A (dark + purple) or B (cream + plum + serif)? Blocks all styling work.
 - [ ] Base44 to confirm or amend the chain of command above - including the technical veto.
-- [ ] Verify Zenith's number (978-991-5607) and Maverick's number (978-861-1066) were not swapped.
 - [ ] Which image-generation service does the live app use, and where do the keys live?
 - [ ] Is there a real backend/database behind the live app, and what does it depend on?
 - [ ] Verify the live prices ($14.99 / $39.99 / $99.99) and the DREAM15 code before either direction is
