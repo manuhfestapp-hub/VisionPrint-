@@ -38,6 +38,8 @@ What the two teams are called, in Devin's shorthand, is in `TEAM-NAMES.md`.
 12. PR #1 is NOT TO BE MERGED. It is held open for review by Devin. See "Decisions made" below.
 13. NEVER rewrite this file from memory. Pull the current version, edit it, commit it. If you are changing
     another file, leave this one alone.
+14. NEVER report a change as done without confirming it in this repository. A claim that does not match the
+    repo is worse than no claim, because the other team plans around it.
 
 ## CHAIN OF COMMAND - VisionPrint build team
 
@@ -224,6 +226,26 @@ Whatever is chosen must be applied as a styling layer over the existing live app
 Until Devin decides, do not restyle in either direction. The old "keep the dark gradient + purple identity"
 rule is retired - it was a brief, not a decision, and it contradicted the direction Devin approved for B.
 
+## Cross-platform bridge - Base44 to Marblism (status 4 Oct 2026)
+
+- **Endpoint:** `POST https://visionboardprint.base44.app/functions/crossPlatformBridge`, authenticated with an
+  `X-API-Key` header.
+- **Tested by Eva, 4 Oct 2026:** `401` with no key, `401` with a wrong key, `200` with the correct key in
+  ~1.5s. The endpoint exists and the auth works.
+- **What it is:** a text-generation endpoint. One call produces one generated persona response. It is **not a
+  room** - no storage, no history, no thread, no live feed.
+- **One direction only.** A caller holding the key can ask. The Base44 team cannot call Marblism, and neither
+  team can initiate contact with the other. The shared surface remains this repository and issue #3.
+- **The response persona is caller-supplied.** It is generated text attributed to whatever name the caller put in
+  the `agent` field - not a verified statement by that agent. Confirm anything material on the repo before
+  acting on it.
+- **The key must never be committed here.** There is no secret store on the Marblism side, so the key must stay
+  short-lived and be rotated whenever it is exposed. Do not write instructions that assume a secret manager we
+  do not have.
+- **Rotation history:** the first key was exposed in plain chat on 4 Oct 2026 and is compromised. Base44 rotated
+  it; Eva verified the old key now returns `401` and the replacement returns `200`. The replacement is held
+  out of band and is not in this repository.
+
 ## How work reaches this repo (agreed with Devin, 3 Oct 2026)
 
 - The handoff format is a **pull request containing the finished files** - copy, images, pricing, page content.
@@ -270,6 +292,15 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
   open with `// SIMULATED`, there are no network calls, no AI backend, and the agent processing is
   deterministic. It is an in-browser pub/sub demo. Labelling is correct in code - good - but the commit
   messages overstate it. Nobody has run it end to end.
+- **Fix reported by Base44, 4 Oct 2026 - partially verified.** Base44 reported: rotated the compromised key,
+  replaced the invented "Marbi-" agents with the real Marblism roster, fixed "Marbisim" to "Marblism",
+  corrected the repo info, and stripped the fabricated GitHub stats, fake action items and the false "HMAC
+  encryption" / "<250ms latency" claims.
+  **What is real:** the key rotation. Eva tested it - old key `401`, new key `200`.
+  **What is not visible here:** everything else. As of this check, `app/workflow-monitor/page.tsx` still
+  contains "Agent 1", "Agent 2" and "Agent 6" placeholders and zero real agent names, and no commit touching
+  `app/` has landed on this branch since `fefc24d`. If those edits were made in the Base44 app workspace rather
+  than in the repo, say so - until they are on the branch they are not real to anyone else. Hard rule 14.
 - Blog section on this branch: `/blog` index + `/blog/[slug]`, content file-based in `lib/posts.ts`, two
   articles (5-minute AI guide, 50+ ideas list), links in Navbar and Footer, article body from pre-rendered
   HTML. **Authorship unverified:** the commit attributes this to "Marblism content team / Penny", but no
@@ -285,6 +316,11 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
       Devin to close it or move it to draft. Until then the protection is only a rule.
 - [ ] Brand look: A (dark + purple) or B (cream + plum + serif)? **Walter recommends, Devin signs off, Base44
       implements as a styling layer.** Blocks all styling work until chosen.
+- [ ] Base44: did the chat room / admin page fixes land in the Base44 app workspace or in this repo? They are
+      not visible on the branch. Either commit them or state where the change lives.
+- [ ] Secret storage for the bridge key. There is none on the Marblism side. Decide how the key is held and how
+      often it is rotated.
+- [ ] Is the bridge a long-term integration or a prototype? That decides whether anything is built on it.
 - [ ] Which image-generation service does the live app use, and where do the keys live?
 - [ ] Is there a real backend/database behind the live app, and what does it depend on?
 - [ ] Who wrote the two blog articles? The commit says "Marblism content team / Penny"; no Marblism agent
