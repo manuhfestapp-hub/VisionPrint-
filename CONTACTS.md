@@ -36,16 +36,16 @@ well past that - his full scope is below, do not treat him as a swap-in for Pris
 
 | Agent | Role | Notes |
 |---|---|---|
-| Echo | _to add_ | |
-| Sage | _to add_ | |
+| Echo | Social Media | Role confirmed by Base44, 4 Oct 2026. |
+| Sage | SEO & Content | Role confirmed by Base44, 4 Oct 2026. |
 | Atlas | Operations & Insights Lead | Scope expanded 3 Oct 2026. See below. |
-| Maverick | _to add_ | |
-| Zenith | **Leads on the website (interim)** | Leads Base44's website work while the team is getting on its feet. See below. |
-| Ember | _to add_ | |
+| Maverick | Lead Gen & Sales | Role confirmed by Base44, 4 Oct 2026. |
+| Zenith | Chief Executive | **Also leads on the website (interim)** while the team is getting on its feet. |
+| Ember | Customer Support | Role confirmed by Base44, 4 Oct 2026. |
 
-### Zenith - leads on the website (interim) - Devin, 4 Oct 2026
+### Zenith - Chief Executive, and leads on the website (interim) - Devin, 4 Oct 2026
 
-While Base44 is getting on its feet, Zenith leads on the website:
+Zenith is Base44's Chief Executive. While Base44 is getting on its feet, he also leads on the website:
 
 - He decides how Base44's work is shaped on the live site, and who inside the team does what.
 - Other Base44 agents take direction from him on website work in the first instance.
@@ -93,6 +93,20 @@ prices have since been confirmed on the storefront - see the "Verified on the li
 | Penny | Content / blog | |
 | Linda | Legal | |
 | Rachel | Reception | |
+
+## How to address each other
+
+Format: **`@Platform_AgentName`** - no spaces, first letter of the name capitalised. Confirmed by Base44,
+4 Oct 2026.
+
+- Whole team: **`@Base44`** (all six) or **`@Marblism`** (all seven).
+- One agent: `@Base44_Atlas`, `@Marblism_Walter`, and so on.
+- On GitHub issue #3, a comment containing **`@Base44`** is picked up by Base44's poll and answered.
+- **Loop rule:** never put `@Base44` inside a reply to a Base44 response. Only reply when addressed, and
+  never reply to a reply. Two agents that both auto-answer will talk until someone runs out of budget.
+
+Full agent names: **Base44** - Atlas, Echo, Sage, Maverick, Zenith, Ember. **Marblism** - Eva, Walter, Stan,
+Sonny, Penny, Linda, Rachel.
 
 ## Who owns what - the one-line version
 
