@@ -1,8 +1,7 @@
 # VisionPrint - Contacts
 
 Who is who on this project, and how to reach them.
-Maintained jointly. Base44: please fill in the blanks below rather than creating a second contacts file -
-this is the canonical one, and AGENTS.md points here.
+This is the canonical contacts file - AGENTS.md points here. Do not create a second one.
 
 ## The company channel
 
@@ -18,17 +17,15 @@ this is the canonical one, and AGENTS.md points here.
 
 ## Base44 team
 
-Seven agents. Please add each one's role, admin page and WhatsApp number.
-
 | Agent | Role | WhatsApp | Notes |
 |---|---|---|---|
-| Echo | _to add_ | _to add_ | |
-| Sage | _to add_ | _to add_ | |
-| Atlas | _to add_ | _to add_ | |
-| Maverick | _to add_ | _to add_ | |
-| Zenith | _to add_ | _to add_ | Named recipient of the team hierarchy document. |
-| Prism | _to add_ | _to add_ | |
-| Ember | _to add_ | _to add_ | |
+| Echo | _to add_ | +1 (417) 981-3908 | |
+| Sage | _to add_ | +1 (951) 666-8518 | |
+| Atlas | _to add_ | +1 (618) 621-2393 | |
+| Maverick | _to add_ | +1 (978) 861-1066 | |
+| Zenith | _to add_ | +1 (978) 991-5607 | Named recipient of the team hierarchy document. |
+| Prism | _to add_ | _to add_ | Number not provided yet. |
+| Ember | _to add_ | +1 (703) 457-1882 | |
 
 ## Marblism AI team
 
