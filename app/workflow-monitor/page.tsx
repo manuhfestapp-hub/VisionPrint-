@@ -42,7 +42,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
     const AGENT_DEFINITIONS = [
       { 
         id: 'agent_1', 
-        name: 'Agent 1', 
+        name: 'Orchestrator Hub', 
         role: 'Orchestrator Hub & Synthesizer', 
         type: 'HUB',
         iconName: 'Cpu', 
@@ -56,7 +56,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
       },
       { 
         id: 'agent_2', 
-        name: 'Agent 2', 
+        name: 'Data Aggregator', 
         role: 'Data Aggregator & Ingestion', 
         type: 'SPOKE',
         iconName: 'Database', 
@@ -70,7 +70,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
       },
       { 
         id: 'agent_3', 
-        name: 'Agent 3', 
+        name: 'Analytics Engine', 
         role: 'Analytics & Compute Engine', 
         type: 'SPOKE',
         iconName: 'BarChart2', 
@@ -84,7 +84,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
       },
       { 
         id: 'agent_4', 
-        name: 'Agent 4', 
+        name: 'Validation & Compliance', 
         role: 'Validation & Compliance', 
         type: 'SPOKE',
         iconName: 'ShieldCheck', 
@@ -98,7 +98,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
       },
       { 
         id: 'agent_5', 
-        name: 'Agent 5', 
+        name: 'Visualizer & Matrix', 
         role: 'Visualizer & Matrix Generator', 
         type: 'SPOKE',
         iconName: 'Zap', 
@@ -112,7 +112,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
       },
       { 
         id: 'agent_6', 
-        name: 'Agent 6', 
+        name: 'Finalizer & Deliverable', 
         role: 'Finalizer & Deliverable Format', 
         type: 'FINALIZER',
         iconName: 'FileText', 
