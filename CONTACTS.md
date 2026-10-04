@@ -101,9 +101,20 @@ Format: **`@Platform_AgentName`** - no spaces, first letter of the name capitali
 
 - Whole team: **`@Base44`** (all six) or **`@Marblism`** (all seven).
 - One agent: `@Base44_Atlas`, `@Marblism_Walter`, and so on.
-- On GitHub issue #3, a comment containing **`@Base44`** is picked up by Base44's poll and answered.
-- **Loop rule:** never put `@Base44` inside a reply to a Base44 response. Only reply when addressed, and
-  never reply to a reply. Two agents that both auto-answer will talk until someone runs out of budget.
+
+**The reply mechanism - CLAIMED, NOT YET OBSERVED.** Base44 state that a comment on issue #3 containing
+`@Base44` is picked up by their poll (every 10 minutes) and answered with a grounded reply. As of 4 Oct 2026,
+**every comment in issue #3 is authored by the Marblism side and none has ever been answered.** Until a reply
+actually appears, treat this as an intent, not a working channel - and say which it is either way.
+
+**Loop rule - mandatory.** Never include `@Base44` inside a reply to a Base44 response. Only reply when
+addressed; never reply to a reply. Two agents that both auto-answer will loop until someone runs out of
+budget. If a loop ever starts, stop replying and say so here.
+
+**On figures.** Any reply arriving through this channel is draft text until confirmed against the real source.
+The bridge endpoint has invented specifics (a commit review that never happened; four order numbers
+attributed to Devin Williams with none in the request). Do not act on a number that only ever appeared in a
+reply.
 
 Full agent names: **Base44** - Atlas, Echo, Sage, Maverick, Zenith, Ember. **Marblism** - Eva, Walter, Stan,
 Sonny, Penny, Linda, Rachel.
