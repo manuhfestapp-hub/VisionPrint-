@@ -1,10 +1,13 @@
 'use client';
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import { WorkflowOrchestrator } from '@/lib/agents/orchestrator';
 
-    // SIMULATED: All agent definitions, session data, metrics, and workflow simulations
-    // in this page are hardcoded mock data for demonstration purposes. No real agent
-    // orchestration, database, or API calls are performed. Per AGENTS.md rule #8.
+    // SIMULATED: Agent definitions, session data, and metrics are mock data for demonstration.
+    // Inter-agent communication is REAL — agents send messages to each other through an event bus
+    // (lib/agents/eventBus.ts) and coordinate via the WorkflowOrchestrator (lib/agents/orchestrator.ts).
+    // Agent processing logic is deterministic (no AI/LLM backend). No database or external API calls.
+    // Per AGENTS.md rule #8.
 
     // Zero-dependency SVG Icon Components for bulletproof rendering in all environments
     const Icon = ({ path, className = "w-4 h-4", fill = "none" }) => (
@@ -228,6 +231,10 @@ export async function runHubSpokeWorkflow(correlationId, userPrompt) {
       const [simulateRetry, setSimulateRetry] = useState(true);
       const [copiedCode, setCopiedCode] = useState(false);
 
+      // Real inter-agent communication orchestrator (SIMULATED processing — no AI backend)
+      const orchestratorRef = useRef<WorkflowOrchestrator | null>(null);
+      const currentRunIdRef = useRef<string>('');
+
       // Summary Metrics
       const stats = useMemo(() => {
         const totalSessions = sessions.length;
@@ -262,172 +269,47 @@ export async function runHubSpokeWorkflow(correlationId, userPrompt) {
         return activeSession.logs.filter(l => l.status === logFilter);
       }, [activeSession, logFilter]);
 
+      // Set up the real orchestrator and subscribe to inter-agent events
+      useEffect(() => {
+        const orchestrator = new WorkflowOrchestrator(AGENT_DEFINITIONS);
+        orchestratorRef.current = orchestrator;
+        const unsubs: (() => void)[] = [];
+
+        unsubs.push(orchestrator.on('agent:status', ({ agentId, status, currentTask, retries }) => {
+          setAgents(prev => prev.map(a => a.id === agentId ? { ...a, status, currentTask, ...(retries !== undefined ? { retries } : {}) } : a));
+        }));
+
+        unsubs.push(orchestrator.on('log:new', (log) => {
+          setSessions(prev => prev.map(s => s.correlation_id === currentRunIdRef.current ? { ...s, logs: [...s.logs, log] } : s));
+        }));
+
+        unsubs.push(orchestrator.on('session:created', (session) => {
+          currentRunIdRef.current = session.correlation_id;
+          setSessions(prev => [session, ...prev]);
+          setSelectedSessionId(session.correlation_id);
+        }));
+
+        unsubs.push(orchestrator.on('session:complete', ({ sessionId, status, durationMs, failedSubtasks }) => {
+          setSessions(prev => prev.map(s => s.correlation_id === sessionId ? { ...s, status, duration_ms: durationMs, failed_subtasks: failedSubtasks } : s));
+          setIsSimulating(false);
+        }));
+
+        unsubs.push(orchestrator.on('workflow:step', ({ step }) => {
+          setSimStep(step);
+        }));
+
+        return () => unsubs.forEach(fn => fn());
+      }, []);
+
       const runWorkflowSimulation = useCallback(() => {
         if (isSimulating) return;
         setIsSimulating(true);
         setSimStep(1);
-
-        const newJobId = `job_b44_${Math.floor(10000 + Math.random() * 90000)}`;
-        const newSession = {
-          correlation_id: newJobId,
-          user_prompt: customPrompt || 'Automated multi-agent Hub & Spoke run.',
-          status: 'RUNNING',
-          created_at: new Date().toISOString(),
-          duration_ms: 0,
-          total_subtasks: 4,
-          failed_subtasks: 0,
-          logs: []
-        };
-
-        setSessions(prev => [newSession, ...prev]);
-        setSelectedSessionId(newJobId);
-
-        const updateAgent = (id, patch) => {
-          setAgents(prev => prev.map(a => a.id === id ? { ...a, ...patch } : a));
-        };
-
-        const addLog = (logItem) => {
-          setSessions(prev => prev.map(s => {
-            if (s.correlation_id === newJobId) {
-              return { ...s, logs: [...s.logs, logItem] };
-            }
-            return s;
-          }));
-        };
-
-        const startTime = Date.now();
-
-        // STEP 1: Agent 1 (Orchestrator Hub)
-        updateAgent('agent_1', { status: 'running', currentTask: 'Deconstructing user task into 4 subtask payloads' });
-        addLog({
-          id: `sim_${Date.now()}_1`,
-          agent_id: 'agent_1',
-          action: 'DECONSTRUCT_TASK',
-          attempt: 1,
-          status: 'SUCCESS',
-          duration: 1020,
-          message: 'Deconstructed prompt into payloads for Agents 2, 3, 4, and 5.'
-        });
-
-        setTimeout(() => {
-          updateAgent('agent_1', { status: 'idle', currentTask: 'Listening on Base44 Event Bus' });
-          setSimStep(2);
-
-          // STEP 2: Spoke Agents Parallel Trigger (Agents 2-5)
-          updateAgent('agent_2', { status: 'running', currentTask: 'Ingesting dataset inputs...' });
-          updateAgent('agent_3', { status: 'running', currentTask: 'Calculating variance metrics...' });
-          updateAgent('agent_4', { status: 'running', currentTask: 'Validating compliance schema...' });
-          updateAgent('agent_5', { status: 'running', currentTask: 'Rendering visual layout matrix...' });
-
-          if (simulateRetry) {
-            // Agent 2 simulates a timeout and retry sequence
-            setTimeout(() => {
-              updateAgent('agent_2', { 
-                status: 'warning', 
-                retries: agents[1].retries + 1, 
-                currentTask: 'Timeout: 15,000ms exceeded. Attempting Retry #2...' 
-              });
-
-              addLog({
-                id: `sim_${Date.now()}_2a`,
-                agent_id: 'agent_2',
-                action: 'FETCH_DATA',
-                attempt: 1,
-                status: 'TIMEOUT',
-                duration: 15000,
-                message: 'Timeout: Ingestion gateway took >15,000ms. Retrying...'
-              });
-
-              setTimeout(() => {
-                updateAgent('agent_2', { status: 'idle', currentTask: 'Awaiting subtask query' });
-                updateAgent('agent_3', { status: 'idle', currentTask: 'Awaiting subtask calculation' });
-                updateAgent('agent_4', { status: 'idle', currentTask: 'Awaiting validation payload' });
-                updateAgent('agent_5', { status: 'idle', currentTask: 'Awaiting render request' });
-
-                addLog({ id: `sim_${Date.now()}_2b`, agent_id: 'agent_2', action: 'FETCH_DATA', attempt: 2, status: 'SUCCESS', duration: 1100, message: 'Retry #2 succeeded. Dataset loaded.' });
-                addLog({ id: `sim_${Date.now()}_3`, agent_id: 'agent_3', action: 'COMPUTE_METRICS', attempt: 1, status: 'SUCCESS', duration: 2300, message: 'Statistical metrics calculated.' });
-                addLog({ id: `sim_${Date.now()}_4`, agent_id: 'agent_4', action: 'VERIFY_COMPLIANCE', attempt: 1, status: 'SUCCESS', duration: 1200, message: 'Security rules verified.' });
-                addLog({ id: `sim_${Date.now()}_5`, agent_id: 'agent_5', action: 'GENERATE_CHARTS', attempt: 1, status: 'SUCCESS', duration: 3400, message: 'SVG visuals built.' });
-
-                setSimStep(3);
-
-                // STEP 3: Agent 1 Synthesis
-                updateAgent('agent_1', { status: 'running', currentTask: 'Synthesizing spoke payloads into draft' });
-                setTimeout(() => {
-                  updateAgent('agent_1', { status: 'idle', currentTask: 'Listening on Base44 Event Bus' });
-                  addLog({ id: `sim_${Date.now()}_6`, agent_id: 'agent_1', action: 'SYNTHESIZE_RESULTS', attempt: 1, status: 'SUCCESS', duration: 920, message: 'Synthesized 4 spoke outputs cleanly.' });
-
-                  setSimStep(4);
-
-                  // STEP 4: Agent 6 Final Polish
-                  updateAgent('agent_6', { status: 'running', currentTask: 'Formatting final deliverable...' });
-                  setTimeout(() => {
-                    const totalDuration = Date.now() - startTime;
-                    updateAgent('agent_6', { status: 'idle', currentTask: 'Awaiting draft payload' });
-                    addLog({ id: `sim_${Date.now()}_7`, agent_id: 'agent_6', action: 'FORMAT_FINAL_OUTPUT', attempt: 1, status: 'SUCCESS', duration: 810, message: 'Workflow deliverable formatted and emitted.' });
-
-                    setSessions(prev => prev.map(s => {
-                      if (s.correlation_id === newJobId) {
-                        return { ...s, status: 'COMPLETED', duration_ms: totalDuration };
-                      }
-                      return s;
-                    }));
-
-                    setIsSimulating(false);
-                    setSimStep(0);
-                  }, 1200);
-
-                }, 1400);
-
-              }, 1600);
-
-            }, 1200);
-
-          } else {
-            // Smooth execution path (no retries)
-            setTimeout(() => {
-              updateAgent('agent_2', { status: 'idle', currentTask: 'Awaiting subtask query' });
-              updateAgent('agent_3', { status: 'idle', currentTask: 'Awaiting subtask calculation' });
-              updateAgent('agent_4', { status: 'idle', currentTask: 'Awaiting validation payload' });
-              updateAgent('agent_5', { status: 'idle', currentTask: 'Awaiting render request' });
-
-              addLog({ id: `sim_${Date.now()}_2`, agent_id: 'agent_2', action: 'FETCH_DATA', attempt: 1, status: 'SUCCESS', duration: 2100, message: 'Dataset loaded smoothly.' });
-              addLog({ id: `sim_${Date.now()}_3`, agent_id: 'agent_3', action: 'COMPUTE_METRICS', attempt: 1, status: 'SUCCESS', duration: 2300, message: 'Analytics generated.' });
-              addLog({ id: `sim_${Date.now()}_4`, agent_id: 'agent_4', action: 'VERIFY_COMPLIANCE', attempt: 1, status: 'SUCCESS', duration: 1200, message: 'Compliance passed.' });
-              addLog({ id: `sim_${Date.now()}_5`, agent_id: 'agent_5', action: 'GENERATE_CHARTS', attempt: 1, status: 'SUCCESS', duration: 3100, message: 'Visuals generated.' });
-
-              setSimStep(3);
-              updateAgent('agent_1', { status: 'running', currentTask: 'Synthesizing spoke payloads...' });
-
-              setTimeout(() => {
-                updateAgent('agent_1', { status: 'idle', currentTask: 'Listening on Base44 Event Bus' });
-                addLog({ id: `sim_${Date.now()}_6`, agent_id: 'agent_1', action: 'SYNTHESIZE_RESULTS', attempt: 1, status: 'SUCCESS', duration: 880, message: 'Synthesis finished.' });
-
-                setSimStep(4);
-                updateAgent('agent_6', { status: 'running', currentTask: 'Formatting final deliverable...' });
-
-                setTimeout(() => {
-                  const totalDuration = Date.now() - startTime;
-                  updateAgent('agent_6', { status: 'idle', currentTask: 'Awaiting draft payload' });
-                  addLog({ id: `sim_${Date.now()}_7`, agent_id: 'agent_6', action: 'FORMAT_FINAL_OUTPUT', attempt: 1, status: 'SUCCESS', duration: 750, message: 'Final report emitted.' });
-
-                  setSessions(prev => prev.map(s => {
-                    if (s.correlation_id === newJobId) {
-                      return { ...s, status: 'COMPLETED', duration_ms: totalDuration };
-                    }
-                    return s;
-                  }));
-
-                  setIsSimulating(false);
-                  setSimStep(0);
-                }, 1000);
-
-              }, 1200);
-
-            }, 1800);
-          }
-        }, 1000);
-      }, [isSimulating, customPrompt, simulateRetry, agents]);
+        orchestratorRef.current?.run(
+          customPrompt || 'Automated multi-agent Hub & Spoke run.',
+          { simulateRetry }
+        );
+      }, [isSimulating, customPrompt, simulateRetry]);
 
       // Copy code using execCommand fallback for iFrame compatibility
       const copyCodeToClipboard = () => {
