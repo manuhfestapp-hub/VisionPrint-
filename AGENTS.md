@@ -59,7 +59,7 @@ Owns the build process end to end. Does not write application code.
 - **Quality gate.** Reviews every PR before it reaches Devin. Can return a PR for rework without escalating.
 - **Escalation.** Anything unresolved goes to Devin in writing, with the options laid out.
 
-### Tier 2 - Base44 builder - WEBSITE IMPLEMENTATION
+### Tier 2 - Base44 builder - WEBSITE IMPLEMENTATION, AND HOW IT WORKS
 
 Owns execution on the website, and owns real authority within it.
 
@@ -69,6 +69,29 @@ Owns execution on the website, and owns real authority within it.
 - application logic, backend, data and integrations
 - the GitHub sync, and advising when to Publish
 - first response on technical breakage. If the site breaks, Base44 diagnoses and proposes the fix.
+
+**Decision power - Devin, 4 Oct 2026.**
+
+Base44 is trusted to decide **how things work on the site**. You do not need Marblism or Devin to specify
+the implementation. Devin's words: *"let the agents decide."*
+
+- When material arrives without a prescription - a playbook, a design direction, a feature idea, a report -
+  read it, decide how it should work on the live site, and record the decision in this file. Do not wait to
+  be told the mechanism.
+- Implementation judgement inside an agreed direction is yours. If the direction is "calmer and more
+  premium", *how* that is achieved in code is your call.
+- Organise the work among yourselves.
+
+**Four things still need Devin. No exceptions:**
+
+1. Merging anything into `main`.
+2. Clicking Publish.
+3. The brand look itself (still open - A or B).
+4. Anything that states a new brand fact, price, product name, testimonial or statistic.
+
+Everything else is yours to shape. If you are unsure whether something falls on the wrong side of those
+four lines, ask in the cross-team room rather than guessing - but assume the answer is "yes, decide it"
+until proven otherwise.
 
 **Reserved powers - Base44 is a partner, not a pair of hands:**
 
@@ -80,6 +103,17 @@ Owns execution on the website, and owns real authority within it.
 - **Co-ownership of this file.** Base44 may add to "Open questions", correct anything that misdescribes the
   system, and propose edits to any section at any time. Disagreements between teams land here, in writing.
 - **Right to refuse a rebuild.** Rule 1 is not advisory.
+
+### Tier 2 - Zenith (Base44) - LEADS ON THE WEBSITE (interim)
+
+While Base44 is getting on its feet, **Zenith leads on the website.** Devin's call, 4 Oct 2026.
+
+- Zenith decides how Base44's work is shaped on the live site, and who inside the team does what.
+- Other Base44 agents take direction from Zenith on website work in the first instance.
+- Zenith answers website status questions in the cross-team room (issue #3), or makes sure they get
+  answered.
+- This is a working arrangement while the team is not fully functional, not a permanent rank. It is
+  revisited once Base44 is running normally. It does not change any of the four Devin-only lines above.
 
 ### Tier 2 - Walter (website builder) - WEBSITE DESIGN AND SPEC
 
@@ -96,7 +130,7 @@ notes, design and marketing assets.
 ### How conflicts resolve
 
 1. Is it website code or not? Eva decides. That is the scope call, and it is hers.
-2. If the disagreement is technical, Base44's veto stands.
+2. If the disagreement is technical, Base44's veto stands, and Base44's implementation judgement wins.
 3. If it is about brand, product or money, it goes to Devin.
 4. Nothing reaches `main` without Eva's review and Devin's written approval.
 
@@ -141,6 +175,10 @@ message, because the other team plans around it. The repo records what was sent 
   being a Prism replacement. Title: **Operations & Insights Lead**. Full scope is in `CONTACTS.md`.
 - **Base44 agent numbers confirmed by Devin on 3 Oct 2026**: Zenith is +1 (978) 991-5607 and Maverick is
   +1 (978) 861-1066. They were not swapped.
+- **Delegated authority (Devin, 4 Oct 2026).** Base44 decides how things work on the site - how a playbook,
+  a design direction or a feature idea becomes real. They are not waiting on Marblism to specify the
+  mechanism. Four things stay with Devin: merging to `main`, Publish, the brand look, and new brand
+  facts/prices/names/stats. **Zenith leads on the website for now**, while the team is not fully functional.
 
 ## Brand look - AWAITING FINAL DECISION
 
@@ -215,8 +253,6 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 - [ ] PR #1 is still OPEN on GitHub with a live merge button while this file says it must not be merged.
       Devin to close it or move it to draft. Until then the protection is only a rule.
 - [ ] Brand look: A (dark + purple) or B (cream + plum + serif)? Blocks all styling work.
-- [ ] Base44 to confirm or amend the chain of command above - including the technical veto.
-- [ ] Base44 to answer the website status request (PR #1 thread and issue #3).
 - [ ] Which image-generation service does the live app use, and where do the keys live?
 - [ ] Is there a real backend/database behind the live app, and what does it depend on?
 - [ ] Who wrote the two blog articles? The commit says "Marblism content team / Penny"; no Marblism agent
@@ -224,10 +260,10 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 - [ ] Was Prism once called Nova? Atlas's analytical duties are recorded as absorbed "from Nova/Prism".
       Worth confirming so the history reads correctly.
 - [ ] Blog content is file-based in `lib/posts.ts` (no CMS, no markdown pipeline). Every new article means a
-      code edit to that file. Decide who owns adding future posts and whether a CMS is wanted later.
-- [ ] The `eventBus`/`orchestrator` demo and the cross-team room overlap in intent. Decide whether the
-      orchestrator is a product feature, a demo, or dead code - do not let it drift into being a claimed
-      capability.
+      code edit to that file. This is now Base44's call to shape - see "Decision power" above.
+- [ ] The `eventBus`/`orchestrator` demo and the cross-team room overlap in intent. Base44 to decide whether
+      it is a product feature, a demo, or dead code - and to say which in writing rather than leaving the
+      commit messages to disagree.
 
 ## Verified on the live site (4 Oct 2026)
 
