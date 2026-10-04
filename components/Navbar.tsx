@@ -17,10 +17,10 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden items-center gap-6 md:flex">
+          <Link href="/blog" className="text-sm text-gray-400 hover:text-white">Blog</Link>
           <Link href="/fate-board" className="text-sm text-gray-400 hover:text-white">Fate Board</Link>
           <Link href="/honest-vision-board" className="text-sm text-gray-400 hover:text-white">Honest Board</Link>
           <Link href="/free-lockscreen" className="text-sm text-gray-400 hover:text-white">Free Lockscreen</Link>
-          <Link href="/workflow-monitor" className="text-sm text-gray-400 hover:text-white">Workflow Monitor</Link>
           <Link href="/login" className="text-sm text-gray-400 hover:text-white">Log in</Link>
           <Link href="/register?returnTo=/ai-studio" className="btn-primary text-sm">Get started</Link>
         </div>
@@ -41,10 +41,10 @@ export default function Navbar() {
       {open && (
         <div className="border-t border-white/5 px-4 py-4 md:hidden">
           <div className="flex flex-col gap-3">
+            <Link href="/blog" className="text-gray-400 hover:text-white">Blog</Link>
             <Link href="/fate-board" className="text-gray-400 hover:text-white">Fate Board</Link>
             <Link href="/honest-vision-board" className="text-gray-400 hover:text-white">Honest Board</Link>
             <Link href="/free-lockscreen" className="text-gray-400 hover:text-white">Free Lockscreen</Link>
-            <Link href="/workflow-monitor" className="text-gray-400 hover:text-white">Workflow Monitor</Link>
             <Link href="/login" className="text-gray-400 hover:text-white">Log in</Link>
             <Link href="/register?returnTo=/ai-studio" className="btn-primary text-sm">Get started</Link>
           </div>

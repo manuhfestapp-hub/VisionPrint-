@@ -12,6 +12,7 @@ export default function Footer() {
             <span className="font-bold text-white">VisionPrint</span>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-400">
+            <Link href="/blog" className="hover:text-white">Blog</Link>
             <Link href="/fate-board" className="hover:text-white">Fate Board</Link>
             <Link href="/honest-vision-board" className="hover:text-white">Honest Board</Link>
             <Link href="/free-lockscreen" className="hover:text-white">Free Lockscreen</Link>

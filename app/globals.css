@@ -34,6 +34,41 @@ body {
   }
 }
 
+/* Blog article body typography (content rendered from lib/posts.ts) */
+.blog-body {
+  @apply text-gray-300;
+}
+.blog-body h2 {
+  @apply mt-10 text-2xl font-bold text-white;
+}
+.blog-body h3 {
+  @apply mt-8 text-xl font-semibold text-white;
+}
+.blog-body p {
+  @apply mt-5 leading-relaxed;
+}
+.blog-body a {
+  @apply text-brand-300 underline decoration-brand-400/40 underline-offset-2 hover:text-brand-200;
+}
+.blog-body strong {
+  @apply text-white;
+}
+.blog-body ul {
+  @apply mt-5 list-disc space-y-2 pl-6;
+}
+.blog-body ol {
+  @apply mt-5 list-decimal space-y-2 pl-6;
+}
+.blog-body blockquote {
+  @apply mt-6 border-l-2 border-brand-500 pl-4 italic text-gray-400;
+}
+.blog-body img {
+  @apply mt-8 w-full rounded-2xl border border-white/10;
+}
+.blog-body hr {
+  @apply my-10 border-white/10;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #0d111d; }

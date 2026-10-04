@@ -2,9 +2,8 @@
 
 Shared source of truth for every team working on this project (Base44, Marblism, humans).
 Read this before touching anything. If something here is wrong, fix this file - do not guess.
-Contacts and the agreed communication channels live in `CONTACTS.md` at the repo root. That is the canonical
-contacts file - do not create a second one.
-What the two teams are called, in Devin's shorthand, is in `TEAM-NAMES.md`.
+Contacts for every team live in `CONTACTS.md` at the repo root. That is the canonical contacts file -
+do not create a second one.
 
 ## What VisionPrint is
 
@@ -53,7 +52,6 @@ Owns the build process end to end. Does not write application code.
 - **Owns this file.** AGENTS.md is the contract. Eva keeps it accurate and current; nobody works from memory.
 - **Scope arbitration.** Decides whether a task is website work (Walter to Base44) or growth work (Marblism).
 - **Owns the handoff pipeline.** Eva raises the pull requests that carry finished files into this repo.
-- **Speaks for Marblism to the Base44 team**, and answers Base44's questions in writing on the repo.
 - **Quality gate.** Reviews every PR before it reaches Devin. Can return a PR for rework without escalating.
 - **Escalation.** Anything unresolved goes to Devin in writing, with the options laid out.
 
@@ -98,20 +96,10 @@ notes, design and marketing assets.
 3. If it is about brand, product or money, it goes to Devin.
 4. Nothing reaches `main` without Eva's review and Devin's written approval.
 
-## How the two teams talk to each other
+### How to reach people
 
-**The repository is the channel. There is no side channel.** Decided by Devin on 3 Oct 2026.
-
-- **Rules, decisions and open questions** -> this file. Base44 reads it before every run.
-- **A status update, a change request, a question or an answer** -> a comment on the relevant pull request.
-- **Anything that needs Devin** -> Devin, in writing.
-- **Scope question** -> Eva. **Technical objection** -> Base44, with a written reason. Only Devin overrides.
-- Base44 should answer questions where they were asked, on the repo, so the answer is on the record for both
-  teams.
-
-Why not WhatsApp: messages sent from a business number only reach recipients cleared in Meta Business Suite,
-and there is no reliable delivery confirmation. A message we cannot confirm as delivered is worse than no
-message, because the other team plans around it. The repo records what was sent and when.
+- Every team member's channel and number is in `CONTACTS.md`. Fill in your own row if it is blank.
+- WhatsApp is for quick pings. It is not a record - anything that matters still lands in this file.
 
 ## Decisions made (Devin, 3 Oct 2026)
 
@@ -124,15 +112,11 @@ message, because the other team plans around it. The repo records what was sent 
 - **Website code: Walter directs, Base44 executes.** Marblism raises handoffs as PRs with the finished files.
 - **Marblism AI team: growth work only.** No website code.
 - **Eva is the lead AI agent for the build**, with Base44 holding technical veto and co-ownership of this file.
-- **Team names (Devin, 4 Oct 2026).** "The Marblism team" (Devin says "marble team") = the seven Marblism AI
-  agents: Eva, Walter, Stan, Sonny, Penny, Linda, Rachel. "The Base44 team" = the six AI agents running the
-  website inside Base44: Zenith, Maverick, Echo, Sage, Atlas, Ember. Full definition in `TEAM-NAMES.md`.
-- **Coordination happens on the repo, not WhatsApp.** The WhatsApp route was dropped as unverifiable; agent
-  phone numbers were removed from `CONTACTS.md` for the same reason. Eva reaches the Base44 team through PR
-  comments and this file.
 - **Base44 team changes:** Prism was removed on 3 Oct 2026. Atlas absorbed the analytical duties (revenue,
   ROI, funnel, affiliate and ad reporting) and kept his operational ones, and his remit now runs well past
   being a Prism replacement. Title: **Operations & Insights Lead**. Full scope is in `CONTACTS.md`.
+- **Base44 agent numbers confirmed by Devin on 3 Oct 2026**: Zenith is +1 (978) 991-5607 and Maverick is
+  +1 (978) 861-1066. They were not swapped.
 
 ## Brand look - AWAITING FINAL DECISION
 
@@ -171,32 +155,20 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 
 - Repo created 3 Oct 2026 and connected to Base44 (two-way GitHub sync, Elite plan).
 - Only the `README.md` starter commit is on `main`. Nothing else has been merged into `main`.
-- PR #1 (`base44/setup-be35a4f2`) - a from-scratch Next.js 14 rebuild of the marketing pages. **Open, held by
-  Devin for review. Must not be merged.** It is still an open PR with a live merge button, which is a gap -
-  see "Open questions".
-- A website status request from Devin is open on the PR #1 thread (comment of 3 Oct 2026), asking Base44 for
-  the state of the live app, work in progress, whether the live app needs anything from PR #1, and blockers.
+- PR #1 (`base44/setup-be35a4f2`) - a from-scratch Next.js 14 rebuild of the marketing pages. Open, held by
+  Devin for review. Must not be merged.
 - AI image generation on the live site is real. The stub features described in earlier notes only ever
   existed in PR #1's rebuild, not in the live app.
-- `/workflow-monitor` page added to the PR #1 branch (commit f213c62, 4 Oct 2026): a 6-agent hub-and-spoke
-  workflow dashboard (Live Monitor, Session Audit, Agents directory, Deploy Code export).
-  **Status needs correcting.** f213c62 described the page as fully SIMULATED - hardcoded mock agents, session
-  data and metrics, no real orchestration. Commit 21374e2 then added `lib/agents/eventBus.ts` and
-  `lib/agents/orchestrator.ts` and rewrote the page around them, and described that work as "real". Neither
-  commit updated this AGENTS.md note. The code now exists on the branch; its runtime behaviour has NOT been
-  verified by anyone. Treat it as unverified until someone exercises it and says so here.
-- Base44 is writing application code on the PR #1 branch, which is correct - but PR #1 itself is still held.
-  See "Open questions" below.
+- Blog section added on this branch (3 Oct 2026, Marblism content team / Penny): `/blog` index +
+  `/blog/[slug]` article pages, with post content stored file-based in `lib/posts.ts`. Two SEO
+  articles published as written (5-minute AI guide + 50+ ideas list). Blog link added to Navbar and
+  Footer on this branch. Article body renders from pre-rendered HTML in `lib/posts.ts` (first-party
+  content only). Blog pages reuse the existing PR #1 component classes - no new styling direction.
 
 ## Open questions / known gaps
 
-- [ ] PR #1 is still OPEN on GitHub and still carries a live merge button, while this file says it must not
-      be merged. Devin to either close it or move it to draft. Until then the protection is only a rule.
-- [ ] Verify the workflow orchestrator on the PR #1 branch actually runs. Two commits disagree about whether
-      it is real or simulated.
 - [ ] Brand look: A (dark + purple) or B (cream + plum + serif)? Blocks all styling work.
 - [ ] Base44 to confirm or amend the chain of command above - including the technical veto.
-- [ ] Base44 to answer the website status request on the PR #1 thread.
 - [ ] Which image-generation service does the live app use, and where do the keys live?
 - [ ] Is there a real backend/database behind the live app, and what does it depend on?
 - [ ] Verify the live prices (digital 14.99 / standard 39.99 / premium 99.99) and the DREAM15 code before
@@ -204,3 +176,6 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
       verified check of the live storefront.
 - [ ] Was Prism once called Nova? Atlas's analytical duties are recorded as absorbed "from Nova/Prism".
       Worth confirming so the history reads correctly.
+- [ ] Blog content is file-based in `lib/posts.ts` (no CMS, no markdown pipeline). Every new article
+      means a code edit to that file. Decide who owns adding future posts and whether a CMS or content
+      pipeline is wanted later.
