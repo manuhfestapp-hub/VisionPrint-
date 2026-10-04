@@ -4,6 +4,7 @@ Shared source of truth for every team working on this project (Base44, Marblism,
 Read this before touching anything. If something here is wrong, fix this file - do not guess.
 Contacts and the agreed communication channels live in `CONTACTS.md` at the repo root. That is the canonical
 contacts file - do not create a second one.
+What the two teams are called, in Devin's shorthand, is in `TEAM-NAMES.md`.
 
 ## What VisionPrint is
 
@@ -123,6 +124,9 @@ message, because the other team plans around it. The repo records what was sent 
 - **Website code: Walter directs, Base44 executes.** Marblism raises handoffs as PRs with the finished files.
 - **Marblism AI team: growth work only.** No website code.
 - **Eva is the lead AI agent for the build**, with Base44 holding technical veto and co-ownership of this file.
+- **Team names (Devin, 4 Oct 2026).** "The Marblism team" (Devin says "marble team") = the seven Marblism AI
+  agents: Eva, Walter, Stan, Sonny, Penny, Linda, Rachel. "The Base44 team" = the six AI agents running the
+  website inside Base44: Zenith, Maverick, Echo, Sage, Atlas, Ember. Full definition in `TEAM-NAMES.md`.
 - **Coordination happens on the repo, not WhatsApp.** The WhatsApp route was dropped as unverifiable; agent
   phone numbers were removed from `CONTACTS.md` for the same reason. Eva reaches the Base44 team through PR
   comments and this file.
@@ -167,19 +171,29 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 
 - Repo created 3 Oct 2026 and connected to Base44 (two-way GitHub sync, Elite plan).
 - Only the `README.md` starter commit is on `main`. Nothing else has been merged into `main`.
-- PR #1 (`base44/setup-be35a4f2`) - a from-scratch Next.js 14 rebuild of the marketing pages. Open, held by
-  Devin for review. Must not be merged.
+- PR #1 (`base44/setup-be35a4f2`) - a from-scratch Next.js 14 rebuild of the marketing pages. **Open, held by
+  Devin for review. Must not be merged.** It is still an open PR with a live merge button, which is a gap -
+  see "Open questions".
 - A website status request from Devin is open on the PR #1 thread (comment of 3 Oct 2026), asking Base44 for
   the state of the live app, work in progress, whether the live app needs anything from PR #1, and blockers.
 - AI image generation on the live site is real. The stub features described in earlier notes only ever
   existed in PR #1's rebuild, not in the live app.
-- `/workflow-monitor` page added to PR #1 branch: a 6-agent hub-and-spoke workflow dashboard (Live Monitor,
-  Session Audit, Agents directory, Deploy Code export). SIMULATED — all agent definitions, session data,
-  metrics, and workflow simulations are hardcoded mock data. No real agent orchestration, database, or API
-  calls. Added per Devin's request on 4 Oct 2026.
+- `/workflow-monitor` page added to the PR #1 branch (commit f213c62, 4 Oct 2026): a 6-agent hub-and-spoke
+  workflow dashboard (Live Monitor, Session Audit, Agents directory, Deploy Code export).
+  **Status needs correcting.** f213c62 described the page as fully SIMULATED - hardcoded mock agents, session
+  data and metrics, no real orchestration. Commit 21374e2 then added `lib/agents/eventBus.ts` and
+  `lib/agents/orchestrator.ts` and rewrote the page around them, and described that work as "real". Neither
+  commit updated this AGENTS.md note. The code now exists on the branch; its runtime behaviour has NOT been
+  verified by anyone. Treat it as unverified until someone exercises it and says so here.
+- Base44 is writing application code on the PR #1 branch, which is correct - but PR #1 itself is still held.
+  See "Open questions" below.
 
 ## Open questions / known gaps
 
+- [ ] PR #1 is still OPEN on GitHub and still carries a live merge button, while this file says it must not
+      be merged. Devin to either close it or move it to draft. Until then the protection is only a rule.
+- [ ] Verify the workflow orchestrator on the PR #1 branch actually runs. Two commits disagree about whether
+      it is real or simulated.
 - [ ] Brand look: A (dark + purple) or B (cream + plum + serif)? Blocks all styling work.
 - [ ] Base44 to confirm or amend the chain of command above - including the technical veto.
 - [ ] Base44 to answer the website status request on the PR #1 thread.
