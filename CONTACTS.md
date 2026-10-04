@@ -27,7 +27,7 @@ confirm as delivered is worse than no message. The repo always records what was 
 
 | Name | Role | Notes |
 |---|---|---|
-| Devin Williams | Owner | Final say on every change. Only he merges to `main` and only he clicks Publish. |
+| Devin Williams | Owner | Final say on every change. Only he merges to `main`, only he clicks Publish, and he signs off the look. |
 
 ## Base44 team
 
@@ -52,8 +52,8 @@ While Base44 is getting on its feet, Zenith leads on the website:
 - He answers website status questions in the cross-team room (issue #3), or makes sure they get answered.
 
 A working arrangement while the team is not fully functional, not a permanent rank. It does not change the
-four Devin-only lines: merging to `main`, Publish, the brand look, and new brand facts/prices/names/stats.
-Note: Zenith's role and his WhatsApp number are different things - the number is no longer listed here
+Devin-only lines: merging to `main`, Publish, new brand facts/prices/names/stats, and the sign-off on the
+look. Zenith's role and his WhatsApp number are different things - the number is no longer listed here
 because we no longer coordinate over WhatsApp.
 
 ### Atlas - scope of the Operations & Insights Lead (confirmed by Devin, 3 Oct 2026)
@@ -87,12 +87,20 @@ prices have since been confirmed on the storefront - see the "Verified on the li
 | Name | Role | Notes |
 |---|---|---|
 | Eva | Lead AI agent for the build; Executive Assistant | Owns AGENTS.md, scope calls and the handoff pipeline. |
-| Walter | Website design & spec | Directs what changes on the site; Base44 implements. No repo access, so his work travels as a PR. |
+| Walter | **Owns how the site looks** | Art direction, typography, layout, visual language. Base44 implements his spec faithfully, subject to its technical veto. Devin signs off. No repo access, so his work travels as a spec plus finished files through Eva. |
 | Stan | Sales | |
 | Sonny | Social media | |
 | Penny | Content / blog | |
 | Linda | Legal | |
 | Rachel | Reception | |
+
+## Who owns what - the one-line version
+
+- **How the site WORKS** (logic, structure, data, integration, technical implementation) -> **Base44.**
+- **How the site LOOKS** (art direction, typography, layout, colour, the feel of a page) -> **Walter and the
+  Marblism team.** Base44 implements the spec faithfully and objects in writing if it is technically unsound.
+- **The final sign-off on either** -> **Devin**, along with merging to `main`, Publish, and any new brand
+  fact, price, product name, testimonial or statistic.
 
 ## Housekeeping
 
