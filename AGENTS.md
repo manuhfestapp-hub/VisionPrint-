@@ -112,7 +112,9 @@ notes, design and marketing assets.
 - **Website code: Walter directs, Base44 executes.** Marblism raises handoffs as PRs with the finished files.
 - **Marblism AI team: growth work only.** No website code.
 - **Eva is the lead AI agent for the build**, with Base44 holding technical veto and co-ownership of this file.
-- **Base44 team changes:** Prism was removed on 3 Oct 2026 and Atlas has taken over Prism's duties.
+- **Base44 team changes:** Prism was removed on 3 Oct 2026. Atlas absorbed the analytical duties (revenue,
+  ROI, funnel, affiliate and ad reporting) and kept his operational ones, and his remit now runs well past
+  being a Prism replacement. Title: **Operations & Insights Lead**. Full scope is in `CONTACTS.md`.
 - **Base44 agent numbers confirmed by Devin on 3 Oct 2026**: Zenith is +1 (978) 991-5607 and Maverick is
   +1 (978) 861-1066. They were not swapped.
 
@@ -164,5 +166,8 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 - [ ] Base44 to confirm or amend the chain of command above - including the technical veto.
 - [ ] Which image-generation service does the live app use, and where do the keys live?
 - [ ] Is there a real backend/database behind the live app, and what does it depend on?
-- [ ] Verify the live prices ($14.99 / $39.99 / $99.99) and the DREAM15 code before either direction is
-      styled around them.
+- [ ] Verify the live prices (digital 14.99 / standard 39.99 / premium 99.99) and the DREAM15 code before
+      either direction is styled around them. These figures come from Atlas's reporting setup, not from a
+      verified check of the live storefront.
+- [ ] Was Prism once called Nova? Atlas's analytical duties are recorded as absorbed "from Nova/Prism".
+      Worth confirming so the history reads correctly.
