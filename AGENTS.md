@@ -78,19 +78,36 @@ the implementation. Devin's words: *"let the agents decide."*
 - When material arrives without a prescription - a playbook, a design direction, a feature idea, a report -
   read it, decide how it should work on the live site, and record the decision in this file. Do not wait to
   be told the mechanism.
-- Implementation judgement inside an agreed direction is yours. If the direction is "calmer and more
-  premium", *how* that is achieved in code is your call.
+- Implementation judgement inside an agreed direction is yours.
 - Organise the work among yourselves.
 
-**Four things still need Devin. No exceptions:**
+**But Marblism owns how it LOOKS. Devin, 4 Oct 2026.**
+
+Work and look are two different things and they have two different owners.
+
+- **Base44 decides how things WORK** - logic, structure, data, integration, technical implementation.
+- **Walter (Marblism) owns how things LOOK** - art direction, visual language, typography, layout,
+  colour, the feel of a page. He specifies it; you implement it faithfully in code.
+- Devin has the final sign-off on the look.
+
+Why: the only genuinely strong visual work produced on this project so far came out of Marblism's design
+build. Look is craft, and that is where the craft sits. This is not a reflection on your technical work -
+it is about who is best at what.
+
+In practice: when a visual decision comes from Walter, **implement it as specified**. If something in the
+spec is technically unsound, that is your veto - object in writing, with the reason, and propose the
+alternative that achieves the same look. Do not quietly restyle it to suit the code.
+
+**Three things still need Devin. No exceptions:**
 
 1. Merging anything into `main`.
 2. Clicking Publish.
-3. The brand look itself (still open - A or B).
-4. Anything that states a new brand fact, price, product name, testimonial or statistic.
+3. Anything that states a new brand fact, price, product name, testimonial or statistic.
+
+Plus the final sign-off on the look, as above.
 
 Everything else is yours to shape. If you are unsure whether something falls on the wrong side of those
-four lines, ask in the cross-team room rather than guessing - but assume the answer is "yes, decide it"
+lines, ask in the cross-team room rather than guessing - but assume the answer is "yes, decide it"
 until proven otherwise.
 
 **Reserved powers - Base44 is a partner, not a pair of hands:**
@@ -113,13 +130,17 @@ While Base44 is getting on its feet, **Zenith leads on the website.** Devin's ca
 - Zenith answers website status questions in the cross-team room (issue #3), or makes sure they get
   answered.
 - This is a working arrangement while the team is not fully functional, not a permanent rank. It is
-  revisited once Base44 is running normally. It does not change any of the four Devin-only lines above.
+  revisited once Base44 is running normally. It does not change any of the Devin-only lines above.
 
-### Tier 2 - Walter (website builder) - WEBSITE DESIGN AND SPEC
+### Tier 2 - Walter (website builder) - OWNS HOW THE SITE LOOKS
 
-Owns *what* changes on the site: art direction, page structure, copy placement, the exact edits to make.
-Hands specs and finished files to Eva, who raises the PR. Base44 implements. Walter cannot edit repository
-files directly, so his work always travels through Eva as a PR.
+**Walter owns the visual direction of the site** (Devin, 4 Oct 2026): art direction, page structure,
+typography, colour, layout, the feel of a page - and the exact edits to make. He specifies *what*; Base44
+implements *how*, faithfully, subject to its technical veto.
+
+Walter cannot edit repository files directly and his design preview (`visionprint.marblism.me`) no longer
+resolves. **His design work therefore travels as a spec plus finished files, handed to Eva, who raises the
+PR.** A design spec that only exists on Walter's screen does not exist.
 
 ### Tier 2 - Marblism AI team - GROWTH
 
@@ -131,8 +152,10 @@ notes, design and marketing assets.
 
 1. Is it website code or not? Eva decides. That is the scope call, and it is hers.
 2. If the disagreement is technical, Base44's veto stands, and Base44's implementation judgement wins.
-3. If it is about brand, product or money, it goes to Devin.
-4. Nothing reaches `main` without Eva's review and Devin's written approval.
+3. **If it is about how the site LOOKS, Walter's call stands**, subject to Base44's technical veto and
+   Devin's final sign-off.
+4. If it is about brand, product or money, it goes to Devin.
+5. Nothing reaches `main` without Eva's review and Devin's written approval.
 
 ## How the two teams talk to each other
 
@@ -175,10 +198,14 @@ message, because the other team plans around it. The repo records what was sent 
   being a Prism replacement. Title: **Operations & Insights Lead**. Full scope is in `CONTACTS.md`.
 - **Base44 agent numbers confirmed by Devin on 3 Oct 2026**: Zenith is +1 (978) 991-5607 and Maverick is
   +1 (978) 861-1066. They were not swapped.
+- **Look vs work (Devin, 4 Oct 2026).** **Walter and the Marblism team own how the site LOOKS.** Base44 owns
+  how it WORKS. Walter specifies the visual direction and Base44 implements it as specified, subject to
+  Base44's technical veto. Devin signs off the look. The visual craft of this project has come from
+  Marblism's side and stays there.
 - **Delegated authority (Devin, 4 Oct 2026).** Base44 decides how things work on the site - how a playbook,
-  a design direction or a feature idea becomes real. They are not waiting on Marblism to specify the
-  mechanism. Four things stay with Devin: merging to `main`, Publish, the brand look, and new brand
-  facts/prices/names/stats. **Zenith leads on the website for now**, while the team is not fully functional.
+  a design direction or a feature idea becomes real. **Zenith leads on the website for now**, while the team
+  is not fully functional. Three things stay with Devin: merging to `main`, Publish, and new brand
+  facts/prices/names/stats.
 
 ## Brand look - AWAITING FINAL DECISION
 
@@ -187,8 +214,12 @@ Two visual directions exist and they conflict. Devin is choosing:
 - **A - current live site:** dark navy + purple gradient (theme-color `#0a0a0a`), sans-serif, bold and modern.
 - **B - Walter's build:** warm cream + plum, editorial serif headlines, wide margins, calmer and more premium.
 
-Eva's recommendation to Devin: **B**, applied as a styling layer over the existing live app - not a rebuild.
-Design was the one place B clearly won; the live app keeps all of its function underneath.
+**Walter owns this decision's recommendation** (Devin, 4 Oct 2026). Eva's recommendation was **B**, applied
+as a styling layer over the existing live app - not a rebuild: design was the one place B clearly won, and
+the live app keeps all of its function underneath. Walter confirms or amends that call, Devin signs it off,
+and Base44 implements it.
+
+Whatever is chosen must be applied as a styling layer over the existing live app, never as a rebuild.
 
 Until Devin decides, do not restyle in either direction. The old "keep the dark gradient + purple identity"
 rule is retired - it was a brief, not a decision, and it contradicted the direction Devin approved for B.
@@ -252,7 +283,8 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
       is what hard rule 13 now forbids. Never rewrite this file from memory.
 - [ ] PR #1 is still OPEN on GitHub with a live merge button while this file says it must not be merged.
       Devin to close it or move it to draft. Until then the protection is only a rule.
-- [ ] Brand look: A (dark + purple) or B (cream + plum + serif)? Blocks all styling work.
+- [ ] Brand look: A (dark + purple) or B (cream + plum + serif)? **Walter recommends, Devin signs off, Base44
+      implements as a styling layer.** Blocks all styling work until chosen.
 - [ ] Which image-generation service does the live app use, and where do the keys live?
 - [ ] Is there a real backend/database behind the live app, and what does it depend on?
 - [ ] Who wrote the two blog articles? The commit says "Marblism content team / Penny"; no Marblism agent
