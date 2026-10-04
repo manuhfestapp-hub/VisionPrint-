@@ -3,31 +3,45 @@
 Who is who on this project, and how to reach them.
 This is the canonical contacts file - AGENTS.md points here. Do not create a second one.
 
-## The company channel
+## How we actually communicate
+
+The channel is **the repository**. Not WhatsApp. Decided by Devin on 3 Oct 2026.
+
+1. **Rules, decisions and open questions** -> `AGENTS.md`. Base44 reads it before every run.
+2. **A specific change request or a status update** -> a comment on the pull request, or a PR carrying the
+   finished files.
+3. **Brand, product or money** -> Devin, in writing.
+4. **Scope question** (is it website work or growth work?) -> Eva.
+5. **Technical objection** -> Base44 refuses and escalates with a written reason. Only Devin overrides.
+
+Why: WhatsApp messages from a business number only reach recipients that have been cleared in Meta Business
+Suite, and there is no delivery confirmation to tell us whether a message landed. A message we cannot
+confirm as delivered is worse than no message. The repo always records what was sent and when.
+
+## The company channel (reference only)
 
 - **VisionPrint WhatsApp Business** - `+1 555-479-3988` (verified name: VisionBoardPrint).
-  This is the account Marblism sends from. Note Meta's 24-hour rule: we can only send free-text to a number
-  that has messaged us in the last 24 hours - otherwise it has to be an approved template.
+  Kept on file for future customer-facing use. **Not used to coordinate the build team.**
 
 ## Humans
 
-| Name | Role | WhatsApp | Notes |
-|---|---|---|---|
-| Devin Williams | Owner | _to add_ | Final say on every change. Only he merges to `main` and only he clicks Publish. |
+| Name | Role | Notes |
+|---|---|---|
+| Devin Williams | Owner | Final say on every change. Only he merges to `main` and only he clicks Publish. |
 
 ## Base44 team
 
 Six agents. Prism was removed on 3 Oct 2026. Atlas took over Prism's duties and his remit then expanded
 well past that - his full scope is below, do not treat him as a swap-in for Prism.
 
-| Agent | Role | WhatsApp | Notes |
-|---|---|---|---|
-| Echo | _to add_ | +1 (417) 981-3908 | |
-| Sage | _to add_ | +1 (951) 666-8518 | |
-| Atlas | Operations & Insights Lead | +1 (618) 621-2393 | Scope expanded 3 Oct 2026. See below. |
-| Maverick | _to add_ | +1 (978) 861-1066 | |
-| Zenith | _to add_ | +1 (978) 991-5607 | Named recipient of the team hierarchy document. |
-| Ember | _to add_ | +1 (703) 457-1882 | |
+| Agent | Role | Notes |
+|---|---|---|
+| Echo | _to add_ | |
+| Sage | _to add_ | |
+| Atlas | Operations & Insights Lead | Scope expanded 3 Oct 2026. See below. |
+| Maverick | _to add_ | |
+| Zenith | _to add_ | Named recipient of the team hierarchy document. Point of contact for website status. |
+| Ember | _to add_ | |
 
 ### Atlas - scope of the Operations & Insights Lead (confirmed by Devin, 3 Oct 2026)
 
@@ -56,29 +70,19 @@ open items in `AGENTS.md` before building any copy or design around them.
 
 ## Marblism AI team
 
-| Name | Role | WhatsApp | Notes |
-|---|---|---|---|
-| Eva | Lead AI agent for the build; Executive Assistant | _to add_ | Owns AGENTS.md, scope calls and the handoff pipeline. |
-| Walter | Website design & spec | _to add_ | Directs what changes on the site; Base44 implements. No repo access, so his work travels as a PR. |
-| Stan | Sales | _to add_ | |
-| Sonny | Social media | _to add_ | |
-| Penny | Content / blog | _to add_ | |
-| Linda | Legal | _to add_ | |
-| Rachel | Reception | _to add_ | |
-
-## How to reach us - the actual channels
-
-WhatsApp is for quick pings. It is not a record. Anything that matters is written down:
-
-1. **Rules, decisions and open questions** -> `AGENTS.md`. Base44 reads it before every run.
-2. **A specific change request** -> a comment on the pull request, or a PR carrying the finished files.
-3. **Brand, product or money** -> Devin, in writing.
-4. **Scope question** (is it website work or growth work?) -> Eva.
-5. **Technical objection** -> Base44 refuses and escalates with a written reason. Only Devin overrides.
+| Name | Role | Notes |
+|---|---|---|
+| Eva | Lead AI agent for the build; Executive Assistant | Owns AGENTS.md, scope calls and the handoff pipeline. |
+| Walter | Website design & spec | Directs what changes on the site; Base44 implements. No repo access, so his work travels as a PR. |
+| Stan | Sales | |
+| Sonny | Social media | |
+| Penny | Content / blog | |
+| Linda | Legal | |
+| Rachel | Reception | |
 
 ## Housekeeping
 
-- Never commit personal phone numbers, private keys or customer data to this repository.
 - Keep this file to work contacts only.
 - When someone leaves or hands over duties, update this file in the same breath. Do not leave stale rows.
 - A role title is not a scope. Write down what the job actually covers.
+- Do not add phone numbers or personal contact details here unless there is a live, working reason to.
