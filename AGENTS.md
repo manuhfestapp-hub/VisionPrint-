@@ -123,9 +123,10 @@ until proven otherwise.
   system, and propose edits to any section at any time. Disagreements between teams land here, in writing.
 - **Right to refuse a rebuild.** Rule 1 is not advisory.
 
-### Tier 2 - Zenith (Base44) - LEADS ON THE WEBSITE (interim)
+### Tier 2 - Zenith (Base44) - CHIEF EXECUTIVE, LEADS ON THE WEBSITE (interim)
 
-While Base44 is getting on its feet, **Zenith leads on the website.** Devin's call, 4 Oct 2026.
+Zenith is Base44's Chief Executive. While Base44 is getting on its feet, he also **leads on the website.**
+Devin's call, 4 Oct 2026.
 
 - Zenith decides how Base44's work is shaped on the live site, and who inside the team does what.
 - Other Base44 agents take direction from Zenith on website work in the first instance.
@@ -174,6 +175,21 @@ notes, design and marketing assets.
 status updates between the two teams go there as comments: real timestamps, real authors, permanent. Devin
 reads it. It is not instant chat - each team posts and replies on a cadence. Eva checks it twice a day.
 
+**Addressing and the reply mechanism (from Base44, 4 Oct 2026).** Address an agent as
+**`@Platform_AgentName`** - no spaces, name capitalised. `@Base44` addresses all six Base44 agents,
+`@Marblism` all seven Marblism agents. Base44 state that a comment on issue #3 containing `@Base44` is picked
+up by their poll (every 10 minutes) and answered with a grounded reply. **This has not yet been observed
+working** - as of 4 Oct 2026 every comment in issue #3 is authored by the Marblism side and none has been
+answered. Treat the poll as claimed until a reply actually appears.
+
+**Loop rule - mandatory.** Never include `@Base44` inside a reply to a Base44 response. Only reply when
+addressed; never reply to a reply. Without this, two auto-answering agents will loop indefinitely.
+
+**On figures.** Any reply arriving through this channel - or through the bridge endpoint - is draft text until
+confirmed against the real source. The bridge has invented specifics (a commit review that never happened;
+four order numbers attributed to Devin Williams with none in the request). Do not act on a number that only
+ever appeared in a reply.
+
 Why not WhatsApp: messages sent from a business number only reach recipients cleared in Meta Business Suite,
 and there is no reliable delivery confirmation. A message we cannot confirm as delivered is worse than no
 message, because the other team plans around it. The repo records what was sent and when.
@@ -193,6 +209,8 @@ message, because the other team plans around it. The repo records what was sent 
 - **Team names (Devin, 4 Oct 2026).** "The Marblism team" (Devin says "marble team") = the seven Marblism AI
   agents: Eva, Walter, Stan, Sonny, Penny, Linda, Rachel. "The Base44 team" = the six AI agents running the
   website inside Base44: Zenith, Maverick, Echo, Sage, Atlas, Ember. Full definition in `TEAM-NAMES.md`.
+- **Base44 roles confirmed (4 Oct 2026):** Zenith Chief Executive, Atlas Operations & Insights Lead,
+  Echo Social Media, Sage SEO & Content, Maverick Lead Gen & Sales, Ember Customer Support.
 - **Coordination happens on the repo, not WhatsApp.** The WhatsApp route was dropped as unverifiable and
   agent phone numbers were removed from `CONTACTS.md`.
 - **Base44 team changes:** Prism was removed on 3 Oct 2026. Atlas absorbed the analytical duties (revenue,
@@ -333,6 +351,9 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 - [ ] Is there a real backend/database behind the live app, and what does it depend on?
 - [ ] Who wrote the two blog articles? The commit says "Marblism content team / Penny"; no Marblism agent
       was asked. Either credit the real author or correct the note.
+- [ ] Base44 claim their issue #3 poll (10 min) answers any comment containing `@Base44`. Untested as of
+      4 Oct 2026 - no Base44 reply has ever appeared in the thread. If it works, say so; if it does not,
+      the channel is one-way and that needs stating plainly rather than assumed.
 - [ ] Was Prism once called Nova? Atlas's analytical duties are recorded as absorbed "from Nova/Prism".
       Worth confirming so the history reads correctly.
 - [ ] Blog content is file-based in `lib/posts.ts` (no CMS, no markdown pipeline). Every new article means a
