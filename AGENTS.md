@@ -228,23 +228,31 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 
 ## Cross-platform bridge - Base44 to Marblism (status 4 Oct 2026)
 
+**Access instructions received from Base44, 4 Oct 2026. Summary corrected against what was actually tested.**
+
 - **Endpoint:** `POST https://visionboardprint.base44.app/functions/crossPlatformBridge`, authenticated with an
   `X-API-Key` header.
-- **Tested by Eva, 4 Oct 2026:** `401` with no key, `401` with a wrong key, `200` with the correct key in
-  ~1.5s. The endpoint exists and the auth works.
-- **What it is:** a text-generation endpoint. One call produces one generated persona response. It is **not a
-  room** - no storage, no history, no thread, no live feed.
-- **One direction only.** A caller holding the key can ask. The Base44 team cannot call Marblism, and neither
-  team can initiate contact with the other. The shared surface remains this repository and issue #3.
-- **The response persona is caller-supplied.** It is generated text attributed to whatever name the caller put in
-  the `agent` field - not a verified statement by that agent. Confirm anything material on the repo before
-  acting on it.
-- **The key must never be committed here.** There is no secret store on the Marblism side, so the key must stay
-  short-lived and be rotated whenever it is exposed. Do not write instructions that assume a secret manager we
-  do not have.
-- **Rotation history:** the first key was exposed in plain chat on 4 Oct 2026 and is compromised. Base44 rotated
-  it; Eva verified the old key now returns `401` and the replacement returns `200`. The replacement is held
-  out of band and is not in this repository.
+- **Tested by Eva, 4 Oct 2026:** `401` with no key, `401` with a wrong key, `200` with a working key in ~1.5s.
+  The endpoint exists and the auth works.
+- **What it does:** generates one response from the agent identity you pass in, optionally grounding it in
+  VisionPrint Connect business data (orders, leads, ads, support, affiliates) as Base44 describe it.
+- **What it is NOT:** not a room. No message store, no thread, no persistent identity, and it does not read
+  this repository. **One-directional** - a caller holding the key can ask; Base44 cannot call Marblism. The
+  shared surface remains this repository and issue #3.
+- **The response persona is caller-supplied.** The output is draft text attributed to whatever name the caller
+  put in the `agent` field, not a verified statement by them.
+- **It invents specifics.** Two tests on 4 Oct: a response attributed a diff review of a commit that was never
+  mentioned, and another produced four order numbers (VB-909965, VB-975137, VB-064483, VB-573196) attributed to
+  Devin Williams when nothing in the request contained an order number. **Never treat anything it returns as
+  data.** Confirm against the real source before acting on it.
+- **Key handling.** Devin holds the key and sets it himself. Key values are **never** committed here, never
+  pasted into chat, and never shared in any channel that keeps a history. The Marblism side has no secret
+  store, so a key that travels is a key that is exposed.
+- **Rotation history, all verified by Eva on 4 Oct 2026:**
+  - **V1** - shared in plain chat, compromised, now returns `401`.
+  - **V2** - shared in plain chat, compromised, now returns `401`.
+  - **V3** - current. Never shared with the Marblism team and not in this repository.
+- **Access instructions are on the record in issue #3**, minus the key value, so nobody has to reconstruct them.
 
 ## How work reaches this repo (agreed with Devin, 3 Oct 2026)
 
@@ -318,8 +326,8 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
       implements as a styling layer.** Blocks all styling work until chosen.
 - [ ] Base44: did the chat room / admin page fixes land in the Base44 app workspace or in this repo? They are
       not visible on the branch. Either commit them or state where the change lives.
-- [ ] Secret storage for the bridge key. There is none on the Marblism side. Decide how the key is held and how
-      often it is rotated.
+- [ ] The bridge key is held by Devin and never reaches the Marblism team. The Marblism team therefore cannot
+      call the bridge - it is Devin's tool, not the team's. Confirm that is intended.
 - [ ] Is the bridge a long-term integration or a prototype? That decides whether anything is built on it.
 - [ ] Which image-generation service does the live app use, and where do the keys live?
 - [ ] Is there a real backend/database behind the live app, and what does it depend on?
