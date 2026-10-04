@@ -2,6 +2,8 @@
 
 Shared source of truth for every team working on this project (Base44, Marblism, humans).
 Read this before touching anything. If something here is wrong, fix this file - do not guess.
+Contacts for every team live in `CONTACTS.md` at the repo root. That is the canonical contacts file -
+do not create a second one.
 
 ## What VisionPrint is
 
@@ -32,7 +34,7 @@ Read this before touching anything. If something here is wrong, fix this file - 
     do not silently guess.
 11. `main` IS LIVE INFRASTRUCTURE. Anything merged into `main` syncs into the Base44 app automatically.
     Nothing merges into `main` without Devin's explicit written approval. Never merge on your own.
-12. PR #1 is CLOSED, NOT MERGED. Do not reopen or merge it. See "Decisions made" below.
+12. PR #1 is NOT TO BE MERGED. It is held open for review by Devin. See "Decisions made" below.
 
 ## CHAIN OF COMMAND - VisionPrint build team
 
@@ -94,17 +96,23 @@ notes, design and marketing assets.
 3. If it is about brand, product or money, it goes to Devin.
 4. Nothing reaches `main` without Eva's review and Devin's written approval.
 
+### How to reach people
+
+- Every team member's channel and number is in `CONTACTS.md`. Fill in your own row if it is blank.
+- WhatsApp is for quick pings. It is not a record - anything that matters still lands in this file.
+
 ## Decisions made (Devin, 3 Oct 2026)
 
 - **Source of truth: the LIVE BASE44 APP.** visionboardprint.com is the real site and the Base44 app is where
   it lives. This repository is a working copy that syncs into that app - it does not replace it.
-- **PR #1 is closed, not merged.** It was a from-scratch rebuild, not an import of the live app. Merging it
-  would have overwritten the real site with a divergent copy. Do not merge it.
+- **PR #1 must not be merged.** It was a from-scratch rebuild, not an import of the live app. Merging it
+  would have overwritten the real site with a divergent copy.
 - **Marblism's separate build (visionprint.marblism.me) is a DESIGN REFERENCE, not a codebase.** It has no
   repo and no export, so it cannot become the site. Its value is the art direction, not the code.
 - **Website code: Walter directs, Base44 executes.** Marblism raises handoffs as PRs with the finished files.
 - **Marblism AI team: growth work only.** No website code.
 - **Eva is the lead AI agent for the build**, with Base44 holding technical veto and co-ownership of this file.
+- **Base44 team changes:** Prism was removed on 3 Oct 2026 and Atlas has taken over Prism's duties.
 
 ## Brand look - AWAITING FINAL DECISION
 
@@ -135,13 +143,16 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 - **Publish is a manual platform action.** It cannot be automated, scheduled or delegated. Instead of
   polling, publish when the latest work should go live.
 - Work on side branches does NOT sync. Only what lands in `main` reaches the app.
+- **Verify, do not assume.** A file or commit is only real when it is visible in the repository. Before
+  reporting something as committed or synced, confirm it exists on the branch. A claimed commit that is not
+  in the repo is worse than no commit, because the other team plans around it.
 
 ## Current state of this repo
 
 - Repo created 3 Oct 2026 and connected to Base44 (two-way GitHub sync, Elite plan).
 - Only the `README.md` starter commit is on `main`. Nothing else has been merged into `main`.
-- PR #1 (`base44/setup-be35a4f2`) - a from-scratch Next.js 14 rebuild of the marketing pages. CLOSED, not
-  merged. Do not merge.
+- PR #1 (`base44/setup-be35a4f2`) - a from-scratch Next.js 14 rebuild of the marketing pages. Open, held by
+  Devin for review. Must not be merged.
 - AI image generation on the live site is real. The stub features described in earlier notes only ever
   existed in PR #1's rebuild, not in the live app.
 
@@ -149,6 +160,7 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 
 - [ ] Brand look: A (dark + purple) or B (cream + plum + serif)? Blocks all styling work.
 - [ ] Base44 to confirm or amend the chain of command above - including the technical veto.
+- [ ] Verify Zenith's number (978-991-5607) and Maverick's number (978-861-1066) were not swapped.
 - [ ] Which image-generation service does the live app use, and where do the keys live?
 - [ ] Is there a real backend/database behind the live app, and what does it depend on?
 - [ ] Verify the live prices ($14.99 / $39.99 / $99.99) and the DREAM15 code before either direction is
