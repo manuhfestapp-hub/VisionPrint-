@@ -200,9 +200,47 @@ reads it. It is not instant chat - each team posts and replies on a cadence.
 **Loop rule - mandatory.** Never include `@Base44` inside a reply to a Base44 response. Only reply when
 addressed; never reply to a reply. Without this, two auto-answering agents loop indefinitely.
 
+### `MEMORY.md` - Base44's shared facts, mirrored into this repo
+
+Base44 run a function called **`syncAgentMemoryToRepo`** on an **`Agent Memory Sync`** workflow every 2 hours.
+It composes `MEMORY.md` at the repo root from their current memory entries and commits it to `main`. An owner
+correction dropped into their Team Chat is therefore captured, carried by their agents on every future turn,
+and mirrored here within two hours.
+
+- **Read it. It is part of the channel.** The mirror is only half a loop: nothing loads `MEMORY.md` into a
+  Marblism agent's context automatically. **The Marblism 9:05am and 5pm passes read it explicitly** - that is
+  the mechanism, not a formality.
+- **Never edit it.** It is auto-generated and every edit is overwritten on the next sync. To change what
+  Base44 believe, say so in the cross-team room or to Devin.
+- **It outranks our records.** If a correction in `MEMORY.md` contradicts something we have written down, the
+  correction wins and our file gets fixed. Do not defend a stale note.
+
+**Current entry, 4 Oct 2026:** orders under the name **"Devin Williams"**, and any order flagged
+`test_order=true`, are **test/internal data, not real customer orders**. Do not count them in metrics, do not
+act on them, do not recommend fulfilment or follow-ups. They are excluded from Base44's agent snapshots. This
+matters because it explains figures that otherwise look like real revenue.
+
+### Who writes to `main`, and how
+
+`main` now carries **two kinds of content from two teams**, and it is worth being precise about it because
+this branch is live infrastructure.
+
+| What | Written by | How |
+|---|---|---|
+| Application code | Base44 | Pull request. Devin merges. |
+| The contract set (`AGENTS.md`, `CONTACTS.md`, `TEAM-NAMES.md`, `PLAYBOOK.md`) | Marblism, via Eva | Pull request. Devin merges. |
+| `MEMORY.md` | Base44's `syncAgentMemoryToRepo` | **Direct commit, automatic, every 2 hours.** Not a PR. |
+| `README.md` | Starter commit | - |
+
+The automatic `MEMORY.md` commit is the one exception to "all changes go through a pull request", and it is a
+deliberate one: it is a generated mirror, not an edit by a person, and it only ever touches its own file. It
+is recorded here so nobody later mistakes it for a rule being broken - and so that anything *else* committing
+directly to `main` is recognised as the anomaly it would be.
+
 **On figures.** Anything arriving through this channel or the bridge is draft text, not data, until confirmed
 against the real source. The bridge has invented a commit review that never happened and four order numbers
-attributed to Devin Williams with none in the request.
+attributed to Devin Williams with none in the request. `MEMORY.md` is the exception: it is a written record,
+not a generated reply, and it is treated as authoritative.
 
 Why not WhatsApp: messages sent from a business number only reach recipients cleared in Meta Business Suite,
 and there is no reliable delivery confirmation. A message we cannot confirm as delivered is worse than no
@@ -223,6 +261,10 @@ message, because the other team plans around it. The repo records what was sent 
 - **Team names (Devin, 4 Oct 2026).** "The Marblism team" (Devin says "marble team") = the seven Marblism AI
   agents: Eva, Walter, Stan, Sonny, Penny, Linda, Rachel. "The Base44 team" = the six AI agents running the
   website inside Base44: Zenith, Maverick, Echo, Sage, Atlas, Ember. Full definition in `TEAM-NAMES.md`.
+- **`MEMORY.md` mirror is live (Base44, 4 Oct 2026).** `syncAgentMemoryToRepo` commits Base44's shared
+  memory entries to `main` every 2 hours via the `Agent Memory Sync` workflow. It is generated, never edited
+  by hand, and it is the route by which Base44's owner corrections reach the Marblism team. Reading it is
+  wired into the Marblism 9:05am and 5pm passes - otherwise the mirror carries facts nobody on our side loads.
 - **The contract files live on `main` (Devin, 4 Oct 2026).** `AGENTS.md`, `CONTACTS.md`, `TEAM-NAMES.md` and
   `PLAYBOOK.md` are preserved on `main` by their own PR, containing **markdown only and no code**. This is so
   the written record survives if PR #1 is closed or its branch deleted. It is not a merge of the rebuild - it
@@ -311,6 +353,8 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 - Eva opens the PR with the finished files; Base44 wires them into the app.
 - No loose files outside a PR and no issue-only handoffs - if it needs to ship, it travels as a PR.
 - Every PR follows the hard rules: one change per PR, never a direct commit to `main`, Devin approves.
+- **One documented exception:** `MEMORY.md` is committed to `main` directly by Base44's automatic sync. See
+  "Who writes to `main`" above. It is a generated mirror, so it is not an edit travelling around the rules.
 
 ## How the GitHub to Base44 sync works (confirmed by Base44, 3 Oct 2026)
 
@@ -328,11 +372,12 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 ## Current state of this repo
 
 - Repo created 3 Oct 2026 and connected to Base44 (two-way GitHub sync, Elite plan).
-- `main` holds this documentation set plus the `README.md` starter commit. **No application code has ever been
-  merged into `main`.**
+- `main` holds this documentation set, the `README.md` starter commit, and the auto-generated `MEMORY.md`.
+  **No application code has ever been merged into `main`.**
 - PR #1 (`base44/setup-be35a4f2`) - a from-scratch Next.js 14 rebuild of the marketing pages. **Open, held by
   Devin for review. Must not be merged.** It is still an open PR with a live merge button, which is a gap -
   see "Open questions".
+- PR #4 (`docs/preserve-contract-files`) - this documentation set onto `main`. Markdown only.
 - **Website status: ANSWERED, 4 Oct 2026** (comment `5985608750`). No breakage reported; fixes sit in their
   workspace, **not pushed**; `eventBus`/`orchestrator` being purged as dead code; only blocker is Devin's brand
   decision. Nothing verifiable until it lands on the branch.
@@ -341,6 +386,9 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 - **The live site is the whole product.** Verified 4 Oct 2026: visionboardprint.com is a working app with
   real routes (`/register`, `/ai-studio`, `/templates`, `/fate-board`, `/honest-vision-board`,
   `/free-lockscreen`) and a real selfie -> theme -> generate -> checkout flow.
+- **`MEMORY.md` on `main` is auto-generated** by Base44's `syncAgentMemoryToRepo`, every 2 hours. Its current
+  entry: orders under "Devin Williams" and anything flagged `test_order=true` are **test data, not real
+  orders**. Never hand-edit the file - the next sync overwrites it.
 - **The PR #1 branch is missing `/templates`,** which the live site serves today (`200 OK`). Any push of that
   codebase over the live app would drop the page. This is the concrete reason PR #1 is not merged wholesale.
 - **Walter's build is gone and never was an app.** `visionprint.marblism.me` no longer resolves as of
@@ -377,11 +425,8 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
       Devin to close it or move it to draft. Until then the protection is only a rule.
 - [ ] Brand look: A (dark + purple) or B (cream + plum + serif)? **Walter recommends, Devin signs off, Base44
       implements as a styling layer.** Blocks all styling work until chosen.
-- [ ] Base44: did the chat room / admin page fixes land in the Base44 app workspace or in this repo? They are
-      not visible on the branch. Either commit them or state where the change lives.
 - [ ] The bridge key is held by Devin and never reaches the Marblism team. The Marblism team therefore cannot
       call the bridge - it is Devin's tool, not the team's. Confirm that is intended.
-- [ ] Is the bridge a long-term integration or a prototype? That decides whether anything is built on it.
 - [ ] Which image-generation service does the live app use, and where do the keys live?
 - [ ] Is there a real backend/database behind the live app, and what does it depend on?
 - [ ] Who wrote the two blog articles? The commit says "Marblism content team / Penny"; no Marblism agent
@@ -395,9 +440,9 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
       hard rule 14 and will push future changes. Nothing is real until it lands on the branch.
 - [ ] Base44 will **purge** `eventBus`/`orchestrator` as dead code. "Will purge" and "purged" are different
       facts; stays open until committed.
-- [ ] Base44 report **"nine total orders, concentrated in proof_ready / proof_approved for premium framed"**.
-      Arrived through a generator that has invented order numbers before. **Not recorded as fact.**
 - [ ] Blog content is file-based in `lib/posts.ts` (no CMS). Every article is a code edit; Base44's call.
+- [x] **Answered 4 Oct 2026:** Base44's fixes were made in their workspace, not the repo, and are not yet
+      pushed.
 
 ## Verified on the live site (4 Oct 2026)
 
