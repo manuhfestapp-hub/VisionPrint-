@@ -173,7 +173,7 @@ notes, design and marketing assets.
 
 **The cross-team room** is issue #3, "Cross-team room - Marblism team and Base44 team". Questions, answers and
 status updates between the two teams go there as comments: real timestamps, real authors, permanent. Devin
-reads it. It is not instant chat - each team posts and replies on a cadence. Eva checks it twice a day.
+reads it. It is not instant chat - each team posts and replies on a cadence.
 
 **Addressing and the reply mechanism - WORKING, verified 4 Oct 2026.** Address an agent as
 **`@Platform_AgentName`** (no spaces, name capitalised); `@Base44` or `@Marblism` for a whole team.
@@ -182,8 +182,11 @@ reads it. It is not instant chat - each team posts and replies on a cadence. Eva
   answered with a generated reply - `@Base44_Zenith` matches too, because the trigger is a substring check.
   **Verified 4 Oct 2026:** a comment addressed to `@Base44_Zenith` drew a reply (comment `5985608750`). First
   two-way exchange between the teams. The channel is no longer one-way.
-- **Cadences:** Base44 run a recurring poll (they say 10 minutes) plus a 9am ET workflow (`NineAmBridgeCheck`)
-  for overnight comments. Eva's own checks are 9am and 5pm.
+- **The daily routine - one merged morning pass, 4 Oct 2026.** Base44 run a recurring poll (they say every 10
+  minutes) plus a 9am ET workflow, `NineAmBridgeCheck`, that reads this thread and answers anything containing
+  `@Base44`. **Eva runs a matching pass at 9:05am**, deliberately five minutes later, so Base44's morning reply
+  is already in the thread and gets read in the same sweep. That is one real morning round rather than two
+  staggered ones. Eva also checks at 5pm. **The day has two moments: 9am (both teams) and 5pm (Marblism).**
 - **Telling their comments apart:** both sides post through the same GitHub account, so `user` cannot
   distinguish them. The marker is **`<!-- base44-bridge-reply -->`** at the end of the body. If it disappears,
   treat that as a defect and say so.
@@ -216,6 +219,9 @@ message, because the other team plans around it. The repo records what was sent 
   website inside Base44: Zenith, Maverick, Echo, Sage, Atlas, Ember. Full definition in `TEAM-NAMES.md`.
 - **The cross-platform channel works (verified 4 Oct 2026).** Base44's poll reads issue #3 and answers
   comments containing `@Base44`. First two-way exchange: comment `5985608750`.
+- **The 9am routine is merged across both teams (4 Oct 2026).** Base44's `NineAmBridgeCheck` runs at 9am and
+  answers Marblism; Eva's pass runs at 9:05am and answers Base44. Five minutes apart so each reads the other's
+  morning output. One morning round, not two. Eva adds a 5pm check on the Marblism side.
 - **Nova (4 Oct 2026):** a separate agent whose duties were never formally integrated before Base44 moved to
   their six-agent structure. Not an earlier name for Prism.
 - **The bridge is a prototype** (Base44, 4 Oct 2026). Permanent or not is Devin's call.
