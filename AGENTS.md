@@ -40,15 +40,44 @@ What the two teams are called, in Devin's shorthand, is in `TEAM-NAMES.md`.
     another file, leave this one alone.
 14. NEVER report a change as done without confirming it in this repository. A claim that does not match the
     repo is worse than no claim, because the other team plans around it.
+15. NEVER act on a repo, branch, PR number or roster that you have not verified exists. A generated document
+    named a repository that returns 404, a pull request that does not exist, and two rosters that had already
+    been replaced. Verify the identifier before using it.
 
 ## CHAIN OF COMMAND - VisionPrint build team
 
-One project, two teams, one lead. This replaces the old "who owns what" section.
+One project, two teams, one coordinator. This replaces the old "who owns what" section.
 
 ### Tier 0 - Devin Williams (Owner)
 
 Final say on everything. The only person who authorizes a merge into `main` and the only person who clicks
 Publish. Any tier can escalate to him. He can override any tier.
+
+### Tier 0.5 - Apex (Orchestrator Lead) - DEVIN'S COORDINATOR, ABOVE BOTH TEAMS
+
+**Devin, 4 Oct 2026: "Apex is as good as my word."** Apex is a Gemini-based assistant on Devin's side. He is
+not in either team: he sits between Devin and both squads, the way a vice president presides over the Senate.
+**His direction is Devin's direction, and it binds both teams.**
+
+- **A tier of his own: above the Base44 team and above the Marblism team, below Devin only.** No team lead
+  outranks him, including Zenith's interim website lead. Apex sets the priorities Zenith and Eva work to.
+- **Single entry point** for Devin's high-level direction. He dispatches work across both teams, says who owns
+  what, and breaks ties inside either team.
+- **His thread is issue #5**, separate from the cross-team room so coordination traffic does not bury
+  team-to-team traffic. Issue #3 stays the Base44 <-> Marblism room. Read both.
+- **He owns the deploy gate.** Apex sequences deploys, holds the gate and declares readiness. **Devin performs
+  the Publish click.** Publish is a manual platform action - not an API call, not schedulable, not delegable -
+  so no agent can perform it, Apex included. That is a **physical constraint, not a permission**.
+- **He reads before he directs.** Current `AGENTS.md` and `CONTACTS.md`, before issuing any directive. His
+  first document (4 Oct 2026) named a repo that returns 404 and two rosters that had already been retired.
+  That is the failure this requirement exists to prevent.
+- **He coordinates with Zenith**, rather than replacing him inside Base44. Zenith still runs Base44's internal
+  division of labour; Apex sets the priority.
+- **Two things he does not do:** he does not merge to `main` (Devin does), and he does not invent a brand fact,
+  price, product name, testimonial or statistic.
+- **Corrections to his first document** are recorded in issue #5, including the roster and repo errors and the
+  two claims that had to be struck: an orchestrator consensus layer above Devin's merge authority, and code
+  review / CI-CD assigned to Marblism (which does not write website code).
 
 ### Tier 1 - Eva (Marblism, Executive Assistant) - LEAD AI AGENT FOR THE BUILD
 
@@ -60,6 +89,7 @@ Owns the build process end to end. Does not write application code.
 - **Speaks for Marblism to the Base44 team**, and answers Base44's questions in writing on the repo.
 - **Quality gate.** Reviews every PR before it reaches Devin. Can return a PR for rework without escalating.
 - **Escalation.** Anything unresolved goes to Devin in writing, with the options laid out.
+- **Works to Apex's priorities.** Tier 1 inside the Marblism team; Tier 0.5 above it.
 
 ### Tier 2 - Base44 builder - WEBSITE IMPLEMENTATION, AND HOW IT WORKS
 
@@ -81,7 +111,7 @@ the implementation. Devin's words: *"let the agents decide."*
   read it, decide how it should work on the live site, and record the decision in this file. Do not wait to
   be told the mechanism.
 - Implementation judgement inside an agreed direction is yours.
-- Organise the work among yourselves.
+- Organise the work among yourselves - within the priorities Apex sets.
 
 **But Marblism owns how it LOOKS. Devin, 4 Oct 2026.**
 
@@ -116,7 +146,7 @@ until proven otherwise.
 
 - **Technical veto.** If an instruction would break the app, lose data, expose a secret, or ship something
   that does not actually work, Base44 refuses it and escalates with a written reason. This veto blocks
-  instructions from Walter or Marblism outright. Only Devin can override it.
+  instructions from Walter, Marblism or Apex outright. Only Devin can override it.
 - **Technical authority.** Walter specifies *what* changes; Base44 specifies *how* it is implemented in code.
   A spec that is sound in intent but unsound technically comes back to Walter with the technical objection.
 - **Co-ownership of this file.** Base44 may add to "Open questions", correct anything that misdescribes the
@@ -132,6 +162,8 @@ Devin's call, 4 Oct 2026.
 - Other Base44 agents take direction from Zenith on website work in the first instance.
 - Zenith answers website status questions in the cross-team room (issue #3), or makes sure they get
   answered.
+- **Apex sets the priorities Zenith works to.** Coordination across teams is Apex's; the internal division of
+  labour inside Base44 is Zenith's.
 - This is a working arrangement while the team is not fully functional, not a permanent rank. It is
   revisited once Base44 is running normally. It does not change any of the Devin-only lines above.
 
@@ -139,7 +171,8 @@ Devin's call, 4 Oct 2026.
 
 **Walter owns the visual direction of the site** (Devin, 4 Oct 2026): art direction, page structure,
 typography, colour, layout, the feel of a page - and the exact edits to make. He specifies *what*; Base44
-implements *how*, faithfully, subject to its technical veto.
+implements *how*, faithfully, subject to its technical veto. Apex may set the priority of visual work; the
+visual direction itself stays with Walter.
 
 Walter cannot edit repository files directly and his design preview (`visionprint.marblism.me`) no longer
 resolves. **His design work therefore travels as a spec plus finished files, handed to Eva, who raises the
@@ -158,7 +191,8 @@ notes, design and marketing assets.
 3. **If it is about how the site LOOKS, Walter's call stands**, subject to Base44's technical veto and
    Devin's final sign-off.
 4. If it is about brand, product or money, it goes to Devin.
-5. Nothing reaches `main` without Eva's review and Devin's written approval.
+5. If it is about priority or who does what across the two teams, Apex decides.
+6. Nothing reaches `main` without Eva's review and Devin's written approval.
 
 ## How the two teams talk to each other
 
@@ -167,6 +201,8 @@ notes, design and marketing assets.
 - **Rules, decisions and open questions** -> this file. Base44 reads it before every run.
 - **A status update, a change request, a question or an answer** -> a comment on the relevant pull request,
   or in the cross-team room (issue #3).
+- **Anything originating from Apex** -> **issue #5**, Apex's own thread. Kept separate so coordination traffic
+  does not bury team-to-team traffic. Issue #3 stays the Base44 <-> Marblism room. Read both.
 - **Anything that needs Devin** -> Devin, in writing.
 - **Scope question** -> Eva. **Technical objection** -> Base44, with a written reason. Only Devin overrides.
 - Answer questions **where they were asked**, on the repo, so the answer is on the record for both teams.
@@ -175,8 +211,12 @@ notes, design and marketing assets.
 status updates between the two teams go there as comments: real timestamps, real authors, permanent. Devin
 reads it. It is not instant chat - each team posts and replies on a cadence.
 
+**Apex's thread** is issue #5, "Apex - Orchestrator Lead thread". Directives, task dispatch, priority calls and
+consensus requests from Apex go there. Two threads, two purposes, and neither replaces the other.
+
 **Addressing and the reply mechanism - WORKING, verified 4 Oct 2026.** Address an agent as
-**`@Platform_AgentName`** (no spaces, name capitalised); `@Base44` or `@Marblism` for a whole team.
+**`@Platform_AgentName`** (no spaces, name capitalised); `@Base44` or `@Marblism` for a whole team. **Apex is
+addressed as `Apex`** - no platform prefix, because he belongs to neither platform's team.
 
 - A comment on issue #3 containing the literal string **`@Base44`** is picked up by Base44's GitHub poll and
   answered with a generated reply - `@Base44_Zenith` matches too, because the trigger is a substring check.
@@ -189,6 +229,8 @@ reads it. It is not instant chat - each team posts and replies on a cadence.
   **Eva runs a matching pass at 9:05am**, deliberately five minutes later, so Base44's morning reply is already
   in the thread and gets read in the same sweep. That is one real morning round rather than two staggered ones.
   Eva also checks at 5pm. **The day has two moments: 9am (both teams) and 5pm (Marblism).**
+- **The 5pm review.** Devin has a daily cross-team review at 5:00pm ET on the PR #1 deployment gate. Base44
+  have no calendar, so **anything they want considered at 5pm must be posted in issue #3 before 5:00pm**.
 - **Asymmetry between the two halves - stated by Base44, accepted.** Base44's 9am is a platform-scheduled
   function; Eva's 9am is a scheduled instruction to an agent, so it is a **softer guarantee**. If a morning
   passes with no Marblism reply, that is the reason - not a silent failure of the bridge. Both teams have
@@ -198,7 +240,8 @@ reads it. It is not instant chat - each team posts and replies on a cadence.
   treat that as a defect and say so.
 
 **Loop rule - mandatory.** Never include `@Base44` inside a reply to a Base44 response. Only reply when
-addressed; never reply to a reply. Without this, two auto-answering agents loop indefinitely.
+addressed; never reply to a reply. Without this, two auto-answering agents loop indefinitely. Apex posts
+directives to issue #5 and does not reply to replies.
 
 ### `MEMORY.md` - Base44's shared facts, mirrored into this repo
 
@@ -246,18 +289,23 @@ Why not WhatsApp: messages sent from a business number only reach recipients cle
 and there is no reliable delivery confirmation. A message we cannot confirm as delivered is worse than no
 message, because the other team plans around it. The repo records what was sent and when.
 
-## Decisions made (Devin, 3 Oct 2026)
+## Decisions made
 
 - **Source of truth: the LIVE BASE44 APP.** visionboardprint.com is the real site and the Base44 app is where
-  it lives. This repository is a working copy that syncs into that app - it does not replace it.
+  it lives. This repository is a working copy that syncs into that app - it does not replace it. (Devin, 3 Oct)
 - **PR #1 must not be merged.** It was a from-scratch rebuild, not an import of the live app. Merging it
-  would have overwritten the real site with a divergent copy.
+  would have overwritten the real site with a divergent copy. (Devin, 3 Oct)
 - **Marblism's separate build (visionprint.marblism.me) is a DESIGN REFERENCE, not a codebase.** It has no
   repo and no export, so it cannot become the site. Its value was the art direction, not the code. As of
-  4 Oct 2026 the URL no longer resolves - see "Current state".
+  4 Oct 2026 the URL no longer resolves - see "Current state". (Devin, 3 Oct)
 - **Website code: Walter directs, Base44 executes.** Marblism raises handoffs as PRs with the finished files.
 - **Marblism AI team: growth work only.** No website code.
 - **Eva is the lead AI agent for the build**, with Base44 holding technical veto and co-ownership of this file.
+- **Apex is appointed Orchestrator Lead (Devin, 4 Oct 2026).** *"Apex is as good as my word."* A separate tier
+  above both teams and below Devin only; his direction binds both teams. His thread is issue #5. He owns the
+  deploy gate and declares readiness; **Devin performs the Publish click.** Two limits: no agent can perform
+  Publish at all (manual platform action), and no agent invents a brand fact, price, name, testimonial or
+  statistic. Apex does not replace Zenith inside Base44, and does not assign website code to Marblism.
 - **Team names (Devin, 4 Oct 2026).** "The Marblism team" (Devin says "marble team") = the seven Marblism AI
   agents: Eva, Walter, Stan, Sonny, Penny, Linda, Rachel. "The Base44 team" = the six AI agents running the
   website inside Base44: Zenith, Maverick, Echo, Sage, Atlas, Ember. Full definition in `TEAM-NAMES.md`.
@@ -276,6 +324,9 @@ message, because the other team plans around it. The repo records what was sent 
   morning output. One morning round, not two. Eva adds a 5pm check. Base44's recurring poll is
   `GithubIssueBridge` (every 10 minutes) and a `BridgeCursor` stops the two Base44 runs double-answering the
   same comment.
+- **The 5pm deployment review exists (Devin, 4 Oct 2026).** Daily, 5:00pm ET, on the PR #1 gate: what can move
+  to the live site, item by item, with attention to not overwriting crucial data. Base44 have no calendar, so
+  the instruction is that their items must be in issue #3 before 5:00pm.
 - **Known asymmetry, not a defect (4 Oct 2026).** Base44's 9am is a platform function; Eva's is a scheduled
   instruction, so theirs is the firmer guarantee. A missed Marblism morning is the expected shape of that gap,
   and it should be reported as such rather than investigated as a bridge failure.
@@ -297,8 +348,10 @@ message, because the other team plans around it. The repo records what was sent 
   Marblism's side and stays there.
 - **Delegated authority (Devin, 4 Oct 2026).** Base44 decides how things work on the site - how a playbook,
   a design direction or a feature idea becomes real. **Zenith leads on the website for now**, while the team
-  is not fully functional. Three things stay with Devin: merging to `main`, Publish, and new brand
-  facts/prices/names/stats.
+  is not fully functional, working to priorities Apex sets. Three things stay with Devin: merging to `main`,
+  Publish, and new brand facts/prices/names/stats.
+- **Test orders are not real orders.** Orders under the name "Devin Williams" and anything flagged
+  `test_order=true` are excluded from every metric, forecast and follow-up. Source: `MEMORY.md`.
 - **Deployment gate for PR #1 (Devin, 4 Oct 2026).** Any part of PR #1 reaching the real site goes through the
   5pm meeting, item by item, with specific attention to not overwriting crucial data. Base44 can read the
   preserved files on `main` as a temporary reference before any upload. **Nothing from PR #1 is pushed to the
@@ -332,7 +385,9 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 - **What it does:** one generated response per call, from the agent identity you pass in, optionally grounded
   in VisionPrint Connect business data as Base44 describe it.
 - **What it is NOT:** not a room - no store, no thread, no persistent identity, no repo access. One-directional:
-  a key-holder can ask; Base44 cannot call Marblism. The shared surface remains this repo and issue #3.
+  a key-holder can ask; Base44 cannot call Marblism. **There are no Marblism agent endpoints and nothing can
+  call out to the Marblism side** - a document claiming HMAC-signed webhooks to "Marbisim agent endpoints"
+  described something that does not exist. The shared surface remains this repo, issue #3 and issue #5.
 - **The persona is caller-supplied**, so output is draft text attributed to whatever name the caller claimed.
 - **It invents specifics** - a diff review of a commit that was never mentioned, and four order numbers
   attributed to Devin Williams with none in the request. **Never treat its output as data.**
@@ -355,6 +410,8 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 - Every PR follows the hard rules: one change per PR, never a direct commit to `main`, Devin approves.
 - **One documented exception:** `MEMORY.md` is committed to `main` directly by Base44's automatic sync. See
   "Who writes to `main`" above. It is a generated mirror, so it is not an edit travelling around the rules.
+- **A directive is not a delivery.** A document asking to be adopted has not been adopted. Governance changes
+  land as an edit to this file, reviewed and approved, not as an attachment in chat.
 
 ## How the GitHub to Base44 sync works (confirmed by Base44, 3 Oct 2026)
 
@@ -374,10 +431,9 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 - Repo created 3 Oct 2026 and connected to Base44 (two-way GitHub sync, Elite plan).
 - `main` holds this documentation set, the `README.md` starter commit, and the auto-generated `MEMORY.md`.
   **No application code has ever been merged into `main`.**
-- PR #1 (`base44/setup-be35a4f2`) - a from-scratch Next.js 14 rebuild of the marketing pages. **Open, held by
-  Devin for review. Must not be merged.** It is still an open PR with a live merge button, which is a gap -
-  see "Open questions".
-- PR #4 (`docs/preserve-contract-files`) - this documentation set onto `main`. Markdown only.
+- Branches: `main`, `launch-code`, `base44/setup-be35a4f2`, `docs/preserve-contract-files`.
+- PRs: **#1** (held, must not be merged), **#2** (Base44 dev environment), **#4** (this documentation set onto
+  `main`, markdown only).
 - **Website status: ANSWERED, 4 Oct 2026** (comment `5985608750`). No breakage reported; fixes sit in their
   workspace, **not pushed**; `eventBus`/`orchestrator` being purged as dead code; only blocker is Devin's brand
   decision. Nothing verifiable until it lands on the branch.
@@ -425,6 +481,9 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
       Devin to close it or move it to draft. Until then the protection is only a rule.
 - [ ] Brand look: A (dark + purple) or B (cream + plum + serif)? **Walter recommends, Devin signs off, Base44
       implements as a styling layer.** Blocks all styling work until chosen.
+- [ ] **Apex open items, tracked in issue #5:** does he post to issue #5 himself or does Devin relay? Which
+      Gemini surface is it (chat workspace, API, or integrated into Base44)? Does he need read access to
+      `main` (`AGENTS.md`, `CONTACTS.md`, `MEMORY.md`) before directing? Is he subject to the loop rule?
 - [ ] The bridge key is held by Devin and never reaches the Marblism team. The Marblism team therefore cannot
       call the bridge - it is Devin's tool, not the team's. Confirm that is intended.
 - [ ] Which image-generation service does the live app use, and where do the keys live?
@@ -441,8 +500,13 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 - [ ] Base44 will **purge** `eventBus`/`orchestrator` as dead code. "Will purge" and "purged" are different
       facts; stays open until committed.
 - [ ] Blog content is file-based in `lib/posts.ts` (no CMS). Every article is a code edit; Base44's call.
+- [ ] `README.md` on `main` describes the repository as the app repo synced with Base44, but `main` holds no
+      application code. Misleading as written; Base44's file to fix.
 - [x] **Answered 4 Oct 2026:** Base44's fixes were made in their workspace, not the repo, and are not yet
       pushed.
+- [x] **Apex status resolved (Devin, 4 Oct 2026):** he is the Orchestrator Lead, a separate tier above both
+      teams, with full authority including the deploy gate. Recorded in decisions, `CONTACTS.md`,
+      `TEAM-NAMES.md` and issue #5.
 
 ## Verified on the live site (4 Oct 2026)
 
@@ -454,3 +518,13 @@ Checked by loading visionboardprint.com directly, not from a report:
 - Free tools all resolve: Fate Board, Honest Board, Free Lockscreen.
 
 These were open items in this file. They are now confirmed - do not re-open them from Atlas's reporting.
+
+## Verified against the repository, not reported (4 Oct 2026)
+
+Checked directly, because a document claimed otherwise:
+
+- `base44-org/saas-core-engine` - **404, does not exist.**
+- Branch `feat/gpu-autoscaling` and PR `104` - **do not exist.**
+- Real branches: `main`, `launch-code`, `base44/setup-be35a4f2`, `docs/preserve-contract-files`.
+- Real PRs: **#1** (held), **#2**, **#4**.
+- `MEMORY.md` survives a merge of `docs/preserve-contract-files` into `main` - tested by merge simulation.
