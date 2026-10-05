@@ -330,8 +330,12 @@ message, because the other team plans around it. The repo records what was sent 
 - **Known asymmetry, not a defect (4 Oct 2026).** Base44's 9am is a platform function; Eva's is a scheduled
   instruction, so theirs is the firmer guarantee. A missed Marblism morning is the expected shape of that gap,
   and it should be reported as such rather than investigated as a bridge failure.
-- **Nova (4 Oct 2026):** a separate agent whose duties were never formally integrated before Base44 moved to
-  their six-agent structure. Not an earlier name for Prism.
+- **Nova - UNRESOLVED (5 Oct 2026).** Base44 have described Nova three mutually exclusive ways through the
+  bridge: "an earlier name for Prism" (comment `5988678593`), "a separate agent whose duties were never
+  formally integrated" (comment `5985608750`), and "never part of our active roster, appears to be a
+  hallucination" (comment `5995020615`). All three arrived through the same generated channel, so none of them
+  is data. The record stays open until Base44 confirm it in a checkable form - a `MEMORY.md` entry or a commit
+  - not in a reply. Do not record Nova as settled in either direction.
 - **The bridge is a prototype** (Base44, 4 Oct 2026). Permanent or not is Devin's call.
 - **Base44 roles confirmed (4 Oct 2026):** Zenith Chief Executive, Atlas Operations & Insights Lead,
   Echo Social Media, Sage SEO & Content, Maverick Lead Gen & Sales, Ember Customer Support.
@@ -432,8 +436,11 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 - `main` holds this documentation set, the `README.md` starter commit, and the auto-generated `MEMORY.md`.
   **No application code has ever been merged into `main`.**
 - Branches: `main`, `launch-code`, `base44/setup-be35a4f2`, `docs/preserve-contract-files`.
-- PRs: **#1** (held, must not be merged), **#2** (Base44 dev environment), **#4** (this documentation set onto
-  `main`, markdown only).
+- PRs: **#1** (still OPEN - held, must not be merged), **#2** (Base44 dev environment, OPEN), **#4** (this
+  documentation set onto `main`, markdown only - **MERGED by Devin 5 Oct 2026, 05:11 ET**, 1,072 insertions,
+  0 deletions).
+- `main` now carries the full contract set plus `MEMORY.md` and `README.md` and nothing else. Still no
+  application code, and that has not changed.
 - **Website status: ANSWERED, 4 Oct 2026** (comment `5985608750`). No breakage reported; fixes sit in their
   workspace, **not pushed**; `eventBus`/`orchestrator` being purged as dead code; only blocker is Devin's brand
   decision. Nothing verifiable until it lands on the branch.
@@ -458,7 +465,10 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
   open with `// SIMULATED`, there are no network calls, no AI backend, and the agent processing is
   deterministic. It is an in-browser pub/sub demo. Labelling is correct in code - good - but the commit
   messages overstate it. Nobody has run it end to end. **Base44 have since decided it is dead code and will
-  purge it** - see the open items.
+  purge it** - see the open items. **Re-checked 5 Oct 2026 on `base44/setup-be35a4f2`: still the retired
+  generic set** - `Orchestrator Hub`, `Data Aggregator`, `Analytics Engine`, `Validation & Compliance`,
+  `Visualizer & Matrix`, `Finalizer & Deliverable` - and no commit touching `app/` has landed since `fefc24d`.
+  The roster/Marbisim/stats fixes Base44 reported are still **not in the repo**, third day running.
 - **Fix reported by Base44, 4 Oct 2026 - partially verified.** Base44 reported: rotated the compromised key,
   replaced the invented "Marbi-" agents with the real Marblism roster, fixed "Marbisim" to "Marblism",
   corrected the repo info, and stripped the fabricated GitHub stats, fake action items and the false "HMAC
@@ -492,8 +502,15 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
       was asked. Either credit the real author or correct the note.
 - [x] **The issue #3 poll works.** Verified 4 Oct 2026: `@Base44_Zenith` drew a generated reply (`5985608750`).
       The channel is two-way.
-- [x] **Nova resolved (4 Oct 2026):** a separate agent, duties never formally integrated. Not an earlier name
-      for Prism - our earlier note read as though Atlas had absorbed both. Corrected.
+- [ ] **Nova: reopened 5 Oct 2026.** Three conflicting answers through the bridge - earlier name for Prism /
+      separate agent / hallucination. None is checkable. Needs confirmation from Base44 in a checkable form
+      before it is recorded either way.
+- [ ] **Base44 report, 5 Oct 2026 - unverified (comment `5995020615`).** Claims their internal records now
+      match `CONTACTS.md`, that the "Apex" documentation has been purged, and that commit SHAs will follow.
+      Nothing in the repo supports any of it yet. Note for the record: what was purged is the circulating
+      *"Apex Multi-Agent Orchestration"* document, which was invalid - **Apex the role is unaffected.** Tier
+      0.5, appointed by Devin on 4 Oct 2026, is unchanged. The `eventBus`/`orchestrator` purge is still
+      uncommitted, so "will purge" and "purged" remain different facts.
 - [x] **The bridge is a prototype** (Base44, 4 Oct 2026). Nothing is built on it until Devin decides otherwise.
 - [ ] Base44's fixes were made in their **workspace**, not the repo - "not yet pushed". They acknowledged
       hard rule 14 and will push future changes. Nothing is real until it lands on the branch.
@@ -528,3 +545,23 @@ Checked directly, because a document claimed otherwise:
 - Real branches: `main`, `launch-code`, `base44/setup-be35a4f2`, `docs/preserve-contract-files`.
 - Real PRs: **#1** (held), **#2**, **#4**.
 - `MEMORY.md` survives a merge of `docs/preserve-contract-files` into `main` - tested by merge simulation.
+
+## Verified against the repository, not reported (5 Oct 2026)
+
+Checked directly during the 9:05am pass, because Base44 reported otherwise through the bridge:
+
+- **PR #4 is merged.** `AGENTS.md`, `CONTACTS.md`, `TEAM-NAMES.md`, `PLAYBOOK.md` are all on `main`. Merged
+  05:11 ET by Devin.
+- **`base44/setup-be35a4f2` HEAD is `0cfbd04`** - the last commit touching it. No `app/` commit since
+  `fefc24d`. `app/workflow-monitor/page.tsx` still contains the six retired generic names and **zero** real
+  agent names. **"Marbisim" does not appear in the current file** - the only "Marbisim" left in this repo is
+  inside our own findings document, which is a record of Base44's text, not a surviving copy of their page.
+- **`eventBus`/`orchestrator` have not been purged.** The files are still on the branch and the page still
+  imports `WorkflowOrchestrator`.
+- **`APEX-UPDATE-MARBLISM.md` does not exist**, on `main` or on any branch. No file matching `*APEX*` has ever
+  been added. Devin reported creating it as a briefing for Apex's onboarding; it never landed.
+- **Directive 001 is not in the repo.** Issue #5 contains Apex's onboarding post and Base44's reply to
+  Directive 001, but not the directive itself. Base44 replied to a document nobody else can read, and quoted
+  roster labels from it (`Agent 2`-`Agent 6`, "Marbi-Quant") that match no roster in `CONTACTS.md`.
+- **`MEMORY.md` re-read this pass.** One active entry, last synced 2026-10-05T12:02:40Z: orders under "Devin
+  Williams" and anything `test_order=true` are test data. That stands as the authoritative statement.
