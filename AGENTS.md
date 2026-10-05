@@ -182,11 +182,17 @@ reads it. It is not instant chat - each team posts and replies on a cadence.
   answered with a generated reply - `@Base44_Zenith` matches too, because the trigger is a substring check.
   **Verified 4 Oct 2026:** a comment addressed to `@Base44_Zenith` drew a reply (comment `5985608750`). First
   two-way exchange between the teams. The channel is no longer one-way.
-- **The daily routine - one merged morning pass, 4 Oct 2026.** Base44 run a recurring poll (they say every 10
-  minutes) plus a 9am ET workflow, `NineAmBridgeCheck`, that reads this thread and answers anything containing
-  `@Base44`. **Eva runs a matching pass at 9:05am**, deliberately five minutes later, so Base44's morning reply
-  is already in the thread and gets read in the same sweep. That is one real morning round rather than two
-  staggered ones. Eva also checks at 5pm. **The day has two moments: 9am (both teams) and 5pm (Marblism).**
+- **The daily routine - one merged morning pass, 4 Oct 2026.** Base44 run two things on their side:
+  **`NineAmBridgeCheck`** at 9:00am ET (reads this thread, answers anything containing `@Base44`) and
+  **`GithubIssueBridge`** every 10 minutes to keep the thread live between mornings. A **`BridgeCursor`**
+  stores how far they have read, so the 9am run and the recurring poll never answer the same comment twice.
+  **Eva runs a matching pass at 9:05am**, deliberately five minutes later, so Base44's morning reply is already
+  in the thread and gets read in the same sweep. That is one real morning round rather than two staggered ones.
+  Eva also checks at 5pm. **The day has two moments: 9am (both teams) and 5pm (Marblism).**
+- **Asymmetry between the two halves - stated by Base44, accepted.** Base44's 9am is a platform-scheduled
+  function; Eva's 9am is a scheduled instruction to an agent, so it is a **softer guarantee**. If a morning
+  passes with no Marblism reply, that is the reason - not a silent failure of the bridge. Both teams have
+  written this down so nobody debugs the wrong thing.
 - **Telling their comments apart:** both sides post through the same GitHub account, so `user` cannot
   distinguish them. The marker is **`<!-- base44-bridge-reply -->`** at the end of the body. If it disappears,
   treat that as a defect and say so.
@@ -219,9 +225,14 @@ message, because the other team plans around it. The repo records what was sent 
   website inside Base44: Zenith, Maverick, Echo, Sage, Atlas, Ember. Full definition in `TEAM-NAMES.md`.
 - **The cross-platform channel works (verified 4 Oct 2026).** Base44's poll reads issue #3 and answers
   comments containing `@Base44`. First two-way exchange: comment `5985608750`.
-- **The 9am routine is merged across both teams (4 Oct 2026).** Base44's `NineAmBridgeCheck` runs at 9am and
+- **The 9am routine is merged across both teams (4 Oct 2026).** Base44's `NineAmBridgeCheck` runs at 9:00am and
   answers Marblism; Eva's pass runs at 9:05am and answers Base44. Five minutes apart so each reads the other's
-  morning output. One morning round, not two. Eva adds a 5pm check on the Marblism side.
+  morning output. One morning round, not two. Eva adds a 5pm check. Base44's recurring poll is
+  `GithubIssueBridge` (every 10 minutes) and a `BridgeCursor` stops the two Base44 runs double-answering the
+  same comment.
+- **Known asymmetry, not a defect (4 Oct 2026).** Base44's 9am is a platform function; Eva's is a scheduled
+  instruction, so theirs is the firmer guarantee. A missed Marblism morning is the expected shape of that gap,
+  and it should be reported as such rather than investigated as a bridge failure.
 - **Nova (4 Oct 2026):** a separate agent whose duties were never formally integrated before Base44 moved to
   their six-agent structure. Not an earlier name for Prism.
 - **The bridge is a prototype** (Base44, 4 Oct 2026). Permanent or not is Devin's call.
