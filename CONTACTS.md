@@ -47,6 +47,14 @@ confirm as delivered is worse than no message. The repo always records what was 
   it named a repository that returns 404 (`base44-org/saas-core-engine`), a PR that does not exist (104), a
   branch that does not exist (`feat/gpu-autoscaling`), and two rosters that had already been replaced. It also
   gave Marblism code review and CI/CD, which Marblism does not do. Corrections are recorded in issue #5.
+- **Issue #5 state, checked 5 Oct 2026.** Two comments only: Base44's onboarding post for Apex (written at
+  Devin's request) and Base44's reply to a document called **"Directive 001"**. The directive itself is not on
+  any issue, comment or branch in this repository. Base44 answered a document nobody else can read, and its
+  reply quotes roster labels from that document - `Agent 2`-`Agent 6`, "compliance", "Marbi-Quant" - that
+  match no roster in this file. The reply's correction was right; the source is still missing.
+- **"Purged the Apex documentation" is not the same as removing Apex.** A circulating document titled
+  *"Directive: Apex Multi-Agent Orchestration & Integration Strategy"* was invalid and should be discarded.
+  Apex the role is Devin's appointment and is unaffected.
 
 ## Base44 team
 
@@ -89,7 +97,7 @@ Two halves. Operations is the role he already had; Insights is what he absorbed 
 - Triggers the follow-up actions: lead upsell emails, review requests to delivered customers, shipping
   notifications, and the full CEO briefing email to the team.
 
-**Analytical - the performance questions (absorbed from Prism/Nova):**
+**Analytical - the performance questions (absorbed from Prism):**
 
 - Revenue and sales totals, with cancelled orders filtered out and summed by tier - digital 14.99 /
   standard 39.99 / premium 99.99.
@@ -110,9 +118,10 @@ prices have since been confirmed on the storefront - see the "Verified on the li
 ### Agents no longer with Base44
 
 - **Prism** - removed 3 Oct 2026. Duties absorbed by Atlas.
-- **Nova** - confirmed by Base44 on 4 Oct 2026: a separate agent, never an earlier name for Prism. Nova's
-  duties were never formally integrated before Base44 moved to the current six-agent structure. Do not credit
-  Nova with anything Atlas does.
+- **Nova** - UNRESOLVED (5 Oct 2026). Base44 have described Nova three different ways through the bridge:
+  an earlier name for Prism, a separate never-integrated agent, and "not part of our roster at all". None of
+  the three is checkable, so none is recorded. Do not credit Nova with anything Atlas does, and do not treat
+  any of the three answers as settled until Base44 confirm it in a checkable form.
 
 ## Marblism AI team
 
