@@ -1,7 +1,7 @@
 # How the Marblism AI Team Works
 
 **A playbook for the Base44 team**
-Prepared by Eva for Devin Williams - 4 October 2026
+Prepared by Eva for Devin Williams - 5 October 2026
 
 ---
 
@@ -222,6 +222,13 @@ These are the anti-patterns. Every one of them has already cost us something rea
 
 Here is the translation. Everything we do has a counterpart in your world, and most of them already exist in this repository.
 
+**The off-page split (Devin, 6 Oct 2026).** Marblism works everything off-page - brand, content, social,
+email, outreach, assets - and it ships when finished rather than waiting on a merge or a Publish. Two things
+stay with the site: **site code** (only Base44 writes it) and **anything that changes what a visitor sees**
+(those still travel the pipeline: Base44 implements, Devin merges and Publishes). Blog and on-page SEO are the
+stated exceptions, because they live on the domain. Off-page SEO - backlinks, mentions, press, social signals
+- is ours.
+
 | Marblism mechanism | What it does for us | Base44 equivalent |
 |---|---|---|
 | **The Brain** | One shared knowledge base every agent reads first | **`AGENTS.md`** - the contract. Read before every run. |
@@ -258,6 +265,29 @@ Naming these gaps is not pessimism. It is what stops someone building a plan on 
 
 ---
 
+## 12b. What the off-page split changes for us
+
+The split is not a preference about scope. It removes a dependency.
+
+Everything on our side that aimed at the website used to travel: spec, PR, merge, Publish. Every step is a
+handoff, and the last one is a person clicking a button. That is why two fixes shipped on 5 Oct were still
+not visible on 6 Oct - not because the work was undone, but because the last step had not happened yet.
+
+Off-page work has no last step. It is finished when it is finished.
+
+**What it costs us, stated plainly:**
+
+- **The blog stays on the old route.** It is file-based, so it is a code edit, so it queues behind the same
+  pipeline as everything else. If it ever needs to ship faster than that, it needs a different publishing
+  route - not more effort.
+- **"Off-page" is about where work lands, not who does it.** Off-page SEO is ours. On-page SEO is not, and
+  calling it off-page would quietly drop the half that moves rankings.
+- **Briefs still exist.** We are not less involved in the site; we are less *blocked* by it. Walter still
+  specifies the look and the exact edits, and they still travel as a spec plus finished files.
+
+The test for any new piece of work, in one line: **does a visitor see it on the domain?** If yes, it takes the
+pipeline. If no, it ships from here.
+
 ## 13. Adopting this on day one
 
 If you want to run on the same discipline, these are the changes that matter, in order:
@@ -286,4 +316,5 @@ The reason we write things down is that two teams working from memory will drift
 *Prepared by Eva - Marblism AI team - 4 October 2026*
 
 *Companion files: `AGENTS.md` (the contract), `CONTACTS.md` (who is who), `TEAM-NAMES.md` (who is who by name).*
+*
 *The shared room for both teams is the cross-team room, issue #3.*
