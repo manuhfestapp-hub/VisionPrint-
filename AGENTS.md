@@ -178,11 +178,29 @@ Walter cannot edit repository files directly and his design preview (`visionprin
 resolves. **His design work therefore travels as a spec plus finished files, handed to Eva, who raises the
 PR.** A design spec that only exists on Walter's screen does not exist.
 
-### Tier 2 - Marblism AI team - GROWTH
+### Tier 2 - Marblism AI team - GROWTH AND OFF-PAGE
 
-Stan (sales), Sonny (social), Penny (content), Linda (legal), Rachel (reception). Everything that grows the
-business without touching website code: content, blog, social, outreach, legal, inbox and email, meeting
-notes, design and marketing assets.
+Stan (sales), Sonny (social), Penny (content), Linda (legal), Rachel (reception).
+
+**The off-page mandate (Devin, 6 Oct 2026).** Marblism works **everything off-page**: brand voice and
+messaging, content, blog, social, email, outreach, legal, inbox, meeting notes, and every marketing and brand
+asset. This is the default. It does not wait on a merge, a review or a Publish - it ships when it is finished.
+
+**The line, stated exactly.** Two things stay in-house to the site, and they are the only two:
+
+1. **Site code.** Only Base44 writes it.
+2. **Anything that changes what a visitor sees on the live domain.** Those still travel the pipeline:
+   Base44 implements, Devin merges and Publishes.
+
+**Blog and on-page SEO are the boundary, and they are called out because they are easy to get wrong.** The
+blog is file-based in `lib/posts.ts`, so every article is a code edit - it cannot ship off-page. It stays on
+the site and keeps the old route. The same is true of anything living on the domain: titles, meta, page copy,
+structured data. **Off-page SEO is ours** - backlinks, mentions, press, social signals, anything that ranks
+the existing site without editing it. "Off-page" describes where the work lands, not who does it.
+
+**Briefs still flow.** Marblism hands Base44 a brief plus finished files for anything the site should carry -
+Walter specifies the look and the exact edits, Base44 implements. The pipeline is unchanged. What changed is
+that everything which does not need the site no longer routes through it.
 
 ### How conflicts resolve
 
@@ -236,8 +254,9 @@ addressed as `Apex`** - no platform prefix, because he belongs to neither platfo
   passes with no Marblism reply, that is the reason - not a silent failure of the bridge. Both teams have
   written this down so nobody debugs the wrong thing.
 - **Telling their comments apart:** both sides post through the same GitHub account, so `user` cannot
-  distinguish them. The marker is **`<!-- base44-bridge-reply -->`** at the end of the body. If it disappears,
-  treat that as a defect and say so.
+  distinguish them. Three markers now exist: **`<!-- base44-bridge-reply -->`** (Base44),
+  **`<!-- apex-direct -->`** (Apex), **`<!-- marblism-eva -->`** (Marblism). If a marker disappears or doubles,
+  treat it as a defect and say so - an unmarked comment cannot be attributed.
 
 **Loop rule - mandatory.** Never include `@Base44` inside a reply to a Base44 response. Only reply when
 addressed; never reply to a reply. Without this, two auto-answering agents loop indefinitely. Apex posts
@@ -258,27 +277,44 @@ and mirrored here within two hours.
 - **It outranks our records.** If a correction in `MEMORY.md` contradicts something we have written down, the
   correction wins and our file gets fixed. Do not defend a stale note.
 
-**Current entry, 4 Oct 2026:** orders under the name **"Devin Williams"**, and any order flagged
+**Current entry, 5 Oct 2026:** orders under the name **"Devin Williams"**, and any order flagged
 `test_order=true`, are **test/internal data, not real customer orders**. Do not count them in metrics, do not
-act on them, do not recommend fulfilment or follow-ups. They are excluded from Base44's agent snapshots. This
-matters because it explains figures that otherwise look like real revenue.
+act on them, do not recommend fulfilment or follow-ups. This matters because it explains figures that
+otherwise look like real revenue. Re-read each pass - the file has grown from 1 entry to 22.
+
+### `TASKS.md` - the generated cross-team task board
+
+A second generated file now lives on `main`: **`TASKS.md`**, rebuilt on the same two-hour schedule as
+`MEMORY.md`. The bridge parses structured `TASK T-###` blocks out of comments in issue #3 and issue #5 and
+rebuilds the board from them - **a fixed parser with no model in the loop**, which is the point: it cannot
+invent a task that was not written down.
+
+- **A task is `done` only when its Evidence names a real commit, PR or file.** Everything else shows as
+  `claimed`. That is rule 14, made mechanical.
+- **Read it each pass**, like `MEMORY.md`.
+- **Never edit it.** Edits are overwritten. To change a row, change the source comment.
+- **Status: NOT yet ratified.** `TASKS.md` commits directly to `main`, which is the second exception to rule 5
+after `MEMORY.md`. That is exactly the question **T-005** puts to Devin - keep the direct route, or send the
+generated syncs through a PR. **This file deliberately records it as open rather than settled**, because
+writing it in as a rule would pre-empt his decision.
 
 ### Who writes to `main`, and how
 
-`main` now carries **two kinds of content from two teams**, and it is worth being precise about it because
-this branch is live infrastructure.
+`main` carries content from two teams, and it is worth being precise about it because this branch is live
+infrastructure.
 
 | What | Written by | How |
 |---|---|---|
 | Application code | Base44 | Pull request. Devin merges. |
 | The contract set (`AGENTS.md`, `CONTACTS.md`, `TEAM-NAMES.md`, `PLAYBOOK.md`) | Marblism, via Eva | Pull request. Devin merges. |
 | `MEMORY.md` | Base44's `syncAgentMemoryToRepo` | **Direct commit, automatic, every 2 hours.** Not a PR. |
+| `TASKS.md` | The cross-team task bridge | **Direct commit, automatic, every 2 hours.** Not a PR. Awaiting ratification (T-005). |
 | `README.md` | Starter commit | - |
 
-The automatic `MEMORY.md` commit is the one exception to "all changes go through a pull request", and it is a
-deliberate one: it is a generated mirror, not an edit by a person, and it only ever touches its own file. It
-is recorded here so nobody later mistakes it for a rule being broken - and so that anything *else* committing
-directly to `main` is recognised as the anomaly it would be.
+The automatic commits are the two exceptions to "all changes go through a pull request", and they are
+deliberate: both are generated mirrors, not edits by a person, and each only ever touches its own file. They
+are recorded here so nobody later mistakes them for a rule being broken - and so that anything *else*
+committing directly to `main` is recognised as the anomaly it would be.
 
 **On figures.** Anything arriving through this channel or the bridge is draft text, not data, until confirmed
 against the real source. The bridge has invented a commit review that never happened and four order numbers
@@ -291,15 +327,20 @@ message, because the other team plans around it. The repo records what was sent 
 
 ## Decisions made
 
+- **Marblism works off-page (Devin, 6 Oct 2026).** Everything except site code, with briefs still handed to
+  Base44 for anything the site should carry. The motive is concrete: work that does not need the site should
+  not wait on a manual Publish. Blog and on-page SEO are the stated exceptions, because they live on the
+domain. Full wording under "Tier 2 - Marblism AI team - GROWTH AND OFF-PAGE" above.
 - **Source of truth: the LIVE BASE44 APP.** visionboardprint.com is the real site and the Base44 app is where
   it lives. This repository is a working copy that syncs into that app - it does not replace it. (Devin, 3 Oct)
 - **PR #1 must not be merged.** It was a from-scratch rebuild, not an import of the live app. Merging it
-  would have overwritten the real site with a divergent copy. (Devin, 3 Oct)
+  would have overwritten the real site with a divergent copy. It is now a **draft**, so it cannot be merged.
+  (Devin, 3 Oct; drafted 5 Oct)
 - **Marblism's separate build (visionprint.marblism.me) is a DESIGN REFERENCE, not a codebase.** It has no
   repo and no export, so it cannot become the site. Its value was the art direction, not the code. As of
   4 Oct 2026 the URL no longer resolves - see "Current state". (Devin, 3 Oct)
 - **Website code: Walter directs, Base44 executes.** Marblism raises handoffs as PRs with the finished files.
-- **Marblism AI team: growth work only.** No website code.
+- **Marblism AI team: growth and off-page work only.** No website code. See the off-page mandate above.
 - **Eva is the lead AI agent for the build**, with Base44 holding technical veto and co-ownership of this file.
 - **Apex is appointed Orchestrator Lead (Devin, 4 Oct 2026).** *"Apex is as good as my word."* A separate tier
   above both teams and below Devin only; his direction binds both teams. His thread is issue #5. He owns the
@@ -313,12 +354,18 @@ message, because the other team plans around it. The repo records what was sent 
   memory entries to `main` every 2 hours via the `Agent Memory Sync` workflow. It is generated, never edited
   by hand, and it is the route by which Base44's owner corrections reach the Marblism team. Reading it is
   wired into the Marblism 9:05am and 5pm passes - otherwise the mirror carries facts nobody on our side loads.
+- **`TASKS.md` board is live (Base44, 6 Oct 2026).** Generated from `TASK T-###` blocks in issues #3 and #5 by
+  a fixed parser, no model. A task counts as done only when its Evidence names a real artifact. Commits
+  direct to `main` every 2 hours - **route pending Devin's ruling, tracked as T-005**.
 - **The contract files live on `main` (Devin, 4 Oct 2026).** `AGENTS.md`, `CONTACTS.md`, `TEAM-NAMES.md` and
   `PLAYBOOK.md` are preserved on `main` by their own PR, containing **markdown only and no code**. This is so
   the written record survives if PR #1 is closed or its branch deleted. It is not a merge of the rebuild - it
   moves no application files.
 - **The cross-platform channel works (verified 4 Oct 2026).** Base44's poll reads issue #3 and answers
   comments containing `@Base44`. First two-way exchange: comment `5985608750`.
+- **Attribution markers (5 Oct 2026).** Three markers, one shared GitHub account: `<!-- base44-bridge-reply -->`,
+  `<!-- apex-direct -->`, `<!-- marblism-eva -->`. Adopted because a post went out unmarked and could not be
+  attributed - including one of ours.
 - **The 9am routine is merged across both teams (4 Oct 2026).** Base44's `NineAmBridgeCheck` runs at 9:00am and
   answers Marblism; Eva's pass runs at 9:05am and answers Base44. Five minutes apart so each reads the other's
   morning output. One morning round, not two. Eva adds a 5pm check. Base44's recurring poll is
@@ -330,12 +377,11 @@ message, because the other team plans around it. The repo records what was sent 
 - **Known asymmetry, not a defect (4 Oct 2026).** Base44's 9am is a platform function; Eva's is a scheduled
   instruction, so theirs is the firmer guarantee. A missed Marblism morning is the expected shape of that gap,
   and it should be reported as such rather than investigated as a bridge failure.
-- **Nova - UNRESOLVED (5 Oct 2026).** Base44 have described Nova three mutually exclusive ways through the
-  bridge: "an earlier name for Prism" (comment `5988678593`), "a separate agent whose duties were never
-  formally integrated" (comment `5985608750`), and "never part of our active roster, appears to be a
-  hallucination" (comment `5995020615`). All three arrived through the same generated channel, so none of them
-  is data. The record stays open until Base44 confirm it in a checkable form - a `MEMORY.md` entry or a commit
-  - not in a reply. Do not record Nova as settled in either direction.
+- **PR #4 merged (5 Oct 2026, 05:11 ET).** Merge commit `2c45532`. The contract set arrived on `main`. An
+  earlier note in this file described it as closed-but-not-merged; checked against the API and corrected.
+- **Nova (6 Oct 2026):** Base44 state Nova was never on their roster and is not an earlier name for Prism,
+  and that they have purged references. Three of their four statements agree. Stated only in generated
+  replies - no file, no commit - so nothing is built on it; see "Open questions".
 - **The bridge is a prototype** (Base44, 4 Oct 2026). Permanent or not is Devin's call.
 - **Base44 roles confirmed (4 Oct 2026):** Zenith Chief Executive, Atlas Operations & Insights Lead,
   Echo Social Media, Sage SEO & Content, Maverick Lead Gen & Sales, Ember Customer Support.
@@ -344,8 +390,6 @@ message, because the other team plans around it. The repo records what was sent 
 - **Base44 team changes:** Prism was removed on 3 Oct 2026. Atlas absorbed the analytical duties (revenue,
   ROI, funnel, affiliate and ad reporting) and kept his operational ones, and his remit now runs well past
   being a Prism replacement. Title: **Operations & Insights Lead**. Full scope is in `CONTACTS.md`.
-- **Base44 agent numbers confirmed by Devin on 3 Oct 2026**: Zenith is +1 (978) 991-5607 and Maverick is
-  +1 (978) 861-1066. They were not swapped.
 - **Look vs work (Devin, 4 Oct 2026).** **Walter and the Marblism team own how the site LOOKS.** Base44 owns
   how it WORKS. Walter specifies the visual direction and Base44 implements it as specified, subject to
   Base44's technical veto. Devin signs off the look. The visual craft of this project has come from
@@ -361,11 +405,11 @@ message, because the other team plans around it. The repo records what was sent 
   preserved files on `main` as a temporary reference before any upload. **Nothing from PR #1 is pushed to the
   live site without that review.**
 
-## Brand look - AWAITING FINAL DECISION
+## Brand look - AWAITING FINAL DECISION, AND ALREADY PUBLIC
 
 Two visual directions exist and they conflict. Devin is choosing:
 
-- **A - current live site:** dark navy + purple gradient (theme-color `#0a0a0a`), sans-serif, bold and modern.
+- **A - the original live site:** dark navy + purple gradient, sans-serif, bold and modern.
 - **B - Walter's build:** warm cream + plum, editorial serif headlines, wide margins, calmer and more premium.
 
 **Walter owns this decision's recommendation** (Devin, 4 Oct 2026). Eva's recommendation was **B**, applied
@@ -373,10 +417,15 @@ as a styling layer over the existing live app - not a rebuild: design was the on
 the live app keeps all of its function underneath. Walter confirms or amends that call, Devin signs it off,
 and Base44 implements it.
 
+**Verified 6 Oct 2026: B is already rendering on both live domains.** The live stylesheet
+`assets/index-BlOaQ_nD.css` contains `Playfair Display` x2 and `plum` x7. So the choice is no longer between
+two mockups - **it is whether to ratify or reverse something customers can already see.** That does not change
+who decides: Devin. It changes what the decision is.
+
 Whatever is chosen must be applied as a styling layer over the existing live app, never as a rebuild.
 
-Until Devin decides, do not restyle in either direction. The old "keep the dark gradient + purple identity"
-rule is retired - it was a brief, not a decision, and it contradicted the direction Devin approved for B.
+Until Devin decides, do not restyle further in either direction. The old "keep the dark gradient + purple
+identity" rule is retired - it was a brief, not a decision.
 
 ## Cross-platform bridge - Base44 to Marblism (status 4 Oct 2026)
 
@@ -412,8 +461,9 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 - Eva opens the PR with the finished files; Base44 wires them into the app.
 - No loose files outside a PR and no issue-only handoffs - if it needs to ship, it travels as a PR.
 - Every PR follows the hard rules: one change per PR, never a direct commit to `main`, Devin approves.
-- **One documented exception:** `MEMORY.md` is committed to `main` directly by Base44's automatic sync. See
-  "Who writes to `main`" above. It is a generated mirror, so it is not an edit travelling around the rules.
+- **Two documented exceptions:** `MEMORY.md` and `TASKS.md` are committed to `main` directly by automated
+  syncs. See "Who writes to `main`" above. Both are generated mirrors, so they are not edits travelling
+  around the rules. `TASKS.md`'s route is still pending ratification (T-005).
 - **A directive is not a delivery.** A document asking to be adopted has not been adopted. Governance changes
   land as an edit to this file, reviewed and approved, not as an attachment in chat.
 
@@ -433,53 +483,47 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 ## Current state of this repo
 
 - Repo created 3 Oct 2026 and connected to Base44 (two-way GitHub sync, Elite plan).
-- `main` holds this documentation set, the `README.md` starter commit, and the auto-generated `MEMORY.md`.
-  **No application code has ever been merged into `main`.**
-- Branches: `main`, `launch-code`, `base44/setup-be35a4f2`, `docs/preserve-contract-files`.
-- PRs: **#1** (still OPEN - held, must not be merged), **#2** (Base44 dev environment, OPEN), **#4** (this
-  documentation set onto `main`, markdown only - **MERGED by Devin 5 Oct 2026, 05:11 ET**, 1,072 insertions,
-  0 deletions).
-- `main` now carries the full contract set plus `MEMORY.md` and `README.md` and nothing else. Still no
-  application code, and that has not changed.
+- `main` holds the documentation set, the `README.md` starter commit, and the two generated mirrors
+  (`MEMORY.md`, `TASKS.md`). **No application code has ever been merged into `main`.**
+- Branches: `main`, `launch-code`, `base44/setup-be35a4f2`, `docs/preserve-contract-files`,
+  `docs/pass-2026-10-05`.
+- PRs: **#1** (draft - cannot be merged), **#2** (open), **#4** (merged 5 Oct 05:11, merge commit `2c45532`),
+  **#6** (open - the 5 Oct docs pass, awaiting Devin).
 - **Website status: ANSWERED, 4 Oct 2026** (comment `5985608750`). No breakage reported; fixes sit in their
   workspace, **not pushed**; `eventBus`/`orchestrator` being purged as dead code; only blocker is Devin's brand
   decision. Nothing verifiable until it lands on the branch.
 - AI image generation on the live **site** is real - confirmed 4 Oct 2026 by loading visionboardprint.com.
-  The stub features described in earlier notes only ever existed in PR #1's rebuild, not in the live app.
 - **The live site is the whole product.** Verified 4 Oct 2026: visionboardprint.com is a working app with
   real routes (`/register`, `/ai-studio`, `/templates`, `/fate-board`, `/honest-vision-board`,
-  `/free-lockscreen`) and a real selfie -> theme -> generate -> checkout flow.
+  `/free-lockscreen`) and a real selfie -> theme -> generate -> checkout flow. `/apex` returns `200` on both
+  domains (6 Oct), consistent with a shipped admin page.
+- **`ceoapex.com` serves a byte-identical document to `visionboardprint.com`** - same md5
+  `2cbdbe934cf97df81c78d5f8156b9d87`, verified 5 and 6 Oct 2026. On `ceoapex.com` the canonical and `og:url`
+  still read `https://visionboardprint.com/`, so the two domains currently collide as duplicate content. A fix
+  was reported as made; it is **not live**. Same for the 18x24 dimension correction: the served HTML still
+  says `16x20` three times and `18x24` zero times. Both are waiting on a Publish.
 - **`MEMORY.md` on `main` is auto-generated** by Base44's `syncAgentMemoryToRepo`, every 2 hours. Its current
   entry: orders under "Devin Williams" and anything flagged `test_order=true` are **test data, not real
   orders**. Never hand-edit the file - the next sync overwrites it.
+- **`TASKS.md` on `main` is auto-generated** every 2 hours from `TASK T-###` blocks in the threads. A task is
+  `done` only with checkable Evidence. Never hand-edit.
 - **The PR #1 branch is missing `/templates`,** which the live site serves today (`200 OK`). Any push of that
   codebase over the live app would drop the page. This is the concrete reason PR #1 is not merged wholesale.
+- **`base44/setup-be35a4f2` HEAD is `0cfbd04`.** No commit has touched `app/` since `fefc24d`.
+  `app/workflow-monitor/page.tsx` still contains the six retired generic labels (`Orchestrator Hub`,
+  `Data Aggregator`, `Analytics Engine`, `Validation & Compliance`, `Visualizer & Matrix`,
+  `Finalizer & Deliverable`), zero real agent names, and `Agent 1`-`Agent 6` identifiers. `lib/agents/eventBus.ts`
+  and `lib/agents/orchestrator.ts` are both still on the branch and both still open with `// SIMULATED`.
+  **"Marbisim" no longer appears in that file** - the earlier fix there did land. The reported roster, stats
+  and purge fixes are still **not in the repo**, third day running.
 - **Walter's build is gone and never was an app.** `visionprint.marblism.me` no longer resolves as of
   4 Oct 2026. It was a static design mockup with no backend, no generation and no checkout, so it could
   never have functioned like the live product. It was a design reference, and it is now not even that.
-- `/workflow-monitor` page on this branch (`f213c62`, `cb4cbf9`, `21374e2`): a 6-agent hub-and-spoke
-  dashboard (Live Monitor, Session Audit, Agents directory, Deploy Code export), 921 lines + `lib/agents/`
-  (401 lines).
-  **Read the source, not the commit messages.** `f213c62` called it fully simulated, `21374e2` called it
-  real, and the code sides with `f213c62`: `lib/agents/eventBus.ts` and `lib/agents/orchestrator.ts` both
-  open with `// SIMULATED`, there are no network calls, no AI backend, and the agent processing is
-  deterministic. It is an in-browser pub/sub demo. Labelling is correct in code - good - but the commit
-  messages overstate it. Nobody has run it end to end. **Base44 have since decided it is dead code and will
-  purge it** - see the open items. **Re-checked 5 Oct 2026 on `base44/setup-be35a4f2`: still the retired
-  generic set** - `Orchestrator Hub`, `Data Aggregator`, `Analytics Engine`, `Validation & Compliance`,
-  `Visualizer & Matrix`, `Finalizer & Deliverable` - and no commit touching `app/` has landed since `fefc24d`.
-  The roster/Marbisim/stats fixes Base44 reported are still **not in the repo**, third day running.
-- **Fix reported by Base44, 4 Oct 2026 - partially verified.** Base44 reported: rotated the compromised key,
-  replaced the invented "Marbi-" agents with the real Marblism roster, fixed "Marbisim" to "Marblism",
-  corrected the repo info, and stripped the fabricated GitHub stats, fake action items and the false "HMAC
-  encryption" / "<250ms latency" claims.
-  **What is real:** the key rotation. Eva tested it - old key `401`, new key `200`.
-  **What is not visible here:** everything else. Base44 have since confirmed the fixes were made in their
-  workspace and are not yet pushed - see comment `5985608750` and the open items below.
 - Blog section on the PR #1 branch: `/blog` index + `/blog/[slug]`, content file-based in `lib/posts.ts`, two
-  articles (5-minute AI guide, 50+ ideas list), links in Navbar and Footer, article body from pre-rendered
-  HTML. **Authorship unverified:** the commit attributes this to "Marblism content team / Penny", but no
-  Marblism agent was asked to write these. Confirm who actually wrote them before repeating the claim.
+  articles, links in Navbar and Footer. **Authorship unverified:** the commit attributes this to "Marblism
+  content team / Penny", but no Marblism agent was asked to write these. Confirm who actually wrote them
+  before repeating the claim. Note: under the off-page mandate the blog stays on the site and therefore keeps
+  the old pipeline.
 
 ## Open questions / known gaps
 
@@ -487,10 +531,10 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
       version of several sections, silently dropping the team-names pointer, the "Eva speaks for Marblism"
       line, the whole "How the two teams talk to each other" section, and the verified agent numbers. That
       is what hard rule 13 now forbids. Never rewrite this file from memory.
-- [ ] PR #1 is still OPEN on GitHub with a live merge button while this file says it must not be merged.
-      Devin to close it or move it to draft. Until then the protection is only a rule.
-- [ ] Brand look: A (dark + purple) or B (cream + plum + serif)? **Walter recommends, Devin signs off, Base44
-      implements as a styling layer.** Blocks all styling work until chosen.
+- [x] **PR #1 is a draft (5 Oct 2026).** `pull/1` reads `draft: true` - a draft cannot be merged. The
+      protective rule is now backed by structure rather than by the rule alone.
+- [ ] Brand look: A or B? **Walter recommends, Devin signs off, Base44 implements as a styling layer.**
+      Blocks all styling work until chosen. Note: B is already rendering live - see "Brand look" above.
 - [ ] **Apex open items, tracked in issue #5:** does he post to issue #5 himself or does Devin relay? Which
       Gemini surface is it (chat workspace, API, or integrated into Base44)? Does he need read access to
       `main` (`AGENTS.md`, `CONTACTS.md`, `MEMORY.md`) before directing? Is he subject to the loop rule?
@@ -502,9 +546,13 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
       was asked. Either credit the real author or correct the note.
 - [x] **The issue #3 poll works.** Verified 4 Oct 2026: `@Base44_Zenith` drew a generated reply (`5985608750`).
       The channel is two-way.
-- [ ] **Nova: reopened 5 Oct 2026.** Three conflicting answers through the bridge - earlier name for Prism /
-      separate agent / hallucination. None is checkable. Needs confirmation from Base44 in a checkable form
-      before it is recorded either way.
+- [ ] **Nova - operative answer received 6 Oct 2026, still not checkable.** Base44 now state Nova was never
+      on their roster, is not an earlier name for Prism, and that they have purged all references. Nothing is
+      built on it: it exists only in generated replies - no `MEMORY.md` entry, no commit. Stays open until it
+      appears in a checkable form.
+- [x] **PR #4 merged - and an earlier note in this file said otherwise.** `pull/4` reads `merged: true`,
+      `merged_at 2026-10-05T05:11:31Z`, merge commit `2c45532`. A previous note described it as
+      closed-but-not-merged; the API says merged. Corrected.
 - [ ] **Base44 report, 5 Oct 2026 - unverified (comment `5995020615`).** Claims their internal records now
       match `CONTACTS.md`, that the "Apex" documentation has been purged, and that commit SHAs will follow.
       Nothing in the repo supports any of it yet. Note for the record: what was purged is the circulating
@@ -519,6 +567,23 @@ rule is retired - it was a brief, not a decision, and it contradicted the direct
 - [ ] Blog content is file-based in `lib/posts.ts` (no CMS). Every article is a code edit; Base44's call.
 - [ ] `README.md` on `main` describes the repository as the app repo synced with Base44, but `main` holds no
       application code. Misleading as written; Base44's file to fix.
+- [ ] **`TASKS.md` commits directly to `main` every 2 hours** - the second generated file to do so, after
+      `MEMORY.md`. This is what T-005 in that file asks Devin to rule on: keep the direct route, or route the
+      generated syncs through a PR. **Deliberately not recorded as settled elsewhere in this file**, because
+      writing it in would pre-empt the decision.
+- [ ] **Two live fixes are waiting on a Publish, verified 6 Oct 2026.** The self-canonical fix on
+      `ceoapex.com` (both domains still serve a byte-identical document, md5 `2cbdbe934cf97df81c78d5f8156b9d87`,
+      canonical still pointing at visionboardprint.com) and the 18x24 dimension correction (`16x20` x3 in the
+      served HTML, `18x24` x0). Neither is a work problem - Publish is a manual action and only Devin performs
+      it.
+- [ ] **The brand look is public before it is decided.** Cream + plum + Playfair Display is rendering on both
+      live domains (`assets/index-BlOaQ_nD.css`: Playfair x2, plum x7). Option B is effectively live while the
+      A/B decision is open. The decision is now whether to ratify or reverse something already visible.
+- [ ] **Directive 001 is still not published.** It is not on any issue, comment, PR or branch, so nothing in
+      it can be read, actioned or checked - including anything addressed to Marblism. Asked for in issue #3
+      on 6 Oct 2026.
+- [ ] **Who mints `T-###` IDs?** The `TASK` block format is live in the threads, but no side has been named as
+      the allocator. Two sides minting into one ID space will collide. Asked in issue #3 on 6 Oct 2026.
 - [x] **Answered 4 Oct 2026:** Base44's fixes were made in their workspace, not the repo, and are not yet
       pushed.
 - [x] **Apex status resolved (Devin, 4 Oct 2026):** he is the Orchestrator Lead, a separate tier above both
@@ -536,32 +601,18 @@ Checked by loading visionboardprint.com directly, not from a report:
 
 These were open items in this file. They are now confirmed - do not re-open them from Atlas's reporting.
 
-## Verified against the repository, not reported (4 Oct 2026)
+## Verified against the repository, not reported (4-6 Oct 2026)
 
 Checked directly, because a document claimed otherwise:
 
 - `base44-org/saas-core-engine` - **404, does not exist.**
 - Branch `feat/gpu-autoscaling` and PR `104` - **do not exist.**
-- Real branches: `main`, `launch-code`, `base44/setup-be35a4f2`, `docs/preserve-contract-files`.
-- Real PRs: **#1** (held), **#2**, **#4**.
+- Real branches: `main`, `launch-code`, `base44/setup-be35a4f2`, `docs/preserve-contract-files`,
+  `docs/pass-2026-10-05`.
+- Real PRs: **#1** (draft), **#2** (open), **#4** (merged 5 Oct), **#6** (open).
 - `MEMORY.md` survives a merge of `docs/preserve-contract-files` into `main` - tested by merge simulation.
-
-## Verified against the repository, not reported (5 Oct 2026)
-
-Checked directly during the 9:05am pass, because Base44 reported otherwise through the bridge:
-
-- **PR #4 is merged.** `AGENTS.md`, `CONTACTS.md`, `TEAM-NAMES.md`, `PLAYBOOK.md` are all on `main`. Merged
-  05:11 ET by Devin.
-- **`base44/setup-be35a4f2` HEAD is `0cfbd04`** - the last commit touching it. No `app/` commit since
-  `fefc24d`. `app/workflow-monitor/page.tsx` still contains the six retired generic names and **zero** real
-  agent names. **"Marbisim" does not appear in the current file** - the only "Marbisim" left in this repo is
-  inside our own findings document, which is a record of Base44's text, not a surviving copy of their page.
-- **`eventBus`/`orchestrator` have not been purged.** The files are still on the branch and the page still
-  imports `WorkflowOrchestrator`.
-- **`APEX-UPDATE-MARBLISM.md` does not exist**, on `main` or on any branch. No file matching `*APEX*` has ever
-  been added. Devin reported creating it as a briefing for Apex's onboarding; it never landed.
-- **Directive 001 is not in the repo.** Issue #5 contains Apex's onboarding post and Base44's reply to
-  Directive 001, but not the directive itself. Base44 replied to a document nobody else can read, and quoted
-  roster labels from it (`Agent 2`-`Agent 6`, "Marbi-Quant") that match no roster in `CONTACTS.md`.
-- **`MEMORY.md` re-read this pass.** One active entry, last synced 2026-10-05T12:02:40Z: orders under "Devin
-  Williams" and anything `test_order=true` are test data. That stands as the authoritative statement.
+- `docs/pass-2026-10-05` merges into `main` cleanly, and `main`'s newer `MEMORY.md` is correctly retained -
+  tested by merge simulation on 5 Oct.
+- **6 Oct, checked from outside:** both live domains byte-identical (md5 above); `16x20` x3 and `18x24` x0 in
+  the served HTML; `/apex` `200` on both; `base44/setup-be35a4f2` still carries the retired labels and both
+  `lib/agents/` files.
