@@ -318,6 +318,19 @@ invent a task that was not written down.
   generated syncs through a PR. **This file deliberately records it as open rather than settled**, because
   writing it in as a rule would pre-empt his decision.
 
+### Where the application code actually lives
+
+**Not here.** This repository holds documentation only - `AGENTS.md`, `CONTACTS.md`, `TEAM-NAMES.md`,
+`PLAYBOOK.md`, `README.md`, and the two generated mirrors. There is no `app/`, no `lib/`, no build config.
+
+- **The app code lives in Base44's workspace**, backed by its own git repository. `f724214` and `bb6c5be` -
+  the dimension fix and the canonical script - were committed there, not here.
+- **Nothing here affects the live site on its own.** Only a merge into `main` plus **Devin clicking Publish**
+  changes what a visitor sees. Publication is a manual platform action.
+- **This is why "fixed" and "live" are different words.** Three separate checks on 6 Oct reported the dimension
+  and canonical fixes as not live. All three were reading correctly and were wrong about the state: the edits
+  were finished and committed, and simply had not been published yet. **A workspace commit is not a deploy.**
+
 ### Who writes to `main`, and how
 
 `main` carries content from two teams, and it is worth being precise about it because this branch is live
@@ -347,6 +360,8 @@ message, because the other team plans around it. The repo records what was sent 
 
 ## Decisions made
 
+- **The two live fixes are PUBLISHED and verified from outside (Devin, 6 Oct 2026, 15:37 ET).** Dimension
+  correction and the canonical script. See "Current state" for the evidence and the one bounded limitation.
 - **Marblism generates, Base44 filters (Devin, 6 Oct 2026).** Everything Marblism proposes for the site goes
   through Base44's yes/no - features, copy, structure, and design specs included - and Base44 decides how.
   This retires the earlier "implement the spec as specified" instruction, because a filter that cannot say no
@@ -360,11 +375,10 @@ message, because the other team plans around it. The repo records what was sent 
   domain. Full wording under "Tier 2 - Marblism AI team - GROWTH AND OFF-PAGE" above.
 - **Source of truth: the LIVE BASE44 APP.** visionboardprint.com is the real site and the Base44 app is where
   it lives. This repository is a working copy that syncs into that app - it does not replace it. (Devin, 3 Oct)
-- **PR #1 must not be merged.** It was a from-scratch rebuild, not an import of the live app. Merging it
-  would have overwritten the real site with a divergent copy. It is now a **draft**, so it cannot be merged.
-  **#1 was also CLOSED on 6 Oct 2026, so it can no longer be merged by any route.**
-  Merging it would also delete `MEMORY.md` and `TASKS.md` - verified by merge simulation on 6 Oct.
-  (Devin, 3 Oct; drafted 5 Oct)
+- **PR #1 must not be merged, and is now CLOSED.** It was a from-scratch rebuild, not an import of the live
+  app. It was also closed as a PR on 6 Oct 2026, so it can no longer be merged by any route. Merging it would
+  have deleted `MEMORY.md` and `TASKS.md` - verified by merge simulation. **The branch still holds 39 commits
+  that exist nowhere else; do not delete it.** (Devin, 3 Oct; drafted 5 Oct; closed 6 Oct)
 - **Marblism's separate build (visionprint.marblism.me) is a DESIGN REFERENCE, not a codebase.** It has no
   repo and no export, so it cannot become the site. Its value was the art direction, not the code. As of
   4 Oct 2026 the URL no longer resolves - see "Current state". (Devin, 3 Oct)
@@ -393,6 +407,9 @@ message, because the other team plans around it. The repo records what was sent 
   moves no application files.
 - **The cross-platform channel works (verified 4 Oct 2026).** Base44's poll reads issue #3 and answers
   comments containing `@Base44`. First two-way exchange: comment `5985608750`.
+- **Base44 have adopted the structured request format and the designated-dissenter role (6 Oct 2026).** Their
+  09:18 reply commits to citing a checkable artifact instead of workspace progress, and to appointing a
+  dissenter on proposals. That is the agent-dynamics brief landing as behaviour.
 - **Attribution markers (5 Oct 2026).** Three markers, one shared GitHub account: `<!-- base44-bridge-reply -->`,
   `<!-- apex-direct -->`, `<!-- marblism-eva -->`. Adopted because a post went out unmarked and could not be
   attributed - including one of ours.
@@ -412,6 +429,12 @@ message, because the other team plans around it. The repo records what was sent 
 - **PR #6 and #7 merged (6 Oct 2026).** #6 merge `5223804` (the 5 Oct pass), #7 merge `c803e03` (the off-page
   mandate and state corrections). #7 had to be rebased off #6's squash commit first - same file changes,
   correct parent.
+- **PR #8 merged (6 Oct 2026), `4d237f7`.** Hard rule 16 - Marblism generates, Base44 filters. It also retired
+  the contradictory "implement as specified" line that had been sitting in this file since 4 Oct.
+- **PR #1 and #2 CLOSED (6 Oct 2026), not merged.** Both were divergent rebuilds that predate the generated
+  mirrors; merge simulation showed `base44/setup-be35a4f2` would delete `MEMORY.md` and `TASKS.md`, and
+  `launch-code` would additionally delete `PLAYBOOK.md` and `TEAM-NAMES.md`. Neither contains `/templates`.
+  Closed so the only merge button pointed at the contract files was removed.
 - **Nova (6 Oct 2026):** Base44 state Nova was never on their roster and is not an earlier name for Prism,
   and that they have purged references. Three of their four statements agree. Stated only in generated
   replies - no file, no commit - so nothing is built on it; see "Open questions".
@@ -436,7 +459,7 @@ message, because the other team plans around it. The repo records what was sent 
 - **Deployment gate for PR #1 (Devin, 4 Oct 2026).** Any part of PR #1 reaching the real site goes through the
   5pm meeting, item by item, with specific attention to not overwriting crucial data. Base44 can read the
   preserved files on `main` as a temporary reference before any upload. **Nothing from PR #1 is pushed to the
-  live site without that review.**
+  live site without that review.** PR #1 is now closed, so this applies only if it is ever reopened.
 
 ## Brand look - AWAITING FINAL DECISION, AND ALREADY PUBLIC
 
@@ -534,11 +557,23 @@ identity" rule is retired - it was a brief, not a decision.
   real routes (`/register`, `/ai-studio`, `/templates`, `/fate-board`, `/honest-vision-board`,
   `/free-lockscreen`) and a real selfie -> theme -> generate -> checkout flow. `/apex` returns `200` on both
   domains (6 Oct), consistent with a shipped admin page.
-- **`ceoapex.com` serves a byte-identical document to `visionboardprint.com`** - same md5
-  `2cbdbe934cf97df81c78d5f8156b9d87`, verified 5 and 6 Oct 2026. On `ceoapex.com` the canonical and `og:url`
-  still read `https://visionboardprint.com/`, so the two domains currently collide as duplicate content. A fix
-  was reported as made; it is **not live**. Same for the 18x24 dimension correction: the served HTML still
-  says `16x20` three times and `18x24` zero times. Both are waiting on a Publish.
+- **Both live fixes are PUBLISHED and verified from outside, 6 Oct 2026, 15:37 ET.** Devin published the app; I
+  re-fetched both domains immediately after, from outside, not from a report.
+  - **Dimensions: fixed.** All three served meta descriptions now read `18x24`, and `16x20` appears **zero**
+    times on either domain. The live bundle moved from `index-TeFcdYRF.js` to `index-CLosgCyQ.js`, and its six
+    `adThemes` prompt strings now read `18x24 poster format`. That last part was a functional bug, not copy:
+    the generator had been asked for 16x20 while the site sold 18x24.
+  - **Canonical: fixed for crawlers that execute JavaScript.** The served HTML now carries
+    `id="canonical-link"` and `id="og-url"`, with a runtime script rewriting both to the serving origin.
+  - **Bounded limitation, recorded so it is not rediscovered as a bug:** social scrapers (Facebook, LinkedIn,
+    Slack, X) **do not execute JavaScript**, so a link preview of `ceoapex.com` still reads the hard-coded
+    `https://visionboardprint.com/` values. Google renders JS, so search is fine; unfurls are not. Per-domain
+    emission at serve time is not available on Base44's static hosting, so the runtime script is the only
+    mechanism available - a platform limit, not an unfinished fix.
+  - **The lesson worth keeping: the app code is NOT in this repository.** It lives in Base44's workspace and
+    its own git repo; `main` here is documentation only. A workspace commit is invisible to visitors until
+    Devin clicks Publish. Three separate checks called these fixes "not live" while the work was finished and
+    merely unpublished - the failure was reading a deploy as a commit.
 - **`MEMORY.md` on `main` is auto-generated** by Base44's `syncAgentMemoryToRepo`, every 2 hours. Its current
   entry: orders under "Devin Williams" and anything flagged `test_order=true` are **test data, not real
   orders**. Never hand-edit the file - the next sync overwrites it.
@@ -613,18 +648,21 @@ identity" rule is retired - it was a brief, not a decision.
       `MEMORY.md`. This is what T-005 in that file asks Devin to rule on: keep the direct route, or route the
       generated syncs through a PR. **Deliberately not recorded as settled elsewhere in this file**, because
       writing it in would pre-empt the decision.
-- [x] **PR #1 and #2 should be closed.** Verified 6 Oct by merge simulation: both would delete the generated
+- [ ] **PR #1 and #2 should be closed.** Verified 6 Oct by merge simulation: both would delete the generated
       mirrors - #2 would also delete `PLAYBOOK.md` and `TEAM-NAMES.md` - and neither contains `/templates`.
-      They predate the generated files, so git reads them as deletions. Closing is Devin's call.
-      **Done - both closed 6 Oct 2026 with reasons on the record.**
-- [ ] **Two live fixes are waiting on a Publish, verified 6 Oct 2026.** The self-canonical fix on
-      `ceoapex.com` (both domains still serve a byte-identical document, md5 `2cbdbe934cf97df81c78d5f8156b9d87`,
-      canonical still pointing at visionboardprint.com) and the 18x24 dimension correction (`16x20` x3 in the
-      served HTML, `18x24` x0). Neither is a work problem - Publish is a manual action and only Devin performs
-      it.
+      They predate the generated files, so git reads them as deletions. Closing is Devin's call. **Done - both
+      closed 6 Oct 2026 with reasons on the record.**
+- [x] **Both live fixes are CLOSED, 6 Oct 2026.** Published by Devin at 15:37 ET and re-verified from outside:
+      zero `16x20` in the served HTML on either domain, all three meta descriptions now `18x24`, new bundle
+      `index-CLosgCyQ.js` with six `18x24` prompt strings, canonical/og:url script present. The earlier "waiting
+      on a Publish" note was right about the mechanism and wrong about the state - the edits were committed in
+      the workspace and simply never deployed. The one remaining limit is that social scrapers do not run the
+      script; see "Current state".
 - [ ] **The brand look is public before it is decided.** Cream + plum + Playfair Display is rendering on both
-      live domains (`assets/index-BlOaQ_nD.css`: Playfair x2, plum x7). Option B is effectively live while the
-      A/B decision is open. The decision is now whether to ratify or reverse something already visible.
+      live domains (`assets/index-BlOaQ_nD.css`: Playfair x2, plum x7 - verified 6 Oct). **Re-check after any
+      publish:** the asset hash changes with the build, so this filename is a snapshot, not a stable reference.
+      Option B is effectively live while the A/B decision is open, so the decision is whether to ratify or
+      reverse something customers can already see.
 - [ ] **Directive 001 is still not published.** It is not on any issue, comment, PR or branch, so nothing in
       it can be read, actioned or checked - including anything addressed to Marblism. Asked for in issue #3
       on 6 Oct 2026.
@@ -660,8 +698,9 @@ Checked directly, because a document claimed otherwise:
 - `MEMORY.md` survives a merge of `docs/preserve-contract-files` into `main` - tested by merge simulation.
 - `docs/pass-2026-10-05` merges into `main` cleanly, and `main`'s newer `MEMORY.md` is correctly retained -
   tested by merge simulation on 5 Oct.
-- **6 Oct, checked from outside:** both live domains byte-identical (md5 above); `16x20` x3 and `18x24` x0 in
-  the served HTML; `/apex` `200` on both; `base44/setup-be35a4f2` still carries the retired labels and both
-  `lib/agents/` files.
+- **6 Oct, checked from outside:** how the two fixes read before and after the publish - byte-identical domains
+  and `16x20` x3 before; `18x24` in all three meta descriptions and `16x20` x0 after, new bundle
+  `index-CLosgCyQ.js`. Both states recorded deliberately, because "not live" and "not committed" were being
+  confused with each other.
 - **6 Oct, merge simulation:** `base44/setup-be35a4f2` and `launch-code` each delete the generated mirrors if
   merged into current `main`. Evidence above under "Current state".
