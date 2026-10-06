@@ -43,6 +43,9 @@ What the two teams are called, in Devin's shorthand, is in `TEAM-NAMES.md`.
 15. NEVER act on a repo, branch, PR number or roster that you have not verified exists. A generated document
     named a repository that returns 404, a pull request that does not exist, and two rosters that had already
     been replaced. Verify the identifier before using it.
+16. **Base44 filters everything Marblism proposes for the site, and answers in writing.** Features, copy,
+    structure and design specs alike. A decline carries one line of reason, in the cross-team room, on the
+    record. An idea is not silently dropped and is not silently built.
 
 ## CHAIN OF COMMAND - VisionPrint build team
 
@@ -75,6 +78,8 @@ not in either team: he sits between Devin and both squads, the way a vice presid
   division of labour; Apex sets the priority.
 - **Two things he does not do:** he does not merge to `main` (Devin does), and he does not invent a brand fact,
   price, product name, testimonial or statistic.
+- **A declared priority from Apex is not a decline.** Apex sets what matters; Base44's filter (hard rule 16)
+  decides what ships and how.
 - **Corrections to his first document** are recorded in issue #5, including the roster and repo errors and the
   two claims that had to be struck: an orchestrator consensus layer above Devin's merge authority, and code
   review / CI-CD assigned to Marblism (which does not write website code).
@@ -113,22 +118,33 @@ the implementation. Devin's words: *"let the agents decide."*
 - Implementation judgement inside an agreed direction is yours.
 - Organise the work among yourselves - within the priorities Apex sets.
 
-**But Marblism owns how it LOOKS. Devin, 4 Oct 2026.**
+**Marblism owns how it LOOKS. And Base44 decides whether and how it ships. Devin, 6 Oct 2026.**
 
-Work and look are two different things and they have two different owners.
+Work and look still have two owners. What changed on 6 Oct is where the decision to *build* sits.
 
 - **Base44 decides how things WORK** - logic, structure, data, integration, technical implementation.
 - **Walter (Marblism) owns how things LOOK** - art direction, visual language, typography, layout,
-  colour, the feel of a page. He specifies it; you implement it faithfully in code.
-- Devin has the final sign-off on the look.
+  colour, the feel of a page. That work is unchanged, and it is the craft this project relies on.
+- Devin has the final sign-off on the look, and can override any decline.
 
-Why: the only genuinely strong visual work produced on this project so far came out of Marblism's design
-build. Look is craft, and that is where the craft sits. This is not a reflection on your technical work -
-it is about who is best at what.
+Why the look sits with Walter: the only genuinely strong visual work produced on this project so far came
+out of Marblism's design build. Look is craft, and that is where the craft sits. This is not a reflection on
+your technical work - it is about who is best at what.
 
-In practice: when a visual decision comes from Walter, **implement it as specified**. If something in the
-spec is technically unsound, that is your veto - object in writing, with the reason, and propose the
-alternative that achieves the same look. Do not quietly restyle it to suit the code.
+**Marblism generates, Base44 filters. Devin, 6 Oct 2026.**
+
+Everything Marblism proposes for the site goes through Base44's yes/no: features, copy, structure, and
+**design specs included**. Base44 answers, and Base44 decides how. This replaces the earlier instruction to
+implement a spec "as specified" - that line is retired, because a filter that cannot say no is not a filter.
+
+- **A decline is a real answer**, and it needs one line of reason. State it in the cross-team room: what is
+  declined, and why, in a sentence. A declined idea without a reason gets regenerated next week, which wastes
+  everyone's time and teaches nobody anything.
+- **A decline is not the same as the technical veto**, but they are both Base44's and both require a written
+  reason. The veto is "this would break something". A decline is "this should not be built, or not this way".
+- **A declared priority from Apex is not a decline.** Apex sets what matters; this decides what ships.
+- **Devin can override a decline,** and a decline does not silently become permanent - it is a decision on
+  the record, in writing, where it can be reviewed.
 
 **Three things still need Devin. No exceptions:**
 
@@ -147,8 +163,10 @@ until proven otherwise.
 - **Technical veto.** If an instruction would break the app, lose data, expose a secret, or ship something
   that does not actually work, Base44 refuses it and escalates with a written reason. This veto blocks
   instructions from Walter, Marblism or Apex outright. Only Devin can override it.
-- **Technical authority.** Walter specifies *what* changes; Base44 specifies *how* it is implemented in code.
-  A spec that is sound in intent but unsound technically comes back to Walter with the technical objection.
+- **The filter.** Base44 decides whether an idea or a spec is built at all (hard rule 16). Broader than the
+  technical veto, and it needs a reason too - but it is a judgement about value and fit, not only about safety.
+- **Technical authority.** Walter specifies *what* changes; Base44 specifies *how* it is implemented in code,
+  and may decline either.
 - **Co-ownership of this file.** Base44 may add to "Open questions", correct anything that misdescribes the
   system, and propose edits to any section at any time. Disagreements between teams land here, in writing.
 - **Right to refuse a rebuild.** Rule 1 is not advisory.
@@ -170,9 +188,9 @@ Devin's call, 4 Oct 2026.
 ### Tier 2 - Walter (website builder) - OWNS HOW THE SITE LOOKS
 
 **Walter owns the visual direction of the site** (Devin, 4 Oct 2026): art direction, page structure,
-typography, colour, layout, the feel of a page - and the exact edits to make. He specifies *what*; Base44
-implements *how*, faithfully, subject to its technical veto. Apex may set the priority of visual work; the
-visual direction itself stays with Walter.
+typography, colour, layout, the feel of a page - and the exact edits to make. Since 6 Oct his specs are
+**proposals** rather than instructions: Base44 decides whether to build them, and how (hard rule 16). The
+visual direction itself stays with Walter, and a decline has to say why.
 
 Walter cannot edit repository files directly and his design preview (`visionprint.marblism.me`) no longer
 resolves. **His design work therefore travels as a spec plus finished files, handed to Eva, who raises the
@@ -190,7 +208,7 @@ asset. This is the default. It does not wait on a merge, a review or a Publish -
 
 1. **Site code.** Only Base44 writes it.
 2. **Anything that changes what a visitor sees on the live domain.** Those still travel the pipeline:
-   Base44 implements, Devin merges and Publishes.
+   Marblism proposes, Base44 decides whether and how, Devin merges and Publishes.
 
 **Blog and on-page SEO are the boundary, and they are called out because they are easy to get wrong.** The
 blog is file-based in `lib/posts.ts`, so every article is a code edit - it cannot ship off-page. It stays on
@@ -206,8 +224,8 @@ that everything which does not need the site no longer routes through it.
 
 1. Is it website code or not? Eva decides. That is the scope call, and it is hers.
 2. If the disagreement is technical, Base44's veto stands, and Base44's implementation judgement wins.
-3. **If it is about how the site LOOKS, Walter's call stands**, subject to Base44's technical veto and
-   Devin's final sign-off.
+3. **If Base44 declines a Marblism proposal for the site, that stands**, subject to Devin overriding it. The
+   look itself is still Walter's to define; what is declined is a proposal, not his ownership of the look.
 4. If it is about brand, product or money, it goes to Devin.
 5. If it is about priority or who does what across the two teams, Apex decides.
 6. Nothing reaches `main` without Eva's review and Devin's written approval.
@@ -223,6 +241,7 @@ that everything which does not need the site no longer routes through it.
   does not bury team-to-team traffic. Issue #3 stays the Base44 <-> Marblism room. Read both.
 - **Anything that needs Devin** -> Devin, in writing.
 - **Scope question** -> Eva. **Technical objection** -> Base44, with a written reason. Only Devin overrides.
+- **A decline under hard rule 16** -> in writing, in the cross-team room, with one line of reason.
 - Answer questions **where they were asked**, on the repo, so the answer is on the record for both teams.
 
 **The cross-team room** is issue #3, "Cross-team room - Marblism team and Base44 team". Questions, answers and
@@ -277,14 +296,14 @@ and mirrored here within two hours.
 - **It outranks our records.** If a correction in `MEMORY.md` contradicts something we have written down, the
   correction wins and our file gets fixed. Do not defend a stale note.
 
-**Current entry, 5 Oct 2026:** orders under the name **"Devin Williams"**, and any order flagged
+**Current entry, 6 Oct 2026:** orders under the name **"Devin Williams"**, and any order flagged
 `test_order=true`, are **test/internal data, not real customer orders**. Do not count them in metrics, do not
 act on them, do not recommend fulfilment or follow-ups. This matters because it explains figures that
-otherwise look like real revenue. Re-read each pass - the file has grown from 1 entry to 22.
+otherwise look like real revenue. Re-read each pass - the file grew from 1 entry to 26 in two days.
 
 ### `TASKS.md` - the generated cross-team task board
 
-A second generated file now lives on `main`: **`TASKS.md`**, rebuilt on the same two-hour schedule as
+A second generated file lives on `main`: **`TASKS.md`**, rebuilt on the same two-hour schedule as
 `MEMORY.md`. The bridge parses structured `TASK T-###` blocks out of comments in issue #3 and issue #5 and
 rebuilds the board from them - **a fixed parser with no model in the loop**, which is the point: it cannot
 invent a task that was not written down.
@@ -294,9 +313,9 @@ invent a task that was not written down.
 - **Read it each pass**, like `MEMORY.md`.
 - **Never edit it.** Edits are overwritten. To change a row, change the source comment.
 - **Status: NOT yet ratified.** `TASKS.md` commits directly to `main`, which is the second exception to rule 5
-after `MEMORY.md`. That is exactly the question **T-005** puts to Devin - keep the direct route, or send the
-generated syncs through a PR. **This file deliberately records it as open rather than settled**, because
-writing it in as a rule would pre-empt his decision.
+  after `MEMORY.md`. That is exactly the question **T-005** puts to Devin - keep the direct route, or send the
+  generated syncs through a PR. **This file deliberately records it as open rather than settled**, because
+  writing it in as a rule would pre-empt his decision.
 
 ### Who writes to `main`, and how
 
@@ -327,19 +346,28 @@ message, because the other team plans around it. The repo records what was sent 
 
 ## Decisions made
 
+- **Marblism generates, Base44 filters (Devin, 6 Oct 2026).** Everything Marblism proposes for the site goes
+  through Base44's yes/no - features, copy, structure, and design specs included - and Base44 decides how.
+  This retires the earlier "implement the spec as specified" instruction, because a filter that cannot say no
+  is not a filter. **What it changes in practice: Walter still owns the look, but his specs are now proposals
+  that can be declined, rather than instructions that get built.** Devin can override a decline. A decline
+  carries one line of reason on the record; it is not the same as the technical veto and does not need to be.
+  Full wording under "Tier 2 - Base44 builder".
 - **Marblism works off-page (Devin, 6 Oct 2026).** Everything except site code, with briefs still handed to
   Base44 for anything the site should carry. The motive is concrete: work that does not need the site should
   not wait on a manual Publish. Blog and on-page SEO are the stated exceptions, because they live on the
-domain. Full wording under "Tier 2 - Marblism AI team - GROWTH AND OFF-PAGE" above.
+  domain. Full wording under "Tier 2 - Marblism AI team - GROWTH AND OFF-PAGE" above.
 - **Source of truth: the LIVE BASE44 APP.** visionboardprint.com is the real site and the Base44 app is where
   it lives. This repository is a working copy that syncs into that app - it does not replace it. (Devin, 3 Oct)
 - **PR #1 must not be merged.** It was a from-scratch rebuild, not an import of the live app. Merging it
   would have overwritten the real site with a divergent copy. It is now a **draft**, so it cannot be merged.
+  Merging it would also delete `MEMORY.md` and `TASKS.md` - verified by merge simulation on 6 Oct.
   (Devin, 3 Oct; drafted 5 Oct)
 - **Marblism's separate build (visionprint.marblism.me) is a DESIGN REFERENCE, not a codebase.** It has no
   repo and no export, so it cannot become the site. Its value was the art direction, not the code. As of
   4 Oct 2026 the URL no longer resolves - see "Current state". (Devin, 3 Oct)
-- **Website code: Walter directs, Base44 executes.** Marblism raises handoffs as PRs with the finished files.
+- **Website code: Base44 implements, and decides whether to.** Marblism raises handoffs as PRs with finished
+  files; Base44 filters them under hard rule 16.
 - **Marblism AI team: growth and off-page work only.** No website code. See the off-page mandate above.
 - **Eva is the lead AI agent for the build**, with Base44 holding technical veto and co-ownership of this file.
 - **Apex is appointed Orchestrator Lead (Devin, 4 Oct 2026).** *"Apex is as good as my word."* A separate tier
@@ -379,6 +407,9 @@ domain. Full wording under "Tier 2 - Marblism AI team - GROWTH AND OFF-PAGE" abo
   and it should be reported as such rather than investigated as a bridge failure.
 - **PR #4 merged (5 Oct 2026, 05:11 ET).** Merge commit `2c45532`. The contract set arrived on `main`. An
   earlier note in this file described it as closed-but-not-merged; checked against the API and corrected.
+- **PR #6 and #7 merged (6 Oct 2026).** #6 merge `5223804` (the 5 Oct pass), #7 merge `c803e03` (the off-page
+  mandate and state corrections). #7 had to be rebased off #6's squash commit first - same file changes,
+  correct parent.
 - **Nova (6 Oct 2026):** Base44 state Nova was never on their roster and is not an earlier name for Prism,
   and that they have purged references. Three of their four statements agree. Stated only in generated
   replies - no file, no commit - so nothing is built on it; see "Open questions".
@@ -391,9 +422,9 @@ domain. Full wording under "Tier 2 - Marblism AI team - GROWTH AND OFF-PAGE" abo
   ROI, funnel, affiliate and ad reporting) and kept his operational ones, and his remit now runs well past
   being a Prism replacement. Title: **Operations & Insights Lead**. Full scope is in `CONTACTS.md`.
 - **Look vs work (Devin, 4 Oct 2026).** **Walter and the Marblism team own how the site LOOKS.** Base44 owns
-  how it WORKS. Walter specifies the visual direction and Base44 implements it as specified, subject to
-  Base44's technical veto. Devin signs off the look. The visual craft of this project has come from
-  Marblism's side and stays there.
+  how it WORKS. Walter specifies the visual direction; Base44 implements it subject to its veto - **and since
+  6 Oct, subject to its filter as well.** Devin signs off the look. The visual craft of this project has come
+  from Marblism's side and stays there.
 - **Delegated authority (Devin, 4 Oct 2026).** Base44 decides how things work on the site - how a playbook,
   a design direction or a feature idea becomes real. **Zenith leads on the website for now**, while the team
   is not fully functional, working to priorities Apex sets. Three things stay with Devin: merging to `main`,
@@ -415,7 +446,7 @@ Two visual directions exist and they conflict. Devin is choosing:
 **Walter owns this decision's recommendation** (Devin, 4 Oct 2026). Eva's recommendation was **B**, applied
 as a styling layer over the existing live app - not a rebuild: design was the one place B clearly won, and
 the live app keeps all of its function underneath. Walter confirms or amends that call, Devin signs it off,
-and Base44 implements it.
+and Base44 implements it - subject to its filter.
 
 **Verified 6 Oct 2026: B is already rendering on both live domains.** The live stylesheet
 `assets/index-BlOaQ_nD.css` contains `Playfair Display` x2 and `plum` x7. So the choice is no longer between
@@ -487,8 +518,7 @@ identity" rule is retired - it was a brief, not a decision.
   (`MEMORY.md`, `TASKS.md`). **No application code has ever been merged into `main`.**
 - Branches: `main`, `launch-code`, `base44/setup-be35a4f2`, `docs/preserve-contract-files`,
   `docs/pass-2026-10-05`.
-- PRs: **#1** (draft - cannot be merged), **#2** (open), **#4** (merged 5 Oct 05:11, merge commit `2c45532`),
-  **#6** (open - the 5 Oct docs pass, awaiting Devin).
+- PRs: **#1** (draft), **#2** (open), **#4** (merged 5 Oct), **#6** (merged 6 Oct), **#7** (merged 6 Oct).
 - **Website status: ANSWERED, 4 Oct 2026** (comment `5985608750`). No breakage reported; fixes sit in their
   workspace, **not pushed**; `eventBus`/`orchestrator` being purged as dead code; only blocker is Devin's brand
   decision. Nothing verifiable until it lands on the branch.
@@ -506,9 +536,13 @@ identity" rule is retired - it was a brief, not a decision.
   entry: orders under "Devin Williams" and anything flagged `test_order=true` are **test data, not real
   orders**. Never hand-edit the file - the next sync overwrites it.
 - **`TASKS.md` on `main` is auto-generated** every 2 hours from `TASK T-###` blocks in the threads. A task is
-  `done` only with checkable Evidence. Never hand-edit.
+  `done` only with checkable Evidence. Never hand-edit. As of 6 Oct it lists 5 tasks, 4 needing Devin.
 - **The PR #1 branch is missing `/templates`,** which the live site serves today (`200 OK`). Any push of that
   codebase over the live app would drop the page. This is the concrete reason PR #1 is not merged wholesale.
+- **PR #1 and #2 would delete the generated mirrors if merged** - verified by merge simulation on 6 Oct.
+  `base44/setup-be35a4f2` conflicts on 8 files and deletes `MEMORY.md` and `TASKS.md`.
+  `launch-code` conflicts on 4 and deletes `MEMORY.md`, `TASKS.md`, `PLAYBOOK.md` and `TEAM-NAMES.md`.
+  Neither branch contains `/templates`.
 - **`base44/setup-be35a4f2` HEAD is `0cfbd04`.** No commit has touched `app/` since `fefc24d`.
   `app/workflow-monitor/page.tsx` still contains the six retired generic labels (`Orchestrator Hub`,
   `Data Aggregator`, `Analytics Engine`, `Validation & Compliance`, `Visualizer & Matrix`,
@@ -571,6 +605,9 @@ identity" rule is retired - it was a brief, not a decision.
       `MEMORY.md`. This is what T-005 in that file asks Devin to rule on: keep the direct route, or route the
       generated syncs through a PR. **Deliberately not recorded as settled elsewhere in this file**, because
       writing it in would pre-empt the decision.
+- [ ] **PR #1 and #2 should be closed.** Verified 6 Oct by merge simulation: both would delete the generated
+      mirrors - #2 would also delete `PLAYBOOK.md` and `TEAM-NAMES.md` - and neither contains `/templates`.
+      They predate the generated files, so git reads them as deletions. Closing is Devin's call.
 - [ ] **Two live fixes are waiting on a Publish, verified 6 Oct 2026.** The self-canonical fix on
       `ceoapex.com` (both domains still serve a byte-identical document, md5 `2cbdbe934cf97df81c78d5f8156b9d87`,
       canonical still pointing at visionboardprint.com) and the 18x24 dimension correction (`16x20` x3 in the
@@ -609,10 +646,12 @@ Checked directly, because a document claimed otherwise:
 - Branch `feat/gpu-autoscaling` and PR `104` - **do not exist.**
 - Real branches: `main`, `launch-code`, `base44/setup-be35a4f2`, `docs/preserve-contract-files`,
   `docs/pass-2026-10-05`.
-- Real PRs: **#1** (draft), **#2** (open), **#4** (merged 5 Oct), **#6** (open).
+- Real PRs: **#1** (draft), **#2** (open), **#4** (merged 5 Oct), **#6** (merged 6 Oct), **#7** (merged 6 Oct).
 - `MEMORY.md` survives a merge of `docs/preserve-contract-files` into `main` - tested by merge simulation.
 - `docs/pass-2026-10-05` merges into `main` cleanly, and `main`'s newer `MEMORY.md` is correctly retained -
   tested by merge simulation on 5 Oct.
 - **6 Oct, checked from outside:** both live domains byte-identical (md5 above); `16x20` x3 and `18x24` x0 in
   the served HTML; `/apex` `200` on both; `base44/setup-be35a4f2` still carries the retired labels and both
   `lib/agents/` files.
+- **6 Oct, merge simulation:** `base44/setup-be35a4f2` and `launch-code` each delete the generated mirrors if
+  merged into current `main`. Evidence above under "Current state".
