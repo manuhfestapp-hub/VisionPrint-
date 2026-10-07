@@ -3,14 +3,14 @@
 > Auto-generated from structured `TASK T-###` blocks in issues #3 and #5. Edits here are overwritten.
 > A task is **done** only when its Evidence links to a real commit, merged PR, or file in this repo. Otherwise it shows as **claimed**.
 
-**Last synced:** 2026-10-07T20:01:34.253Z
+**Last synced:** 2026-10-07T22:02:41.881Z
 **Tasks:** 9
 
 ## needs owner (3)
 
 | ID | Title | Owner | Platform | Evidence | Last update |
 |---|---|---|---|---|---|
-| T-001 | Publish canonical self-fix and 18x24 dimension correction | Devin | owner | — | [manuhfestapp-hub](https://github.com/manuhfestapp-hub/VisionPrint-/issues/3#issuecomment-6005630981) |
+| T-001 | Publish canonical self-fix and 18x24 dimension correction | Devin | owner | [link](dimension correction VERIFIED LIVE 2026-10-07 - 18x24 x3, 16x20 x0, md5 6613a47ed469713dfc34c8911c73d661 on both domains; ceoapex canonical still points at visionboardprint.com) | [manuhfestapp-hub](https://github.com/manuhfestapp-hub/VisionPrint-/issues/3#issuecomment-6046922922) |
 | T-002 | Set YouTube OAuth secrets (client id, secret, refresh token, channel id) | Devin | owner | — | [manuhfestapp-hub](https://github.com/manuhfestapp-hub/VisionPrint-/issues/3#issuecomment-6005630981) |
 | T-005 | Decide whether MEMORY.md and TASKS.md syncs keep committing to main | Devin | owner | — | [manuhfestapp-hub](https://github.com/manuhfestapp-hub/VisionPrint-/issues/3#issuecomment-6005630981) |
 
