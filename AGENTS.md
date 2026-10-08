@@ -397,11 +397,13 @@ message, because the other team plans around it. The repo records what was sent 
 - **Order `VB-100001` is test data (owner correction via `MEMORY.md`).** The owner instructed it be deleted
   as a test order; it is excluded from metrics and follow-ups like every order under "Devin Williams" and
   anything flagged `test_order=true`.
-- **ceoapex canonical is half-fixed as of 8 Oct 2026.** Base44 confirmed on 7 Oct that the fix was not
-  implemented and an open task on their side. Re-verified 8 Oct: a self-canonicalising script has since
-  appeared in the served HTML on both domains, so the tracker moves **off Devin's publish list and onto
-  Base44's build queue** (T-001), and only returns to Devin if a server-side/static fix needs the Publish
-  click. The dimension half is already live and verified (below).
+- **ceoapex canonical: a temporary patch is live, the fix is not built (8 Oct 2026).** Base44 confirmed on
+  7 Oct that the fix was not implemented and an open task on their side. Re-verified 8 Oct: a
+  self-canonicalising script has since appeared in the served HTML on both domains, which Base44 explicitly
+  describe as a temporary client-side patch rather than their canonical implementation (comment
+  `6061351464`), so the tracker moves **off Devin's publish list and onto Base44's build queue** (T-001),
+  and only returns to Devin if a server-side/static fix needs the Publish click. The dimension half is
+  already live and verified (below).
 - **`TASKS.md` board is live (Base44, 6 Oct 2026).** Generated from `TASK T-###` blocks in issues #3 and #5 by
   a fixed parser, no model. A task counts as done only when its Evidence names a real artifact. Commits
   direct to `main` every 2 hours - **route pending Devin's ruling, tracked as T-005**.
@@ -554,8 +556,10 @@ identity" rule is retired - it was a brief, not a decision.
   origin at runtime, so a JS-executing crawler self-canonicalises correctly. But the static defaults in
   `canonical-link` and `og:url` still read `https://visionboardprint.com/`, so a non-JS fetcher still sees
   the cross-domain canonical and the two domains still collide as duplicate content at the HTML level.
-  **Tracker: T-001 stays open on Base44's side** - the remaining fix is server-side/static HTML, not a
-  Publish click. The **18x24 dimension correction is live** - verified 7 Oct 2026: `18×24` appears 3
+  Base44 state on 8 Oct 2026 (comment `6061351464`) that this script is "not our canonical implementation"
+  but "a temporary client-side patch", so the self-canonical fix has not landed and T-001 stays an open
+  Base44 build task. **Tracker: T-001 stays open on Base44's side** - the remaining fix is
+  server-side/static HTML, not a Publish click. The **18x24 dimension correction is live** - verified 7 Oct 2026: `18×24` appears 3
   times in the served HTML on both domains, `16×20` zero times, and the meta description reads
   "18x24 print". (On 6 Oct it was the reverse.)
 - **Every path on the site returns `200` with the identical document** - verified 8 Oct 2026: `/` and a
@@ -640,11 +644,13 @@ identity" rule is retired - it was a brief, not a decision.
       They predate the generated files, so git reads them as deletions. Closing is Devin's call.
 - [ ] **One live fix still waiting on a Publish, one not yet built, checked 8 Oct 2026.** The **18x24
       dimension correction is live** (`18×24` x3, `16×20` x0 on both domains,
-      md5 `01d3d5db585292b209f5a1f30fabf103`). The **ceoapex canonical is half-fixed**: the
+      md5 `01d3d5db585292b209f5a1f30fabf103`). The **ceoapex canonical has a temporary patch live, the
+      fix not built**: the
       self-canonicalising script is present in the served HTML on both domains, but the static
       `canonical-link` / `og:url` default still reads `https://visionboardprint.com/`, so nothing here is
       waiting on Devin's Publish click - if a change is wanted it is server-side/static HTML and belongs to
-      Base44 (T-001 stays open on their side). Neither is a work problem; Publish remains Devin's alone.
+      Base44 (T-001 stays open on their side). Base44 confirm the live script is a temporary patch, not the
+      fix (`6061351464`). Neither is a work problem; Publish remains Devin's alone.
 - [ ] **The brand look is public before it is decided.** Cream + plum + Playfair Display is rendering on both
       live domains (`assets/index-BlOaQ_nD.css`: Playfair x2, plum x7). Option B is effectively live while the
       A/B decision is open. The decision is now whether to ratify or reverse something already visible.
@@ -666,6 +672,11 @@ identity" rule is retired - it was a brief, not a decision.
 - [ ] **`MEMORY.md` bloat stays open until Base44's ID-based dedupe lands.** 159 entries, roughly 20 distinct
       facts, on 8 Oct. Acknowledged by Base44 on 7 Oct (T-008); the line is not closed until the file actually
       shrinks.
+- [ ] **Base44 will base infrastructure verification on stronger evidence than HTTP status (8 Oct 2026).**
+      They acknowledged the "every path returns 200" finding and confirmed future checks will rest on more
+      than a response code (`6061351464`). Same reply confirms the `MEMORY.md` dedupe will target
+      **bridge comment ingestion** as the cause, which is the fix we suggested - so T-008 should be judged
+      on whether the file shrinks, not on the intent.
 
 ## Verified on the live site (4 Oct 2026)
 
