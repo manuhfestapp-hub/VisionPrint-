@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-ink-900 text-white antialiased;
+  background: linear-gradient(180deg, #0d111d 0%, #140b22 40%, #240d33 100%);
+  min-height: 100vh;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 font-semibold text-white transition hover:bg-brand-500 active:scale-[0.98];
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-gray-600 px-6 py-3 font-semibold text-white transition hover:border-gray-400 active:scale-[0.98];
+  }
+  .section-title {
+    @apply text-3xl font-bold text-white sm:text-4xl;
+  }
+  .section-sub {
+    @apply mt-3 text-lg text-gray-400;
+  }
+  .card {
+    @apply rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm;
+  }
+}
+
+/* Blog article body typography (content rendered from lib/posts.ts) */
+.blog-body {
+  @apply text-gray-300;
+}
+.blog-body h2 {
+  @apply mt-10 text-2xl font-bold text-white;
+}
+.blog-body h3 {
+  @apply mt-8 text-xl font-semibold text-white;
+}
+.blog-body p {
+  @apply mt-5 leading-relaxed;
+}
+.blog-body a {
+  @apply text-brand-300 underline decoration-brand-400/40 underline-offset-2 hover:text-brand-200;
+}
+.blog-body strong {
+  @apply text-white;
+}
+.blog-body ul {
+  @apply mt-5 list-disc space-y-2 pl-6;
+}
+.blog-body ol {
+  @apply mt-5 list-decimal space-y-2 pl-6;
+}
+.blog-body blockquote {
+  @apply mt-6 border-l-2 border-brand-500 pl-4 italic text-gray-400;
+}
+.blog-body img {
+  @apply mt-8 w-full rounded-2xl border border-white/10;
+}
+.blog-body hr {
+  @apply my-10 border-white/10;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0d111d; }
+::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 4px; }
