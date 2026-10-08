@@ -35,7 +35,8 @@ What the two teams are called, in Devin's shorthand, is in `TEAM-NAMES.md`.
     do not silently guess.
 11. `main` IS LIVE INFRASTRUCTURE. Anything merged into `main` syncs into the Base44 app automatically.
     Nothing merges into `main` without Devin's explicit written approval. Never merge on your own.
-12. PR #1 is NOT TO BE MERGED. It is held open for review by Devin. See "Decisions made" below.
+12. PR #1 is NOT TO BE MERGED. It was held open for review by Devin; it was CLOSED on 6 Oct 2026. See
+    "Decisions made" below.
 13. NEVER rewrite this file from memory. Pull the current version, edit it, commit it. If you are changing
     another file, leave this one alone.
 14. NEVER report a change as done without confirming it in this repository. A claim that does not match the
@@ -361,6 +362,7 @@ message, because the other team plans around it. The repo records what was sent 
   it lives. This repository is a working copy that syncs into that app - it does not replace it. (Devin, 3 Oct)
 - **PR #1 must not be merged.** It was a from-scratch rebuild, not an import of the live app. Merging it
   would have overwritten the real site with a divergent copy. It is now a **draft**, so it cannot be merged.
+  **#1 was also CLOSED on 6 Oct 2026, so it can no longer be merged by any route.**
   Merging it would also delete `MEMORY.md` and `TASKS.md` - verified by merge simulation on 6 Oct.
   (Devin, 3 Oct; drafted 5 Oct)
 - **Marblism's separate build (visionprint.marblism.me) is a DESIGN REFERENCE, not a codebase.** It has no
@@ -516,9 +518,14 @@ identity" rule is retired - it was a brief, not a decision.
 - Repo created 3 Oct 2026 and connected to Base44 (two-way GitHub sync, Elite plan).
 - `main` holds the documentation set, the `README.md` starter commit, and the two generated mirrors
   (`MEMORY.md`, `TASKS.md`). **No application code has ever been merged into `main`.**
-- Branches: `main`, `launch-code`, `base44/setup-be35a4f2`, `docs/preserve-contract-files`,
-  `docs/pass-2026-10-05`.
-- PRs: **#1** (draft), **#2** (open), **#4** (merged 5 Oct), **#6** (merged 6 Oct), **#7** (merged 6 Oct).
+- Branches: `main`, plus the merged doc branches (`docs/preserve-contract-files`, `docs/pass-2026-10-05`,
+  `docs/off-page-mandate`, `docs/base44-filter`) and the two closed rebuild branches (`base44/setup-be35a4f2`,
+  `launch-code`).
+- **The `base44/setup-be35a4f2` branch still holds 39 commits that exist nowhere else** - the old rebuild. It is
+  closed as a PR and must never be merged, but do not delete the branch without checking first: it is the only
+  copy of that work.
+- PRs: **#1** and **#2** CLOSED 6 Oct without merging (see below). **#4** merged 5 Oct. **#6**, **#7** merged
+  6 Oct. **#8** merged 6 Oct (`4d237f7`) - the filter rule. **The PR queue is empty.**
 - **Website status: ANSWERED, 4 Oct 2026** (comment `5985608750`). No breakage reported; fixes sit in their
   workspace, **not pushed**; `eventBus`/`orchestrator` being purged as dead code; only blocker is Devin's brand
   decision. Nothing verifiable until it lands on the branch.
@@ -542,7 +549,8 @@ identity" rule is retired - it was a brief, not a decision.
 - **PR #1 and #2 would delete the generated mirrors if merged** - verified by merge simulation on 6 Oct.
   `base44/setup-be35a4f2` conflicts on 8 files and deletes `MEMORY.md` and `TASKS.md`.
   `launch-code` conflicts on 4 and deletes `MEMORY.md`, `TASKS.md`, `PLAYBOOK.md` and `TEAM-NAMES.md`.
-  Neither branch contains `/templates`.
+  Neither branch contains `/templates`. **Both were consequently CLOSED on 6 Oct 2026 rather than merged.**
+  Kept here as the reason, because it is the kind of thing that gets re-proposed.
 - **`base44/setup-be35a4f2` HEAD is `0cfbd04`.** No commit has touched `app/` since `fefc24d`.
   `app/workflow-monitor/page.tsx` still contains the six retired generic labels (`Orchestrator Hub`,
   `Data Aggregator`, `Analytics Engine`, `Validation & Compliance`, `Visualizer & Matrix`,
@@ -566,7 +574,7 @@ identity" rule is retired - it was a brief, not a decision.
       line, the whole "How the two teams talk to each other" section, and the verified agent numbers. That
       is what hard rule 13 now forbids. Never rewrite this file from memory.
 - [x] **PR #1 is a draft (5 Oct 2026).** `pull/1` reads `draft: true` - a draft cannot be merged. The
-      protective rule is now backed by structure rather than by the rule alone.
+      protective rule is now backed by structure rather than by the rule alone. **and #1 was CLOSED 6 Oct 2026.**
 - [ ] Brand look: A or B? **Walter recommends, Devin signs off, Base44 implements as a styling layer.**
       Blocks all styling work until chosen. Note: B is already rendering live - see "Brand look" above.
 - [ ] **Apex open items, tracked in issue #5:** does he post to issue #5 himself or does Devin relay? Which
@@ -605,9 +613,10 @@ identity" rule is retired - it was a brief, not a decision.
       `MEMORY.md`. This is what T-005 in that file asks Devin to rule on: keep the direct route, or route the
       generated syncs through a PR. **Deliberately not recorded as settled elsewhere in this file**, because
       writing it in would pre-empt the decision.
-- [ ] **PR #1 and #2 should be closed.** Verified 6 Oct by merge simulation: both would delete the generated
+- [x] **PR #1 and #2 should be closed.** Verified 6 Oct by merge simulation: both would delete the generated
       mirrors - #2 would also delete `PLAYBOOK.md` and `TEAM-NAMES.md` - and neither contains `/templates`.
       They predate the generated files, so git reads them as deletions. Closing is Devin's call.
+      **Done - both closed 6 Oct 2026 with reasons on the record.**
 - [ ] **Two live fixes are waiting on a Publish, verified 6 Oct 2026.** The self-canonical fix on
       `ceoapex.com` (both domains still serve a byte-identical document, md5 `2cbdbe934cf97df81c78d5f8156b9d87`,
       canonical still pointing at visionboardprint.com) and the 18x24 dimension correction (`16x20` x3 in the
@@ -646,7 +655,8 @@ Checked directly, because a document claimed otherwise:
 - Branch `feat/gpu-autoscaling` and PR `104` - **do not exist.**
 - Real branches: `main`, `launch-code`, `base44/setup-be35a4f2`, `docs/preserve-contract-files`,
   `docs/pass-2026-10-05`.
-- Real PRs: **#1** (draft), **#2** (open), **#4** (merged 5 Oct), **#6** (merged 6 Oct), **#7** (merged 6 Oct).
+- Real PRs: **#1** and **#2** CLOSED 6 Oct without merging. **#4** merged 5 Oct. **#6**, **#7** merged 6 Oct.
+  **#8** merged 6 Oct (`4d237f7`).
 - `MEMORY.md` survives a merge of `docs/preserve-contract-files` into `main` - tested by merge simulation.
 - `docs/pass-2026-10-05` merges into `main` cleanly, and `main`'s newer `MEMORY.md` is correctly retained -
   tested by merge simulation on 5 Oct.
