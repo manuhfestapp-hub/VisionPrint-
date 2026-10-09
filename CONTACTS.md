@@ -1,1 +1,0 @@
-<C_new.md full text>
