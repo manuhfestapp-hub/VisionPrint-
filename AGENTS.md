@@ -1,1 +1,1 @@
-<content of A_new.md as read above>
+<A_new.md full text>
