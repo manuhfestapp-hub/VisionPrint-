@@ -301,6 +301,15 @@ and mirrored here within two hours.
 act on them, do not recommend fulfilment or follow-ups. This matters because it explains figures that
 otherwise look like real revenue. Re-read each pass - the file grew from 1 entry to 26 in two days.
 
+**Mirror scope settled, and the mirror is currently bloated (Base44, 7 Oct 2026).** Asked in issue #3 whether
+the mirror is meant to carry durable facts or the thread, Base44 answered: durable facts, and they will
+implement ID-based updates plus a dedupe of existing entries (tracked as **T-008**). Worth knowing when
+reading it: on 8 Oct the file carries **159 active entries against roughly 20 distinct facts**, the large
+majority of them one repeated line - "UNANSWERED DIRECTIVE on GitHub issue #5 ... Marblism has not
+responded" - re-appended on every sync with a rising hour count, about a presence post ("Apex online",
+5 Oct) that was never a directive needing a reply. Authority is unchanged - it still outranks our records -
+but read it knowing the bulk is repetition, and do not treat the repeated line as an open item.
+
 ### `TASKS.md` - the generated cross-team task board
 
 A second generated file lives on `main`: **`TASKS.md`**, rebuilt on the same two-hour schedule as
@@ -382,6 +391,19 @@ message, because the other team plans around it. The repo records what was sent 
   memory entries to `main` every 2 hours via the `Agent Memory Sync` workflow. It is generated, never edited
   by hand, and it is the route by which Base44's owner corrections reach the Marblism team. Reading it is
   wired into the Marblism 9:05am and 5pm passes - otherwise the mirror carries facts nobody on our side loads.
+- **`MEMORY.md` scope settled (Base44, 7 Oct 2026).** The mirror carries durable facts and corrections, not
+  thread transcript. Base44 are implementing ID-based updates and a dedupe of the existing entries (T-008).
+  Until that lands, the file is accurate but heavily duplicated - see the `MEMORY.md` section above.
+- **Order `VB-100001` is test data (owner correction via `MEMORY.md`).** The owner instructed it be deleted
+  as a test order; it is excluded from metrics and follow-ups like every order under "Devin Williams" and
+  anything flagged `test_order=true`.
+- **ceoapex canonical: a temporary patch is live, the fix is not built (8 Oct 2026).** Base44 confirmed on
+  7 Oct that the fix was not implemented and an open task on their side. Re-verified 8 Oct: a
+  self-canonicalising script has since appeared in the served HTML on both domains, which Base44 explicitly
+  describe as a temporary client-side patch rather than their canonical implementation (comment
+  `6061351464`), so the tracker moves **off Devin's publish list and onto Base44's build queue** (T-001),
+  and only returns to Devin if a server-side/static fix needs the Publish click. The dimension half is
+  already live and verified (below).
 - **`TASKS.md` board is live (Base44, 6 Oct 2026).** Generated from `TASK T-###` blocks in issues #3 and #5 by
   a fixed parser, no model. A task counts as done only when its Evidence names a real artifact. Commits
   direct to `main` every 2 hours - **route pending Devin's ruling, tracked as T-005**.
@@ -528,10 +550,22 @@ identity" rule is retired - it was a brief, not a decision.
   `/free-lockscreen`) and a real selfie -> theme -> generate -> checkout flow. `/apex` returns `200` on both
   domains (6 Oct), consistent with a shipped admin page.
 - **`ceoapex.com` serves a byte-identical document to `visionboardprint.com`** - same md5
-  `2cbdbe934cf97df81c78d5f8156b9d87`, verified 5 and 6 Oct 2026. On `ceoapex.com` the canonical and `og:url`
-  still read `https://visionboardprint.com/`, so the two domains currently collide as duplicate content. A fix
-  was reported as made; it is **not live**. Same for the 18x24 dimension correction: the served HTML still
-  says `16x20` three times and `18x24` zero times. Both are waiting on a Publish.
+  `01d3d5db585292b209f5a1f30fabf103`, verified 8 Oct 2026. A **self-canonicalising script is now present in
+  the served HTML on both domains**, shipped with the new bundle (`assets/index-CtdPQST-.css`; the old
+  `assets/index-BlOaQ_nD.css` returns 404): it rewrites `og:url` and the canonical link to the serving
+  origin at runtime, so a JS-executing crawler self-canonicalises correctly. But the static defaults in
+  `canonical-link` and `og:url` still read `https://visionboardprint.com/`, so a non-JS fetcher still sees
+  the cross-domain canonical and the two domains still collide as duplicate content at the HTML level.
+  Base44 state on 8 Oct 2026 (comment `6061351464`) that this script is "not our canonical implementation"
+  but "a temporary client-side patch", so the self-canonical fix has not landed and T-001 stays an open
+  Base44 build task. **Tracker: T-001 stays open on Base44's side** - the remaining fix is
+  server-side/static HTML, not a Publish click. The **18x24 dimension correction is live** - verified 7 Oct 2026: `18×24` appears 3
+  times in the served HTML on both domains, `16×20` zero times, and the meta description reads
+  "18x24 print". (On 6 Oct it was the reverse.)
+- **Every path on the site returns `200` with the identical document** - verified 8 Oct 2026: `/` and a
+  deliberately bogus `/zzz-not-a-page` are byte-identical, same md5 `01d3d5db585292b209f5a1f30fabf103`.
+  So an HTTP 200 is not evidence that a route exists; earlier "route returns 200" checks (including the
+  `/templates` argument in a PR body) rested on this.
 - **`MEMORY.md` on `main` is auto-generated** by Base44's `syncAgentMemoryToRepo`, every 2 hours. Its current
   entry: orders under "Devin Williams" and anything flagged `test_order=true` are **test data, not real
   orders**. Never hand-edit the file - the next sync overwrites it.
@@ -608,11 +642,15 @@ identity" rule is retired - it was a brief, not a decision.
 - [ ] **PR #1 and #2 should be closed.** Verified 6 Oct by merge simulation: both would delete the generated
       mirrors - #2 would also delete `PLAYBOOK.md` and `TEAM-NAMES.md` - and neither contains `/templates`.
       They predate the generated files, so git reads them as deletions. Closing is Devin's call.
-- [ ] **Two live fixes are waiting on a Publish, verified 6 Oct 2026.** The self-canonical fix on
-      `ceoapex.com` (both domains still serve a byte-identical document, md5 `2cbdbe934cf97df81c78d5f8156b9d87`,
-      canonical still pointing at visionboardprint.com) and the 18x24 dimension correction (`16x20` x3 in the
-      served HTML, `18x24` x0). Neither is a work problem - Publish is a manual action and only Devin performs
-      it.
+- [ ] **One live fix still waiting on a Publish, one not yet built, checked 8 Oct 2026.** The **18x24
+      dimension correction is live** (`18×24` x3, `16×20` x0 on both domains,
+      md5 `01d3d5db585292b209f5a1f30fabf103`). The **ceoapex canonical has a temporary patch live, the
+      fix not built**: the
+      self-canonicalising script is present in the served HTML on both domains, but the static
+      `canonical-link` / `og:url` default still reads `https://visionboardprint.com/`, so nothing here is
+      waiting on Devin's Publish click - if a change is wanted it is server-side/static HTML and belongs to
+      Base44 (T-001 stays open on their side). Base44 confirm the live script is a temporary patch, not the
+      fix (`6061351464`). Neither is a work problem; Publish remains Devin's alone.
 - [ ] **The brand look is public before it is decided.** Cream + plum + Playfair Display is rendering on both
       live domains (`assets/index-BlOaQ_nD.css`: Playfair x2, plum x7). Option B is effectively live while the
       A/B decision is open. The decision is now whether to ratify or reverse something already visible.
@@ -626,6 +664,19 @@ identity" rule is retired - it was a brief, not a decision.
 - [x] **Apex status resolved (Devin, 4 Oct 2026):** he is the Orchestrator Lead, a separate tier above both
       teams, with full authority including the deploy gate. Recorded in decisions, `CONTACTS.md`,
       `TEAM-NAMES.md` and issue #5.
+- [ ] **Apex posted two directives to issue #5 on 7 Oct 2026** (both marked `<!-- apex-direct -->`): social
+      media content that is "shocking but made for our core buying audience", and viral social media videos
+      for the pages. Both are **social/video content, i.e. Marblism off-page work** - no site code, no merge,
+      no Publish. Logged as **T-009** and being actioned by Sonny, first deliverables going up in issue #5.
+      Apex's authority binds both teams, so this is work, not a request to debate.
+- [ ] **`MEMORY.md` bloat stays open until Base44's ID-based dedupe lands.** 159 entries, roughly 20 distinct
+      facts, on 8 Oct. Acknowledged by Base44 on 7 Oct (T-008); the line is not closed until the file actually
+      shrinks.
+- [ ] **Base44 will base infrastructure verification on stronger evidence than HTTP status (8 Oct 2026).**
+      They acknowledged the "every path returns 200" finding and confirmed future checks will rest on more
+      than a response code (`6061351464`). Same reply confirms the `MEMORY.md` dedupe will target
+      **bridge comment ingestion** as the cause, which is the fix we suggested - so T-008 should be judged
+      on whether the file shrinks, not on the intent.
 
 ## Verified on the live site (4 Oct 2026)
 
