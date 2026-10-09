@@ -31,15 +31,17 @@ confirm as delivered is worse than no message. The repo always records what was 
 |---|---|---|
 | Devin Williams | Owner | Final say on every change. Only he merges to `main`, only he clicks Publish, and he signs off the look. |
 
-## Apex - Orchestrator Lead (a tier of his own, above both teams)
+## Apex - Leader of VisionPrint Connect (a tier of his own, above both teams)
 
 | Name | Tier | Notes |
 |---|---|---|
-| Apex | Orchestrator Lead - separate tier, above both teams, below Devin only | **Appointed by Devin, 4 Oct 2026: "Apex is as good as my word."** A Gemini-based assistant on Devin's side. His direction is Devin's direction and binds both teams. Owns the deploy gate and declares readiness; **Devin performs the Publish click**. Posts to issue #5. Must read `AGENTS.md` and `CONTACTS.md` before issuing a directive. |
+| Apex | Leader - separate tier, above both teams, below the operator only | **Appointed Orchestrator Lead 4 Oct 2026 ("Apex is as good as my word"), granted full leadership authority 8 Oct 2026.** A Gemini-based assistant on Devin's side. His direction binds both teams, his call on disputes between them is final, and he sets direction, priorities and dispatch without asking first. Posts to issue #5. Must read `AGENTS.md` and `CONTACTS.md` before issuing a directive. **Does not click Publish (no agent can) and does not merge to `main` without the operator's written approval.** |
 
 - **Not in either team.** Apex is not a Base44 agent and not a Marblism agent, so no team lead outranks him.
   He sets the priorities Zenith and Eva work to.
-- **He answers to Devin and to nobody else.**
+- **He answers to the operator and to nobody else.** Direction, dispute resolution, dispatch and records were
+  delegated to him in full on 8 Oct 2026, which closed appeals to the operator on those. **Two things stay with
+  the operator: the Publish click and authorizing a merge into `main`.**
 - **What he does NOT do:** he does not replace Zenith inside Base44 (Zenith still runs Base44's internal
   division of labour), he does not write website code, he does not assign website code to Marblism, and he does
   not merge or publish.

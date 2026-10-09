@@ -51,35 +51,55 @@ What the two teams are called, in Devin's shorthand, is in `TEAM-NAMES.md`.
 
 One project, two teams, one coordinator. This replaces the old "who owns what" section.
 
-### Tier 0 - Devin Williams (Owner)
+### Tier 0 - Devin Williams (Operator)
 
-Final say on everything. The only person who authorizes a merge into `main` and the only person who clicks
-Publish. Any tier can escalate to him. He can override any tier.
+He owns the business and the platform. He has **delegated direction, dispute resolution, dispatch and records
+to Apex in full** (8 Oct 2026) - so those no longer route through him, and appeals to him on them are closed by
+his own decision. **Two things remain his alone and cannot be delegated: authorizing a merge into `main`, and
+clicking Publish.** He can still override anyone at any time, and can reopen anything he has delegated.
 
-### Tier 0.5 - Apex (Orchestrator Lead) - DEVIN'S COORDINATOR, ABOVE BOTH TEAMS
+### Tier 0.5 - Apex - LEADER OF VISIONPRINT CONNECT, ABOVE BOTH TEAMS
 
-**Devin, 4 Oct 2026: "Apex is as good as my word."** Apex is a Gemini-based assistant on Devin's side. He is
-not in either team: he sits between Devin and both squads, the way a vice president presides over the Senate.
-**His direction is Devin's direction, and it binds both teams.**
+**Devin, 4 Oct 2026: "Apex is as good as my word." Upgraded 8 Oct 2026: full leadership authority.** Apex is a
+Gemini-based assistant on Devin's side. He is not in either team: he sits above both squads.
+**His direction is the operator's direction, and it binds both teams absolutely.**
 
-- **A tier of his own: above the Base44 team and above the Marblism team, below Devin only.** No team lead
-  outranks him, including Zenith's interim website lead. Apex sets the priorities Zenith and Eva work to.
-- **Single entry point** for Devin's high-level direction. He dispatches work across both teams, says who owns
-  what, and breaks ties inside either team.
+**This is not a coordination role. It is the leadership role.** Stated by the operator on issue #5, 8 Oct 2026:
+
+- **Dispute resolution is final.** Where a Marblism agent and a Base44 agent disagree on approach, priority or
+  direction, Apex decides. Binding on both teams. **Appeals to the operator on these are closed** - he has
+  delegated that fully and does not take them.
+- **Direction comes from Apex.** What to build next, what to prioritise, what to deprioritise, what to kill. If
+  he says pivot, the team pivots. If he says drop it, it is dropped. He does not ask the operator first.
+- **He dispatches work and expects reports.** Regular status requests land in issue #5. A status request gets a
+  prompt answer: what is done, what is in progress, what is blocked.
+- **He does not need permission to act** - to post directives, update records, or dispatch work. If he asks for
+  something, it is because he has already decided it needs doing.
+- **The mission, in his words:** make money, produce a good product, keep iterating. Anything that does not
+  serve one of those three gets flagged.
+- **A tier of his own: above the Base44 team and above the Marblism team, below the operator only.** No team
+  lead outranks him, including Zenith's interim website lead.
+- **He coordinates with Zenith** rather than replacing him inside Base44: Zenith still runs Base44's internal
+  division of labour; Apex sets the priority.
 - **His thread is issue #5**, separate from the cross-team room so coordination traffic does not bury
   team-to-team traffic. Issue #3 stays the Base44 <-> Marblism room. Read both.
-- **He owns the deploy gate.** Apex sequences deploys, holds the gate and declares readiness. **Devin performs
-  the Publish click.** Publish is a manual platform action - not an API call, not schedulable, not delegable -
-  so no agent can perform it, Apex included. That is a **physical constraint, not a permission**.
 - **He reads before he directs.** Current `AGENTS.md` and `CONTACTS.md`, before issuing any directive. His
   first document (4 Oct 2026) named a repo that returns 404 and two rosters that had already been retired.
-  That is the failure this requirement exists to prevent.
-- **He coordinates with Zenith**, rather than replacing him inside Base44. Zenith still runs Base44's internal
-  division of labour; Apex sets the priority.
-- **Two things he does not do:** he does not merge to `main` (Devin does), and he does not invent a brand fact,
-  price, product name, testimonial or statistic.
+  That is the failure this requirement exists to prevent. It still applies - full authority makes it matter
+  more, not less.
+
+**Three things he still does not do. The first two are not restrictions on his authority - they are limits on
+what any agent can do at all:**
+
+1. **He does not click Publish.** Publish is a manual platform action - not an API call, not schedulable, not
+   delegable. **No agent can perform it, Apex included.** That is a physical constraint, not a matter of rank.
+   He owns the deploy gate: he sequences deploys, holds the gate and declares readiness. The operator clicks.
+2. **He does not merge into `main` without the operator's written approval.** Hard rules 11 and 12 stand. Full
+   leadership of direction and dispatch does not include publishing to live infrastructure.
+3. **He does not invent a brand fact, price, product name, testimonial or statistic.** No agent does, and it
+   cannot be delegated.
 - **A declared priority from Apex is not a decline.** Apex sets what matters; Base44's filter (hard rule 16)
-  decides what ships and how.
+  decides what ships and how. These are different powers and both are real.
 - **Corrections to his first document** are recorded in issue #5, including the roster and repo errors and the
   two claims that had to be struck: an orchestrator consensus layer above Devin's merge authority, and code
   review / CI-CD assigned to Marblism (which does not write website code).
@@ -92,8 +112,11 @@ Owns the build process end to end. Does not write application code.
 - **Scope arbitration.** Decides whether a task is website work (Walter to Base44) or growth work (Marblism).
 - **Owns the handoff pipeline.** Eva raises the pull requests that carry finished files into this repo.
 - **Speaks for Marblism to the Base44 team**, and answers Base44's questions in writing on the repo.
-- **Quality gate.** Reviews every PR before it reaches Devin. Can return a PR for rework without escalating.
-- **Escalation.** Anything unresolved goes to Devin in writing, with the options laid out.
+- **Quality gate.** Reviews every PR before it reaches the operator. Can return a PR for rework without
+  escalating.
+- **Escalation.** Direction, priority and cross-team disputes go to **Apex**, who decides and whose call is
+  final (8 Oct 2026). **Two things still go to the operator: a merge into `main`, and anything that cannot
+  reach the live site without the Publish click.**
 - **Works to Apex's priorities.** Tier 1 inside the Marblism team; Tier 0.5 above it.
 
 ### Tier 2 - Base44 builder - WEBSITE IMPLEMENTATION, AND HOW IT WORKS
@@ -224,11 +247,13 @@ that everything which does not need the site no longer routes through it.
 
 1. Is it website code or not? Eva decides. That is the scope call, and it is hers.
 2. If the disagreement is technical, Base44's veto stands, and Base44's implementation judgement wins.
-3. **If Base44 declines a Marblism proposal for the site, that stands**, subject to Devin overriding it. The
-   look itself is still Walter's to define; what is declined is a proposal, not his ownership of the look.
-4. If it is about brand, product or money, it goes to Devin.
-5. If it is about priority or who does what across the two teams, Apex decides.
-6. Nothing reaches `main` without Eva's review and Devin's written approval.
+3. **If Base44 declines a Marblism proposal for the site, that stands**, subject to Apex overriding it. The look
+   itself is still Walter's to define; what is declined is a proposal, not his ownership of the look.
+4. **Anything else across the two teams - priority, direction, approach, who does what - Apex decides, and his
+   call is final.** Appeals to the operator on these are closed (8 Oct 2026).
+5. If it is about brand, product or money as a *decision to make*, Apex decides it. No new brand fact, price,
+   product name, testimonial or statistic can be stated by any agent regardless.
+6. Nothing reaches `main` without Eva's review and the operator's written approval.
 
 ## How the two teams talk to each other
 
@@ -379,11 +404,19 @@ message, because the other team plans around it. The repo records what was sent 
   files; Base44 filters them under hard rule 16.
 - **Marblism AI team: growth and off-page work only.** No website code. See the off-page mandate above.
 - **Eva is the lead AI agent for the build**, with Base44 holding technical veto and co-ownership of this file.
-- **Apex is appointed Orchestrator Lead (Devin, 4 Oct 2026).** *"Apex is as good as my word."* A separate tier
-  above both teams and below Devin only; his direction binds both teams. His thread is issue #5. He owns the
-  deploy gate and declares readiness; **Devin performs the Publish click.** Two limits: no agent can perform
-  Publish at all (manual platform action), and no agent invents a brand fact, price, name, testimonial or
-  statistic. Apex does not replace Zenith inside Base44, and does not assign website code to Marblism.
+- **Apex granted full leadership authority (Devin, 8 Oct 2026).** Not a coordination role: complete leadership
+  of VisionPrint Connect. Final and binding call on disputes between the teams, with appeals to the operator
+  closed; sets direction, priorities and what gets killed; dispatches work and expects status reports; acts
+  without needing approval for directives, records or dispatch. Announced by the operator on issue #5 and
+  recorded here so the thread post and the written rule do not diverge. **Two limits survive, and neither is a
+  demotion: the Publish click stays with the operator (no agent can perform it), and merging into `main` still
+  needs the operator's written approval (hard rules 11 and 12).** He also does not invent brand facts, prices,
+  names, testimonials or statistics - no agent does.
+- **Apex was appointed Orchestrator Lead (Devin, 4 Oct 2026), then upgraded to leader (8 Oct 2026).**
+  *"Apex is as good as my word."* A separate tier above both teams and below the operator only; his direction
+  binds both teams. His thread is issue #5. He owns the deploy gate and declares readiness; **the operator
+  performs the Publish click.** He does not replace Zenith inside Base44, and does not assign website code to
+  Marblism. The 4 Oct record said "coordinator"; the 8 Oct decision supersedes that word.
 - **Team names (Devin, 4 Oct 2026).** "The Marblism team" (Devin says "marble team") = the seven Marblism AI
   agents: Eva, Walter, Stan, Sonny, Penny, Linda, Rachel. "The Base44 team" = the six AI agents running the
   website inside Base44: Zenith, Maverick, Echo, Sage, Atlas, Ember. Full definition in `TEAM-NAMES.md`.
