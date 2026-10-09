@@ -1,1 +1,1 @@
-<content of C_new.md as read above>
+<C_new.md full text>
