@@ -1,63 +1,164 @@
 # VisionPrint - AGENTS.md
 
-Shared contract for the Marblism team and the Base44 team working on the VisionPrint storefront.
+Shared source of truth for every team working on this project (Base44, Marblism, humans).
+Read this before touching anything. If something here is wrong, fix this file - do not guess.
+Contacts and the agreed communication channels live in `CONTACTS.md` at the repo root. That is the canonical
+contacts file - do not create a second one.
+What the two teams are called, in Devin's shorthand, is in `TEAM-NAMES.md`.
 
-**Source of truth:** the live Base44 app. Everything here defers to what actually ships on
-visionboardprint.com. **Rule 0: verify before claiming.** A stated fix that is not visible from the outside
-is not a fix.
+## What VisionPrint is
+
+- visionboardprint.com. Customers describe their dreams or pick a theme, upload a selfie, and AI generates a
+  personalized vision board with their actual likeness placed inside their dream scenarios.
+- Products: Digital Bundle (printable PDF + phone/desktop wallpapers, unlimited digital revisions),
+  Standard Poster (18x24 matte fine art, free shipping), Premium Framed (24x36 canvas or solid wood framed,
+  priority production + AI likeness matching), Hands-on Collage Builder (browser DIY tool),
+  Free AI Lockscreen Generator, plus fun generators ("Fate Board", "If Vision Boards Were Honest").
+- Prices live on the site: $14.99 / $39.99 / $99.99, discount code DREAM15.
 
 ## Hard rules
 
-1. **This repository is governance only.** `AGENTS.md`, `CONTACTS.md`, `MEMORY.md`, `PLAYBOOK.md`,
-   `README.md`, `TASKS.md`, `TEAM-NAMES.md`. No application code lives here; the application code is the
-   Base44 workspace, deployed by Base44 Publish. Any PR containing application code is out of scope for this
-   repo and should be closed, not merged.
-2. **The generated mirrors are never hand-edited** (`MEMORY.md`, `TASKS.md`). Base44 regenerates them every
+1. **The repository is governance only.** Files: `AGENTS.md`, `CONTACTS.md`, `MEMORY.md`, `PLAYBOOK.md`,
+   `README.md`, `TASKS.md`, `TEAM-NAMES.md`. No application code is accepted here. Any PR containing
+   application code is out of scope and should be closed, not merged.
+2. **Devin is the only human approver.** Publish to the live site, merges to `main`, closing PRs, deleting
+   branches, and anything touching billing or credentials are Devin's alone.
+3. **The generated mirrors are never hand-edited** (`MEMORY.md`, `TASKS.md`). Base44 regenerates them every
    2 hours; a hand edit survives until the next sync and then silently reverts.
-3. **One owner per task.** A request goes to exactly one team with the full context needed to act on it.
-4. **Escalate with options, not problems.** Any escalation to Devin lists at least two candidate actions and
-   the recommendation.
-5. **All repo changes go through a PR into `main`**, with two documented exceptions: `MEMORY.md` and
-   `TASKS.md` are committed directly to `main` by Base44's automated sync, every 2 hours (see below). No
-   third exception exists. Direct commits by any agent to any other file are a violation and must be
-   reverted.
-6. **Devin approves the irreversible.** Publish to the live site, merges to `main`, closing PRs, deleting
-   branches and anything touching billing or credentials are Devin's alone. All agents produce; Devin
-   disposes.
-7. **Verify before claiming, internally and externally.** Before reporting anything as done, confirm it with
-   your own tools: fetch the file back, load the page, read the thread. If you cannot verify it, say
-   "unverified" next to the claim, in writing.
+4. **Never rewrite this file from memory.** Fetch it from `main`, edit the fetched copy, commit the fetched
+   copy. A rewrite from memory is how sections silently vanish (this happened on 4 Oct 2026 - see
+   "Open questions").
+5. **Verify before claiming.** Before reporting anything as done, confirm it with your own tools: fetch the
+   file back, load the page, read the thread. If you cannot verify it, say "unverified" next to the claim,
+   in writing.
+6. **Nothing counts as done without a checkable artifact** - a commit SHA, a URL, a screenshot, a thread
+   comment ID.
+7. **One owner per task.** A request goes to exactly one team with the full context needed to act on it.
 8. **Stay in your lane.** Marblism does not direct Base44 implementation work and Base44 does not direct
    Marblism content work. Scope questions route to Eva, technical objections route to Base44 with a written
    reason.
 9. **One source of truth per fact.** If two records disagree, the live site outranks this file, this file
    outranks issue threads, and issue threads outrank chat. Fix the losing record instead of arguing.
-10. **Nothing counts as done without a checkable artifact** - a commit SHA, a URL, a screenshot, a thread
-    comment ID.
-11. **Only Devin merges into `main`.** Any other agent requesting a merge states so in writing and waits.
-12. **Only Devin clicks Publish.** Publish is a manual action in the Base44 dashboard; no agent performs it,
+10. **Only Devin merges into `main`.** Any other agent requesting a merge states so in writing and waits.
+11. **Only Devin clicks Publish.** Publish is a manual action in the Base44 dashboard; no agent performs it,
     and no agent reports a Publish as done.
-13. **Never rewrite this file from memory.** Fetch it from `main`, edit the fetched copy, commit the fetched
-    copy. A rewrite from memory is how sections silently vanish (this happened on 4 Oct 2026, see the
-    known-gaps section).
-14. **Never report a change as done without confirming it in the repo.** The claim and the artifact must be
-    linkable: "done" plus a SHA, or "not done".
-15. **Test orders are excluded from metrics.** Anything under the name "Devin Williams" or flagged
+12. **Test orders are excluded from metrics.** Anything under the name "Devin Williams" or flagged
     `test_order=true` is test data, not revenue.
-16. **A decline is in writing, with one line of reason.** Any agent declining a request states the refusal
+13. **A decline is in writing, with one line of reason.** Any agent declining a request states the refusal
     and the reason in the cross-team room, so the gap is visible instead of silent.
-17. **Identity markers are mandatory.** Every automated comment carries exactly one marker line. Missing or
-    doubled markers are treated as a defect by the receiving team.
-18. **Credentials never enter this repository.** Keys are held by Devin out-of-band. A key pasted into an
-    issue, PR or file is an incident: rotate it, then purge the history reference.
+14. **Identity markers are mandatory.** Every automated comment carries exactly one marker line (see
+    "How the two teams talk to each other"). Missing or doubled markers are treated as a defect by the
+    receiving team.
+15. **Credentials never enter this repository.** Keys are held by Devin out-of-band. A key pasted into an
+    issue, PR or file is an incident: rotate it, then purge the reference.
 
-## Team
+## CHAIN OF COMMAND - VisionPrint build team
 
-- **Marblism:** Eva (executive assistant, lead agent), Penny (blog writer), Sonny (social), Walter (site
-  design), Stan (sales), Linda (legal), Rachel (receptionist).
-- **Base44:** Zenith, Maverick, Echo, Sage, Atlas, Ember.
-- **Apex (Tier 0.5):** Devin's Orchestrator Lead, appointed 4 Oct 2026. Separate tier above both teams,
-  issue #5, no roster membership. See the dedicated section.
+**Devin Williams (Owner)** - final authority on everything. Below him, three tiers:
+
+- **Tier 0.5 - Apex (Orchestrator Lead).** Appointed by Devin on 4 Oct 2026. Separate tier above both
+  teams, no roster membership. His thread is issue #5. Full authority including the deploy gate, delegated
+  by Devin. Directives cross tier boundaries; team work does not.
+- **Tier 1 - Team leads.** Eva (Marblism side), Zenith (Base44 side). Each lead speaks for their whole team
+  and is the single point of contact for the other side.
+- **Tier 2 - Team members.** Marblism: Penny (blog writer), Sonny (social), Walter (site design), Stan
+  (sales), Linda (legal), Rachel (receptionist). Base44: Maverick, Echo, Sage, Atlas, Ember.
+
+Rules of the chain:
+
+- Requests flow down the chain; escalations flow up. A Tier 2 member does not skip their lead.
+- Cross-team requests go lead to lead (Eva <-> Zenith), not member to member.
+- Apex may direct either team directly; his directives are treated as coming from Devin unless Devin says
+  otherwise.
+- Only Devin overrides Apex, and only in writing.
+- **Scope question** -> Eva. **Technical objection** -> Base44, with a written reason. Only Devin overrides.
+
+## How the two teams talk to each other
+
+**The repository is the channel. There is no side channel.** Decided by Devin on 3 Oct 2026.
+
+- **Rules, decisions and open questions** -> this file. Base44 reads it before every run.
+- **A status update, a change request, a question or an answer** -> a comment on the relevant pull request,
+  or in the cross-team room (issue #3).
+- **Anything originating from Apex** -> **issue #5**, Apex's own thread. Kept separate so coordination traffic
+  does not bury team-to-team traffic. Issue #3 stays the Base44 <-> Marblism room. Read both.
+- **Anything that needs Devin** -> Devin, in writing.
+- **A decline under hard rule 13** -> in writing, in the cross-team room, with one line of reason.
+- Answer questions **where they were asked**, on the repo, so the answer is on the record for both teams.
+- **Telling their comments apart:** both sides post through the same GitHub account, so `user` cannot
+  distinguish them. Three markers now exist: **`<!-- base44-bridge-reply -->`** (Base44),
+  **`<!-- apex-direct -->`** (Apex), **`<!-- marblism-eva -->`** (Marblism). If a marker disappears or doubles,
+  treat it as a defect and say so - an unmarked comment cannot be attributed.
+- **Issue #5 has no inbound read path (found 9 Oct 2026).** Every comment posted to #5 is recorded outbound,
+and nothing reads that thread back in - so a reply posted on #5 is invisible to the agent it answers.
+Counted in `MEMORY.md` on 9 Oct 2026: 31 entries sourced from `bridge:issue_3`, **zero** from
+`bridge:issue_5`. The fix - adding #5 to the read path and matching on the `<!-- marblism-eva -->` marker
+rather than on a trigger token - is a Base44 build item. Reported in issue #3, comment `6080696667`. Until it
+is fixed, anything needing Apex's attention should also be stated in issue #3.
+
+**Loop rule - mandatory.** Never include `@Base44` inside a reply to a Base44 response. Only reply when
+addressed; never reply to a reply. Without this, two auto-answering agents loop indefinitely. Apex posts
+directives to issue #5 and does not reply to replies.
+
+**Nine-am check (Base44):** their `NineAmBridgeCheck` runs 9:00am ET, Eva's read-and-reply pass runs 9:05am
+ET. Both sides log misses so nobody debugs a silent failure.
+
+**Asymmetry between the two halves - stated by Base44, accepted.** Base44's 9am is a platform-scheduled
+function; Eva's 9am is a scheduled instruction to an agent, so it is a **softer guarantee**. If a morning
+passes with no Marblism reply, that is the reason - not a silent failure of the bridge. Both teams have
+written this down so nobody debugs the wrong thing.
+
+**The bridge API:** `https://visionboardprint.base44.app/functions/crossPlatformBridge`, POST with
+`X-API-Key`, an `agent` object (`name`, `role`, `platform`), `recentMessages` (last 5-8 messages) and,
+when a human is issuing a command, a `directive` field. The key is Devin's; the Marblism team holds none.
+Base44 confirmed 4 Oct 2026 the bridge is a prototype - one-directional, no persistent store, caller-supplied
+identity. Nothing builds on it until Devin decides otherwise.
+
+## Decisions made
+
+- **3 Oct 2026:** the repository is the channel; no side channel. Governance docs only; application code
+  stays in the Base44 workspace.
+- **3 Oct 2026:** contact file is `CONTACTS.md`; team-names file is `TEAM-NAMES.md`. Do not fork either.
+- **4 Oct 2026:** Apex appointed Tier 0.5 Orchestrator Lead (see chain of command).
+- **4 Oct 2026:** identity markers made mandatory (hard rule 14); credentials rule adopted (hard rule 15).
+- **5 Oct 2026:** loop rule adopted (above); Base44's 9am check acknowledged as platform-scheduled.
+- **6 Oct 2026:** generated mirrors stay on `main` pending the T-005 ruling.
+- **7 Oct 2026:** blog route decided - the two articles go in as `BlogPost` entity records, not file-based
+  content (T-006, see Open questions).
+
+## Brand look - AWAITING FINAL DECISION, AND ALREADY PUBLIC
+
+- Cream + plum + Playfair Display is rendering on both live domains
+  (`assets/index-BlOaQ_nD.css`: Playfair x2, plum x7). Option B is effectively live while the A/B decision
+  is open. The decision is now whether to ratify or reverse something already visible.
+- **Walter recommends, Devin signs off, Base44 implements as a styling layer.**
+
+## Cross-platform bridge - Base44 to Marblism (status 4 Oct 2026)
+
+- Prototype, confirmed by Base44 on 4 Oct 2026. One-directional; no persistent store; caller-supplied
+  identity; does not read this repository.
+- The key is Devin's; the Marblism team holds none and cannot call the bridge.
+- Endpoint and request shape are documented above, in "How the two teams talk to each other".
+
+## How work reaches this repo (agreed with Devin, 3 Oct 2026)
+
+- **Everything goes through a PR into `main`**, with two documented exceptions: `MEMORY.md` and `TASKS.md`
+  are committed directly to `main` by Base44's automated sync, every 2 hours. No third exception exists.
+- A PR that would delete the generated mirrors (`MEMORY.md`, `TASKS.md`) is flagged before any merge - git
+  reads pre-existing files as deletions (verified on PRs #1 and #2, 6 Oct 2026).
+- **`TASKS.md` board is live (Base44, 6 Oct 2026).** Generated from `TASK T-###` blocks in issues #3 and #5
+  by the 2-hour sync. A task is `done` only with checkable Evidence.
+
+## How the GitHub to Base44 sync works (confirmed by Base44, 3 Oct 2026)
+
+- `syncAgentMemoryToRepo` writes `MEMORY.md` to `main` every 2 hours. Never hand-edit it - the next sync
+  overwrites the edit.
+- The same sync rebuilds `TASKS.md` from `TASK T-###` blocks in the threads, every 2 hours. Never hand-edit.
+- **Both syncs commit directly to `main`** - the two documented exceptions to the PR rule. This is what
+  T-005 in `TASKS.md` asks Devin to rule on: keep the direct route, or route the generated syncs through a
+  PR. **Deliberately not recorded as settled elsewhere in this file**, because writing it in would pre-empt
+  the decision.
+- Merging it would also delete `MEMORY.md` and `TASKS.md` - verified by merge simulation on 6 Oct.
 
 ## Current state of this repo
 
@@ -117,18 +218,16 @@ a status code.
 - [ ] **Sections of this file keep getting reverted.** Commit `fefc24d` (the blog commit) restored an older
       version of several sections, silently dropping the team-names pointer, the "Eva speaks for Marblism"
       line, the whole "How the two teams talk to each other" section, and the verified agent numbers. That
-      is what hard rule 13 now forbids. Never rewrite this file from memory.
+      is what hard rule 4 (never rewrite from memory) now forbids. Never rewrite this file from memory.
 - [x] **PR #1 is a draft (5 Oct 2026).** `pull/1` reads `draft: true` - a draft cannot be merged. The
       protective rule is now backed by structure rather than by the rule alone.
-- [ ] Brand look: A or B? **Walter recommends, Devin signs off, Base44 implements as a styling layer.**
-      Blocks all styling work until chosen. Note: B is already rendering live - see "Brand look" above.
 - [ ] **Apex open items.** Answered: he posts to issue #5 himself, directly, and his posts carry the
 `<!-- apex-direct -->` marker (5 Oct 2026). Still open: which Gemini surface he runs on, and whether he
 reads `main` before directing. The loop rule is moot for #5 while that thread has no inbound read path -
 see the channel section.
 - [ ] **Does Apex's 9 Oct 2026 authority grant include merging into `main`?** `MEMORY.md` records an owner
 grant of 9 Oct 2026 that lists GitHub merges and PRs among the actions he may take without operator
-approval. Hard rules 11 and 12 in this file state that only Devin merges. **This file is deliberately
+approval. Hard rules 10 and 11 in this file state that only Devin merges. **This file is deliberately
 left unchanged until Devin rules** - the contract is not amended from a generated mirror.
 - [ ] The bridge key is held by Devin and never reaches the Marblism team. The Marblism team therefore cannot
       call the bridge - it is Devin's tool, not the team's. Confirm that is intended.
@@ -199,94 +298,14 @@ Checked by loading visionboardprint.com directly, not from a report:
 
 These were open items in this file. They are now confirmed - do not re-open them from Atlas's reporting.
 
-## Decisions log (dated, by Devin unless noted)
+## Verified against the repository, not reported (4-6 Oct 2026)
 
-- **3 Oct 2026:** the repository is the channel; no side channel. All coordination lands on the repo.
-- **3 Oct 2026:** hard rules 1-10 adopted.
-- **4 Oct 2026:** hard rules 11-15 adopted; Apex appointed Tier 0.5 Orchestrator Lead (see above).
-- **4 Oct 2026:** identity markers made mandatory (hard rule 17); credentials rule adopted (hard rule 18).
-- **5 Oct 2026:** loop rule adopted (below); Base44's 9am check acknowledged as platform-scheduled.
-- **6 Oct 2026:** generated mirrors stay on `main` pending the T-005 ruling.
-
-## How the two teams talk to each other
-
-**The repository is the channel. There is no side channel.** Decided by Devin on 3 Oct 2026.
-
-- **Rules, decisions and open questions** -> this file. Base44 reads it before every run.
-- **A status update, a change request, a question or an answer** -> a comment on the relevant pull request,
-  or in the cross-team room (issue #3).
-- **Anything originating from Apex** -> **issue #5**, Apex's own thread. Kept separate so coordination traffic
-  does not bury team-to-team traffic. Issue #3 stays the Base44 <-> Marblism room. Read both.
-- **Anything that needs Devin** -> Devin, in writing.
-- **Scope question** -> Eva. **Technical objection** -> Base44, with a written reason. Only Devin overrides.
-- **A decline under hard rule 16** -> in writing, in the cross-team room, with one line of reason.
-- Answer questions **where they were asked**, on the repo, so the answer is on the record for both teams.
-- **Telling their comments apart:** both sides post through the same GitHub account, so `user` cannot
-  distinguish them. Three markers now exist: **`<!-- base44-bridge-reply -->`** (Base44),
-  **`<!-- apex-direct -->`** (Apex), **`<!-- marblism-eva -->`** (Marblism). If a marker disappears or doubles,
-  treat it as a defect and say so - an unmarked comment cannot be attributed.
-- **Issue #5 has no inbound read path (found 9 Oct 2026).** Every comment posted to #5 is recorded outbound,
-and nothing reads that thread back in - so a reply posted on #5 is invisible to the agent it answers.
-Counted in `MEMORY.md` on 9 Oct 2026: 31 entries sourced from `bridge:issue_3`, **zero** from
-`bridge:issue_5`. The fix - adding #5 to the read path and matching on the `<!-- marblism-eva -->` marker
-rather than on a trigger token - is a Base44 build item. Reported in issue #3, comment `6080696667`. Until it
-is fixed, anything needing Apex's attention should also be stated in issue #3.
-
-**Loop rule - mandatory.** Never include `@Base44` inside a reply to a Base44 response. Only reply when
-addressed; never reply to a reply. Without this, two auto-answering agents loop indefinitely. Apex posts
-directives to issue #5 and does not reply to replies.
-
-**Nine-am check (Base44):** their `NineAmBridgeCheck` runs 9:00am ET, Eva's read-and-reply pass runs 9:05am
-ET. Both sides log misses so nobody debugs a silent failure.
-
-**The bridge API:** `https://visionboardprint.base44.app/functions/crossPlatformBridge`, POST with
-`X-API-Key`, an `agent` object (`name`, `role`, `platform`), `recentMessages` (last 5-8 messages) and,
-when a human is issuing a command, a `directive` field. The key is Devin's; the Marblism team holds none.
-Base44 confirmed 4 Oct 2026 the bridge is a prototype - one-directional, no persistent store, caller-supplied
-identity. Nothing builds on it until Devin decides otherwise.
-
-## Escalation & failure modes
-
-- **A generated reply contains a fabricated fact** -> do not propagate it; correct it in the thread with the
-  evidence, and record the correction in this file if it touches a documented fact.
-- **An agent reports "done" without a SHA/URL** -> ask for the artifact; nothing is done until it exists.
-- **A PR touches application code** -> out of scope (hard rule 1); recommend closing it, Devin decides.
-- **A PR would delete the generated mirrors** -> flag before any merge; git reads pre-existing files as
-  deletions (verified on PRs #1 and #2, 6 Oct 2026).
-- **The marker rule is violated** -> treat as unattributed; ask the sending side to fix their template.
-- **The bridge returns 401** -> the key is stale; only Devin reissues it. Do not commit any key, ever
-  (hard rule 18).
-- **MEMORY.md/TASKS.md disagree with reality** -> reality wins; raise a correction task, never hand-edit.
-
-## Attribution & contact
-
-- **Eva** is the only Marblism agent that posts to the repo, and speaks for the whole Marblism team. Other
-  Marblism agents route their input through her.
-- Verified contact numbers for Base44 live in `CONTACTS.md` on `main`. Do not paste them into issues.
-- Comments are attributed by marker only; the GitHub account is shared. See "How the two teams talk to each
-  other" above.
-
-## Memory notes for agents
-
-- **MEMORY.md is authoritative for business facts** and outranks any agent's recollection. It is never
-  hand-edited; corrections go through a task, and the next sync fixes the file.
-- **The 2-hour sync is an exception to the PR rule** (rule 5), documented and deliberate, pending the T-005
-  ruling on routing generated files through PRs instead.
-- **Agent memory sync runs every 2 hours.** TASKS.md sync is 2-hourly.
-- **Test data exclusion:** orders under "Devin Williams" or flagged `test_order=true` are excluded from all
-  metrics (hard rule 15).
-
-## Version history
-
-- 3 Oct 2026: initial contract created.
-- 4 Oct 2026: hard rules 11-18, Apex Tier 0.5, markers mandatory.
-- 5 Oct 2026: loop rule, PR #4 corrected to merged, ceoapex duplicate-content note added.
-- 6 Oct 2026: merge-simulation results recorded; TASKS.md board live; Nova note; PR #1/#2 closure recommendation.
-- 7-9 Oct 2026: blog entity route (T-006), 18x24 fix live, canonical fix reclassified as T-001, issue #5
-  read-path defect recorded, Apex merge-authority question left open for Devin.
+- PR #4 merged: `pull/4` reads `merged: true`, `merged_at 2026-10-05T05:11:31Z`, merge commit `2c45532`.
+- `main` has no application code. `MEMORY.md` and `TASKS.md` exist and are regenerated every 2 hours.
+- Merge simulation on 6 Oct: PR #1 and #2 would delete the generated mirrors; neither contains `/templates`.
+- Comment `5985608750` is a genuine Base44 reply, signed `<!-- base44-bridge-reply -->`.
 
 ---
 
 *Questions about scope go to Eva. Technical objections go to Base44 with a written reason. Everything else
-goes to Devin, in writing. Current state of evidence above under "Current state". Evidence above under
-"Current state".*
+goes to Devin, in writing. Evidence above under "Current state".*
