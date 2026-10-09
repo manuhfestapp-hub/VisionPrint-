@@ -3,7 +3,7 @@
 > Auto-generated from structured `TASK T-###` blocks in issues #3 and #5. Edits here are overwritten.
 > A task is **done** only when its Evidence links to a real commit, merged PR, or file in this repo. Otherwise it shows as **claimed**.
 
-**Last synced:** 2026-10-09T02:05:06.606Z
+**Last synced:** 2026-10-09T04:04:23.539Z
 **Tasks:** 9
 
 ## needs owner (3)
